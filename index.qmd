@@ -11,35 +11,6 @@ execute:
 
 **Choose R or Python and delete the other code chunk.**
 
-## R Code
-
-```{r}
-#| echo: true
-library(tidyverse)
-library(broom)
-
-# Data with known true relationships: Anxiety = Stress + 0.1 × Time
-observDF <- tribble(
-  ~Stress, ~StressSurvey, ~Time, ~Anxiety,
-  0,0,0,0,
-  0,0,1,0.1,
-  0,0,1,0.1,
-  1,3,1,1.1,
-  1,3,1,1.1,
-  1,3,1,1.1,
-  2,6,2,2.2,
-  2,6,2,2.2,
-  2,6,2,2.2,
-  8,9,2,8.2,
-  8,9,2,8.2,
-  8,9,2.1,8.21,
-  12,12,2.2,12.22,
-  12,12,2.2,12.22,
-  12,12,2.2,12.22
-)
-
-observDF
-```
 
 ## Python Code
 
@@ -67,4 +38,120 @@ print(observDF)
 
 ## Your Analysis
 
-Follow the challenge instructions from your course to complete your analysis.
+### Bivariate Regression: Anxiety on StressSurvey
+
+```{python}
+#| echo: true
+# Manual bivariate regression of Anxiety on StressSurvey
+X = observDF['StressSurvey'].values
+y = observDF['Anxiety'].values
+
+# Calculate regression coefficients manually
+n = len(X)
+sum_x = np.sum(X)
+sum_y = np.sum(y)
+sum_xy = np.sum(X * y)
+sum_x2 = np.sum(X * X)
+
+# Slope (beta1) = (n*sum_xy - sum_x*sum_y) / (n*sum_x2 - sum_x*sum_x)
+slope = (n * sum_xy - sum_x * sum_y) / (n * sum_x2 - sum_x * sum_x)
+
+# Intercept (beta0) = (sum_y - beta1*sum_x) / n
+intercept = (sum_y - slope * sum_x) / n
+
+# Calculate R-squared
+y_pred = intercept + slope * X
+ss_res = np.sum((y - y_pred) ** 2)
+ss_tot = np.sum((y - np.mean(y)) ** 2)
+r_squared = 1 - (ss_res / ss_tot)
+
+print("Regression Results:")
+print(f"Intercept (beta0): {intercept:.4f}")
+print(f"Slope (beta1): {slope:.4f}")
+print(f"R-squared: {r_squared:.4f}")
+
+# Compare to true relationship
+print()
+print("Comparison to True Relationship:")
+print("True relationship: Anxiety = Stress + 0.1 × Time")
+print(f"True coefficient of Stress: 1.0")
+print(f"Estimated coefficient of StressSurvey: {slope:.4f}")
+print(f"Difference from true: {abs(slope - 1.0):.4f}")
+```
+
+### Scatter Plot with Regression Line
+
+```{python}
+#| echo: true
+# Create scatter plot with regression line
+plt.figure(figsize=(10, 6))
+plt.scatter(observDF['StressSurvey'], observDF['Anxiety'], alpha=0.7, s=100, color='blue', label='Data Points')
+
+# Plot regression line
+x_range = np.linspace(observDF['StressSurvey'].min(), observDF['StressSurvey'].max(), 100)
+y_pred_line = intercept + slope * x_range
+plt.plot(x_range, y_pred_line, 'r-', linewidth=2, label=f'Regression Line (y = {intercept:.3f} + {slope:.3f}x)')
+
+plt.xlabel('StressSurvey', fontsize=12)
+plt.ylabel('Anxiety', fontsize=12)
+plt.title('Relationship between StressSurvey and Anxiety', fontsize=14, fontweight='bold')
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()
+
+# Additional analysis
+print("Fit Analysis:")
+print(f"R-squared: {r_squared:.4f} ({r_squared*100:.1f}% of variance explained)")
+print(f"Root Mean Square Error: {np.sqrt(ss_res/n):.4f}")
+print(f"Mean Absolute Error: {np.mean(np.abs(y - y_pred)):.4f}")
+
+# Check for potential issues
+print("\nPotential Issues Analysis:")
+print("1. Clustering: Notice the data points cluster at specific StressSurvey values (0, 3, 6, 9, 12)")
+print("2. Limited variability: Most variation occurs at discrete levels rather than continuous")
+print("3. Perfect linear pattern: The relationship appears artificially perfect")
+```
+
+### Commentary on Fit and Potential Issues
+
+**Your Analysis:**
+
+*Please provide your commentary on the regression fit and any potential issues you observe in the data and model. Consider:*
+
+- *How well does the regression line fit the data?*
+- *What patterns do you notice in the scatter plot?*
+- *Are there any concerns about the data quality or model assumptions?*
+- *How might this analysis be improved?*
+
+---
+
+**Example Commentary:**
+
+The regression analysis reveals several important findings and concerns about this dataset. First, the statistical fit is excellent with an R-squared of 0.9011, meaning StressSurvey explains over 90% of the variance in Anxiety. The slope coefficient of 1.0470 is remarkably close to the true relationship coefficient of 1.0, suggesting StressSurvey is an effective proxy for the true Stress variable.
+
+However, several red flags suggest this data may be artificially generated rather than representing real psychological measurements. The most concerning pattern is the perfect clustering of data points at discrete StressSurvey values (0, 3, 6, 9, 12). In real-world psychological research, we would expect continuous variation and more scatter around the regression line due to individual differences, measurement error, and other confounding factors.
+
+The negative intercept (-1.5240) is also problematic from a practical standpoint, as it suggests negative anxiety levels when StressSurvey equals zero, which doesn't make psychological sense. This indicates the linear model may not be appropriate for the full range of possible values.
+
+The perfect linear relationship and lack of residual variation suggest this dataset was likely created for educational purposes rather than collected from actual research. While it effectively demonstrates regression concepts, it doesn't reflect the complexity and noise typically found in real psychological data.
+
+For improvement, I would recommend collecting more diverse data points, including intermediate StressSurvey values, and ensuring the relationship shows realistic scatter patterns that account for individual differences and measurement error.
+
+*[Replace this example with your own commentary]*
+
+---
+
+**Key Observations to Consider:**
+
+1. **Data Clustering**: The data points cluster at specific StressSurvey values (0, 3, 6, 9, 12) rather than showing continuous variation
+2. **Perfect Linearity**: The relationship appears artificially perfect for real psychological data
+3. **Limited Sample Size**: Only 15 observations may limit generalizability
+4. **High R-squared**: While 90.1% variance explained is excellent, it may indicate overfitting or artificial data
+5. **Discrete Levels**: Real psychological measurements typically show more natural variation
+
+**Questions for Reflection:**
+- Does this data look realistic for psychological measurements?
+- What assumptions of linear regression might be violated?
+- How would you interpret the negative intercept in practical terms?
+- What additional variables might be important to include?
