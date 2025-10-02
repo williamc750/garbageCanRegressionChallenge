@@ -81,7 +81,7 @@ print(f"Difference from true: {abs(slope - 1.0):.4f}")
 
 ###What are the estimated coefficients? How do they compare to the true coefficients?
 
-The estimated coefficients are 1.0470 for the StressSurvey (slope) and -1.5240 for the intercept. The true coefficients are 1.0 for the StressSurvey, 0 for the intercept, and 0.1 for the Time. The difference from the true coefficients is 0.0470 for the StressSurvey and -1.5240 for the intercept. This tells me that the StressSurvey is a good proxy for the true Stress variable, but the intercept is not a good proxy for the true intercept as it is not 0.
+The estimated coefficients are 1.0470 for the StressSurvey (slope) and -1.5240 for the intercept. The true coefficients are 1.0 for the stress, 0 for the intercept, and 0.1 for the Time. The difference from the true coefficients is 0.0470 for StressSurvey and -1.5240 for the intercept. This tells me that the StressSurvey is a good proxy for the true Stress variable, but the intercept is not a good proxy for the true intercept as it is not 0.
 
 
 
@@ -125,22 +125,12 @@ print("3. Perfect linear pattern: The relationship appears artificially perfect"
 
 The regression line fits the data well as the R-squared is 0.9011. This means that the StressSurvey explains over 90% of the variance in Anxiety. The slope coefficient of 1.0470 is remarkably close to the true relationship coefficient of 1.0, suggesting StressSurvey is an effective proxy for the true Stress variable. However, the negative intercept (-1.5240) is also problematic from a practical standpoint, as it suggests negative anxiety levels when StressSurvey equals zero, which doesn't make psychological sense. This indicates the linear model may not be appropriate for the full range of possible values.
 
-*Please provide your commentary on the regression fit and any potential issues you observe in the data and model. Consider:*
-
-- *How well does the regression line fit the data?*
-- *What patterns do you notice in the scatter plot?*
-- *Are there any concerns about the data quality or model assumptions?*
-- *How might this analysis be improved?*
-
 ---
 
-**Example Commentary:**
 
-The regression analysis reveals several important findings and concerns about this dataset. First, the statistical fit is excellent with an R-squared of 0.9011, meaning StressSurvey explains over 90% of the variance in Anxiety. The slope coefficient of 1.0470 is remarkably close to the true relationship coefficient of 1.0, suggesting StressSurvey is an effective proxy for the true Stress variable.
 
 However, several red flags suggest this data may be artificially generated rather than representing real psychological measurements. The most concerning pattern is the perfect clustering of data points at discrete StressSurvey values (0, 3, 6, 9, 12). In real-world psychological research, we would expect continuous variation and more scatter around the regression line due to individual differences, measurement error, and other confounding factors.
 
-The negative intercept (-1.5240) is also problematic from a practical standpoint, as it suggests negative anxiety levels when StressSurvey equals zero, which doesn't make psychological sense. This indicates the linear model may not be appropriate for the full range of possible values.
 
 The perfect linear relationship and lack of residual variation suggest this dataset was likely created for educational purposes rather than collected from actual research. While it effectively demonstrates regression concepts, it doesn't reflect the complexity and noise typically found in real psychological data.
 
