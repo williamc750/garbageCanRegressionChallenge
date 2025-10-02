@@ -79,6 +79,12 @@ print(f"Estimated coefficient of StressSurvey: {slope:.4f}")
 print(f"Difference from true: {abs(slope - 1.0):.4f}")
 ```
 
+###What are the estimated coefficients? How do they compare to the true coefficients?
+
+The estimated coefficients are 1.0470 for the StressSurvey (slope) and -1.5240 for the intercept. The true coefficients are 1.0 for the StressSurvey, 0 for the intercept, and 0.1 for the Time. The difference from the true coefficients is 0.0470 for the StressSurvey and -1.5240 for the intercept. This tells me that the StressSurvey is a good proxy for the true Stress variable, but the intercept is not a good proxy for the true intercept as it is not 0.
+
+
+
 ### Scatter Plot with Regression Line
 
 ```{python}
@@ -116,6 +122,8 @@ print("3. Perfect linear pattern: The relationship appears artificially perfect"
 ### Commentary on Fit and Potential Issues
 
 **Your Analysis:**
+
+The regression line fits the data well as the R-squared is 0.9011. This means that the StressSurvey explains over 90% of the variance in Anxiety. The slope coefficient of 1.0470 is remarkably close to the true relationship coefficient of 1.0, suggesting StressSurvey is an effective proxy for the true Stress variable. However, the negative intercept (-1.5240) is also problematic from a practical standpoint, as it suggests negative anxiety levels when StressSurvey equals zero, which doesn't make psychological sense. This indicates the linear model may not be appropriate for the full range of possible values.
 
 *Please provide your commentary on the regression fit and any potential issues you observe in the data and model. Consider:*
 
