@@ -155,3 +155,155 @@ For improvement, I would recommend collecting more diverse data points, includin
 - What assumptions of linear regression might be violated?
 - How would you interpret the negative intercept in practical terms?
 - What additional variables might be important to include?
+
+
+
+### Bivariate Regression: Anxiety on Time
+
+```{python}
+#| echo: true
+# Manual bivariate regression of Anxiety on Time
+X_time = observDF['Time'].values
+y_time = observDF['Anxiety'].values
+
+# Calculate regression coefficients manually
+n_time = len(X_time)
+sum_x_time = np.sum(X_time)
+sum_y_time = np.sum(y_time)
+sum_xy_time = np.sum(X_time * y_time)
+sum_x2_time = np.sum(X_time * X_time)
+
+# Slope (beta1) = (n*sum_xy - sum_x*sum_y) / (n*sum_x2 - sum_x*sum_x)
+slope_time = (n_time * sum_xy_time - sum_x_time * sum_y_time) / (n_time * sum_x2_time - sum_x_time * sum_x_time)
+
+# Intercept (beta0) = (sum_y - beta1*sum_x) / n
+intercept_time = (sum_y_time - slope_time * sum_x_time) / n_time
+
+# Calculate R-squared
+y_pred_time = intercept_time + slope_time * X_time
+ss_res_time = np.sum((y_time - y_pred_time) ** 2)
+ss_tot_time = np.sum((y_time - np.mean(y_time)) ** 2)
+r_squared_time = 1 - (ss_res_time / ss_tot_time)
+
+print("Regression Results (Anxiety on Time):")
+print(f"Intercept (beta0): {intercept_time:.4f}")
+print(f"Slope (beta1): {slope_time:.4f}")
+print(f"R-squared: {r_squared_time:.4f}")
+
+# Compare to true relationship
+print()
+print("Comparison to True Relationship:")
+print("True relationship: Anxiety = Stress + 0.1 × Time")
+print(f"True coefficient of Time: 0.1")
+print(f"Estimated coefficient of Time: {slope_time:.4f}")
+print(f"Difference from true: {abs(slope_time - 0.1):.4f}")
+
+# Create scatter plot for Time vs Anxiety
+plt.figure(figsize=(10, 6))
+plt.scatter(observDF['Time'], observDF['Anxiety'], alpha=0.7, s=100, color='green', label='Data Points')
+
+# Plot regression line
+x_range_time = np.linspace(observDF['Time'].min(), observDF['Time'].max(), 100)
+y_pred_line_time = intercept_time + slope_time * x_range_time
+plt.plot(x_range_time, y_pred_line_time, 'r-', linewidth=2, label=f'Regression Line (y = {intercept_time:.3f} + {slope_time:.3f}x)')
+
+plt.xlabel('Time', fontsize=12)
+plt.ylabel('Anxiety', fontsize=12)
+plt.title('Relationship between Time and Anxiety', fontsize=14, fontweight='bold')
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()
+
+print(f"\nFit Analysis:")
+print(f"R-squared: {r_squared_time:.4f} ({r_squared_time*100:.1f}% of variance explained)")
+print(f"Root Mean Square Error: {np.sqrt(ss_res_time/n_time):.4f}")
+print(f"Mean Absolute Error: {np.mean(np.abs(y_time - y_pred_time)):.4f}")
+```
+
+### Multiple Regression: Anxiety on StressSurvey and Time
+
+```{python}
+#| echo: true
+# Multiple regression of Anxiety on both StressSurvey and Time
+# Using matrix algebra for multiple regression: β = (X'X)^(-1)X'y
+
+# Create design matrix X with intercept, StressSurvey, and Time
+X_multi = np.column_stack([
+    np.ones(len(observDF)),  # Intercept column
+    observDF['StressSurvey'].values,  # StressSurvey column
+    observDF['Time'].values  # Time column
+])
+
+y_multi = observDF['Anxiety'].values
+
+# Calculate coefficients using normal equation: β = (X'X)^(-1)X'y
+X_transpose = X_multi.T
+X_transpose_X = np.dot(X_transpose, X_multi)
+X_transpose_X_inv = np.linalg.inv(X_transpose_X)
+X_transpose_y = np.dot(X_transpose, y_multi)
+coefficients = np.dot(X_transpose_X_inv, X_transpose_y)
+
+# Extract coefficients
+intercept_multi = coefficients[0]
+slope_stress_survey = coefficients[1]
+slope_time = coefficients[2]
+
+# Calculate predictions and R-squared
+y_pred_multi = np.dot(X_multi, coefficients)
+ss_res_multi = np.sum((y_multi - y_pred_multi) ** 2)
+ss_tot_multi = np.sum((y_multi - np.mean(y_multi)) ** 2)
+r_squared_multi = 1 - (ss_res_multi / ss_tot_multi)
+
+print("Multiple Regression Results:")
+print(f"Intercept (β₀): {intercept_multi:.4f}")
+print(f"StressSurvey coefficient (β₁): {slope_stress_survey:.4f}")
+print(f"Time coefficient (β₂): {slope_time:.4f}")
+print(f"R-squared: {r_squared_multi:.4f}")
+
+# Compare to true relationship
+print()
+print("Comparison to True Relationship:")
+print("True relationship: Anxiety = Stress + 0.1 × Time")
+print(f"True coefficient of Stress: 1.0")
+print(f"True coefficient of Time: 0.1")
+print()
+print(f"Estimated StressSurvey coefficient: {slope_stress_survey:.4f}")
+print(f"Difference from true Stress: {abs(slope_stress_survey - 1.0):.4f}")
+print()
+print(f"Estimated Time coefficient: {slope_time:.4f}")
+print(f"Difference from true Time: {abs(slope_time - 0.1):.4f}")
+
+# Additional fit statistics
+print(f"\nFit Analysis:")
+print(f"R-squared: {r_squared_multi:.4f} ({r_squared_multi*100:.1f}% of variance explained)")
+print(f"Root Mean Square Error: {np.sqrt(ss_res_multi/len(y_multi)):.4f}")
+print(f"Mean Absolute Error: {np.mean(np.abs(y_multi - y_pred_multi)):.4f}")
+
+# Create 3D scatter plot
+from mpl_toolkits.mplot3d import Axes3D
+fig = plt.figure(figsize=(12, 8))
+ax = fig.add_subplot(111, projection='3d')
+
+# Scatter plot
+ax.scatter(observDF['StressSurvey'], observDF['Time'], observDF['Anxiety'], 
+           c='blue', alpha=0.7, s=100, label='Data Points')
+
+# Create mesh for regression plane
+stress_range = np.linspace(observDF['StressSurvey'].min(), observDF['StressSurvey'].max(), 10)
+time_range = np.linspace(observDF['Time'].min(), observDF['Time'].max(), 10)
+Stress_mesh, Time_mesh = np.meshgrid(stress_range, time_range)
+Anxiety_pred = intercept_multi + slope_stress_survey * Stress_mesh + slope_time * Time_mesh
+
+# Plot regression plane
+ax.plot_surface(Stress_mesh, Time_mesh, Anxiety_pred, alpha=0.3, color='red', 
+                label='Regression Plane')
+
+ax.set_xlabel('StressSurvey')
+ax.set_ylabel('Time')
+ax.set_zlabel('Anxiety')
+ax.set_title('Multiple Regression: Anxiety = f(StressSurvey, Time)')
+plt.tight_layout()
+plt.show()
+```
+
