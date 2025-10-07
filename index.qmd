@@ -123,39 +123,9 @@ print("3. Perfect linear pattern: The relationship appears artificially perfect"
 
 **Your Analysis:**
 
-The regression line fits the data well as the R-squared is 0.9011. This means that the StressSurvey explains over 90% of the variance in Anxiety. The slope coefficient of 1.0470 is remarkably close to the true relationship coefficient of 1.0, suggesting StressSurvey is an effective proxy for the true Stress variable. However, the negative intercept (-1.5240) is also problematic from a practical standpoint, as it suggests negative anxiety levels when StressSurvey equals zero, which doesn't make psychological sense. This indicates the linear model may not be appropriate for the full range of possible values.
+The regression line fits the data well as the R-squared is 0.9011. This means that the StressSurvey explains over 90% of the variance in Anxiety. The slope coefficient of 1.0470 is remarkably close to the true relationship coefficient of 1.0, suggesting StressSurvey is an effective proxy for the true Stress variable. However, the negative intercept (-1.5240) is also problematic because it suggests negative anxiety levels when StressSurvey equals zero, which doesn't make psychological sense. This indicates the linear model may not be appropriate for the full range of possible values.
 
 ---
-
-
-
-However, several red flags suggest this data may be artificially generated rather than representing real psychological measurements. The most concerning pattern is the perfect clustering of data points at discrete StressSurvey values (0, 3, 6, 9, 12). In real-world psychological research, we would expect continuous variation and more scatter around the regression line due to individual differences, measurement error, and other confounding factors.
-
-
-The perfect linear relationship and lack of residual variation suggest this dataset was likely created for educational purposes rather than collected from actual research. While it effectively demonstrates regression concepts, it doesn't reflect the complexity and noise typically found in real psychological data.
-
-For improvement, I would recommend collecting more diverse data points, including intermediate StressSurvey values, and ensuring the relationship shows realistic scatter patterns that account for individual differences and measurement error.
-
-*[Replace this example with your own commentary]*
-
----
-
-**Key Observations to Consider:**
-
-1. **Data Clustering**: The data points cluster at specific StressSurvey values (0, 3, 6, 9, 12) rather than showing continuous variation
-2. **Perfect Linearity**: The relationship appears artificially perfect for real psychological data
-3. **Limited Sample Size**: Only 15 observations may limit generalizability
-4. **High R-squared**: While 90.1% variance explained is excellent, it may indicate overfitting or artificial data
-5. **Discrete Levels**: Real psychological measurements typically show more natural variation
-
-**Questions for Reflection:**
-- Does this data look realistic for psychological measurements?
-- What assumptions of linear regression might be violated?
-- How would you interpret the negative intercept in practical terms?
-- What additional variables might be important to include?
-
-
-
 ### Bivariate Regression: Anxiety on Time
 
 ```{python}
@@ -218,6 +188,11 @@ print(f"R-squared: {r_squared_time:.4f} ({r_squared_time*100:.1f}% of variance e
 print(f"Root Mean Square Error: {np.sqrt(ss_res_time/n_time):.4f}")
 print(f"Mean Absolute Error: {np.mean(np.abs(y_time - y_pred_time)):.4f}")
 ```
+
+
+###What are the estimated coefficients? How do they compare to the true relationship?
+
+The estimated coefficients are 5.33
 
 ### Multiple Regression: Anxiety on StressSurvey and Time
 
