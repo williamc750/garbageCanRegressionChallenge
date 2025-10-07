@@ -192,7 +192,11 @@ print(f"Mean Absolute Error: {np.mean(np.abs(y_time - y_pred_time)):.4f}")
 
 ###What are the estimated coefficients? How do they compare to the true relationship?
 
-The estimated coefficients are 5.33
+The estimated coefficients are 5.3333 for the time and -3.6667 for the intercept. The true relationship is Anxiety = Stress + 0.1 * Time. The difference from the true relationship is 5.2333 for the time and -3.7667 for the intercept. This tells me that time is a good proxy for the true relationship, but the intercept is not a good proxy for the true intercept as it is not 0.
+
+###Commentary on fit and potential issues of scatterplot of bivariate regression of Anxiety on Time
+The r-squared is 56.3% which is not very good. The root mean square error is 1.0667 and the mean absolute error is 0.8333. This tells me that the model is not a good fit for the data. Residuals range from -4.8 to 4.15 and the standard deviation of residuals is 3.09. This is quite large relative to the anxiety scale. The data points are not scattered around the regression line and are clustered at specific time values. This is not a good sign as it suggests that the model is not a good fit for the data.
+
 
 ### Multiple Regression: Anxiety on StressSurvey and Time
 
