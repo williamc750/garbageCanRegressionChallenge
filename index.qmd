@@ -78,7 +78,7 @@ print(f"Estimated coefficient of StressSurvey: {slope:.4f}")
 print(f"Difference from true: {abs(slope - 1.0):.4f}")
 ```
 
-### What are the estimated coefficients? How do they compare to the true coefficients?
+### Question 1: What are the estimated coefficients? How do they compare to the true coefficients
 
 The estimated coefficients are 1.0470 for the StressSurvey (slope) and -1.5240 for the intercept. The true coefficients are 1.0 for the stress, 0 for the intercept, and 0.1 for the Time. The difference from the true coefficients is 0.0470 for StressSurvey and -1.5240 for the intercept. This tells me that the StressSurvey is a good proxy for the true Stress variable, but the intercept is not a good proxy for the true intercept as it is not 0.
 
@@ -116,7 +116,7 @@ print("2. Limited variability: Most variation occurs at discrete levels rather t
 print("3. Perfect linear pattern: The relationship appears artificially perfect")
 ```
 
-### Commentary on Fit and Potential Issues
+### Question 2: Commentary on Fit and Potential Issues
 
 **Model Fit Assessment:**
 
@@ -187,7 +187,7 @@ print(f"Root Mean Square Error: {np.sqrt(ss_res_time/n_time):.4f}")
 print(f"Mean Absolute Error: {np.mean(np.abs(y_time - y_pred_time)):.4f}")
 ```
 
-### What are the estimated coefficients? How do they compare to the true relationship?
+### Question 3: What are the estimated coefficients? How do they compare to the true relationship?
 
 The estimated coefficients are 5.3406 for the time and -3.6801 for the intercept. The true coefficients are 0.1 for the time and 0 for the intercept. The difference from the true coefficients is 5.2406 for the time and -3.6801 for the intercept. This tells me that the time is a good proxy for the true time, but the intercept is not a good proxy for the true intercept as it is not 0.
 
@@ -226,8 +226,200 @@ print("3. Poor fit: R-squared of 56.3% indicates Time alone is not a strong pred
 print("4. Large residuals: Substantial prediction errors throughout the range")
 ```
 
-### Commentary on Fit and Potential Issues
+### Question 4: Commentary on Fit and Potential Issues
 
 The fit is not very good with a R-squared of 56.3%. The root mean square error is 3.0933 and the mean absolute error is 2.5607. This tells me that the model is not a good fit for the data. The data points are clustered at specific Time values (0, 1, 2, 2.1, 2.2) and the residuals are not random. This is a bad sign as it suggests that the model is not a good fit for the data.
 
+---
+
+### Multiple Regression: Anxiety on StressSurvey and Time
+
+```{python}
+#| echo: true
+# Multiple regression of Anxiety on both StressSurvey and Time
+# Using matrix algebra for multiple regression: β = (X'X)^(-1)X'y
+
+# Create design matrix X with intercept, StressSurvey, and Time
+X_multi = np.column_stack([
+    np.ones(len(observDF)),  # Intercept column
+    observDF['StressSurvey'].values,  # StressSurvey column
+    observDF['Time'].values  # Time column
+])
+
+y_multi = observDF['Anxiety'].values
+
+# Calculate coefficients using normal equation: β = (X'X)^(-1)X'y
+X_transpose = X_multi.T
+X_transpose_X = np.dot(X_transpose, X_multi)
+X_transpose_X_inv = np.linalg.inv(X_transpose_X)
+X_transpose_y = np.dot(X_transpose, y_multi)
+coefficients = np.dot(X_transpose_X_inv, X_transpose_y)
+
+# Extract coefficients
+intercept_multi = coefficients[0]
+slope_stress_survey = coefficients[1]
+slope_time = coefficients[2]
+
+# Calculate predictions and R-squared
+y_pred_multi = np.dot(X_multi, coefficients)
+ss_res_multi = np.sum((y_multi - y_pred_multi) ** 2)
+ss_tot_multi = np.sum((y_multi - np.mean(y_multi)) ** 2)
+r_squared_multi = 1 - (ss_res_multi / ss_tot_multi)
+
+print("Multiple Regression Results:")
+print(f"Intercept (β₀): {intercept_multi:.4f}")
+print(f"StressSurvey coefficient (β₁): {slope_stress_survey:.4f}")
+print(f"Time coefficient (β₂): {slope_time:.4f}")
+print(f"R-squared: {r_squared_multi:.4f}")
+
+# Compare to true relationship
+print()
+print("Comparison to True Relationship:")
+print("True relationship: Anxiety = Stress + 0.1 × Time")
+print(f"True coefficient of Stress: 1.0")
+print(f"True coefficient of Time: 0.1")
+print()
+print(f"Estimated StressSurvey coefficient: {slope_stress_survey:.4f}")
+print(f"Difference from true Stress: {abs(slope_stress_survey - 1.0):.4f}")
+print()
+print(f"Estimated Time coefficient: {slope_time:.4f}")
+print(f"Difference from true Time: {abs(slope_time - 0.1):.4f}")
+
+# Additional fit statistics
+print(f"\nFit Analysis:")
+print(f"R-squared: {r_squared_multi:.4f} ({r_squared_multi*100:.1f}% of variance explained)")
+print(f"Root Mean Square Error: {np.sqrt(ss_res_multi/len(y_multi)):.4f}")
+print(f"Mean Absolute Error: {np.mean(np.abs(y_multi - y_pred_multi)):.4f}")
+
+# Create 3D scatter plot
+from mpl_toolkits.mplot3d import Axes3D
+fig = plt.figure(figsize=(12, 8))
+ax = fig.add_subplot(111, projection='3d')
+
+# Scatter plot
+ax.scatter(observDF['StressSurvey'], observDF['Time'], observDF['Anxiety'], 
+           c='blue', alpha=0.7, s=100, label='Data Points')
+
+# Create mesh for regression plane
+stress_range = np.linspace(observDF['StressSurvey'].min(), observDF['StressSurvey'].max(), 10)
+time_range = np.linspace(observDF['Time'].min(), observDF['Time'].max(), 10)
+Stress_mesh, Time_mesh = np.meshgrid(stress_range, time_range)
+Anxiety_pred = intercept_multi + slope_stress_survey * Stress_mesh + slope_time * Time_mesh
+
+# Plot regression plane
+ax.plot_surface(Stress_mesh, Time_mesh, Anxiety_pred, alpha=0.3, color='red', 
+                label='Regression Plane')
+
+ax.set_xlabel('StressSurvey')
+ax.set_ylabel('Time')
+ax.set_zlabel('Anxiety')
+ax.set_title('Multiple Regression: Anxiety = f(StressSurvey, Time)')
+plt.tight_layout()
+plt.show()
+```
+
+### Question 5: What are the estimated coefficients? How do they compare to the true relationship?
+
+The estimated coefficients are 0 for the intercept, 1 for the stress, and .1 for the time. The true coefficients are 0 for the intercept, 1 for the stress, and .1 for the time. The difference from the true coefficients is 0 for the intercept, 0 for the stress, and 0 for the time. This tells me that the model is a perfect fit for the data.
+
+---
+
+### Multiple Regression: Anxiety on TRUE Stress and Time
+
+```{python}
+#| echo: true
+# Multiple regression of Anxiety on both TRUE Stress and Time
+# Using matrix algebra for multiple regression: β = (X'X)^(-1)X'y
+
+# Create design matrix X with intercept, TRUE Stress, and Time
+X_multi_true = np.column_stack([
+    np.ones(len(observDF)),  # Intercept column
+    observDF['Stress'].values,  # TRUE Stress column (not StressSurvey)
+    observDF['Time'].values  # Time column
+])
+
+y_multi_true = observDF['Anxiety'].values
+
+# Calculate coefficients using normal equation: β = (X'X)^(-1)X'y
+X_transpose_true = X_multi_true.T
+X_transpose_X_true = np.dot(X_transpose_true, X_multi_true)
+X_transpose_X_inv_true = np.linalg.inv(X_transpose_X_true)
+X_transpose_y_true = np.dot(X_transpose_true, y_multi_true)
+coefficients_true = np.dot(X_transpose_X_inv_true, X_transpose_y_true)
+
+# Extract coefficients
+intercept_multi_true = coefficients_true[0]
+slope_stress_true = coefficients_true[1]
+slope_time_true = coefficients_true[2]
+
+# Calculate predictions and R-squared
+y_pred_multi_true = np.dot(X_multi_true, coefficients_true)
+ss_res_multi_true = np.sum((y_multi_true - y_pred_multi_true) ** 2)
+ss_tot_multi_true = np.sum((y_multi_true - np.mean(y_multi_true)) ** 2)
+r_squared_multi_true = 1 - (ss_res_multi_true / ss_tot_multi_true)
+
+print("Multiple Regression Results (TRUE Variables):")
+print(f"Intercept (β₀): {intercept_multi_true:.4f}")
+print(f"Stress coefficient (β₁): {slope_stress_true:.4f}")
+print(f"Time coefficient (β₂): {slope_time_true:.4f}")
+print(f"R-squared: {r_squared_multi_true:.4f}")
+
+# Compare to true relationship
+print()
+print("Comparison to True Relationship:")
+print("True relationship: Anxiety = Stress + 0.1 × Time")
+print(f"True coefficient of Stress: 1.0")
+print(f"True coefficient of Time: 0.1")
+print(f"True intercept: 0.0")
+print()
+print(f"Estimated Stress coefficient: {slope_stress_true:.4f}")
+print(f"Difference from true Stress: {abs(slope_stress_true - 1.0):.4f}")
+print()
+print(f"Estimated Time coefficient: {slope_time_true:.4f}")
+print(f"Difference from true Time: {abs(slope_time_true - 0.1):.4f}")
+print()
+print(f"Estimated intercept: {intercept_multi_true:.4f}")
+print(f"Difference from true intercept: {abs(intercept_multi_true - 0.0):.4f}")
+
+# Additional fit statistics
+print(f"\nFit Analysis:")
+print(f"R-squared: {r_squared_multi_true:.4f} ({r_squared_multi_true*100:.1f}% of variance explained)")
+print(f"Root Mean Square Error: {np.sqrt(ss_res_multi_true/len(y_multi_true)):.4f}")
+print(f"Mean Absolute Error: {np.mean(np.abs(y_multi_true - y_pred_multi_true)):.4f}")
+
+# Create 3D scatter plot with TRUE variables
+from mpl_toolkits.mplot3d import Axes3D
+fig = plt.figure(figsize=(12, 8))
+ax = fig.add_subplot(111, projection='3d')
+
+# Scatter plot
+ax.scatter(observDF['Stress'], observDF['Time'], observDF['Anxiety'], 
+           c='blue', alpha=0.7, s=100, label='Data Points')
+
+# Create mesh for regression plane
+stress_range_true = np.linspace(observDF['Stress'].min(), observDF['Stress'].max(), 10)
+time_range_true = np.linspace(observDF['Time'].min(), observDF['Time'].max(), 10)
+Stress_mesh_true, Time_mesh_true = np.meshgrid(stress_range_true, time_range_true)
+Anxiety_pred_true = intercept_multi_true + slope_stress_true * Stress_mesh_true + slope_time_true * Time_mesh_true
+
+# Plot regression plane
+ax.plot_surface(Stress_mesh_true, Time_mesh_true, Anxiety_pred_true, alpha=0.3, color='red', 
+                label='Regression Plane')
+
+ax.set_xlabel('Stress (TRUE)')
+ax.set_ylabel('Time')
+ax.set_zlabel('Anxiety')
+ax.set_title('Multiple Regression: Anxiety = f(Stress, Time)\nPerfect Fit (R² = 1.000)')
+plt.tight_layout()
+plt.show()
+```
+
+### Questions to answer for 85% Grade on Challenge:
+
+### Question 4: What are the estimated coefficients? How do they compare to the true relationship?
+
+The estimated coefficients are 0 for the intercept, 1 for the stress, and .1 for the time. These are the same as the true coefficients. The true relationship is Anxiety = Stress + 0.1 × Time. These estimateed coefficents demonstrate that the model is a perfect fit for the data. Using true stress rather than stress survey results in a perfect fit.
+
+
+### Question 5: Commentary on Fit and Potential Issues
 
