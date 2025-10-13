@@ -104,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Choose R or Python and delete the other code chunk.</strong></p>
 <section id="python-code" class="level2">
 <h2 class="anchored" data-anchor-id="python-code">Python Code</h2>
-<div id="a58cbdd9" class="cell" data-execution_count="1">
+<div id="d32c51aa" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -147,7 +147,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="your-analysis">Your Analysis</h2>
 <section id="bivariate-regression-anxiety-on-stresssurvey" class="level3">
 <h3 class="anchored" data-anchor-id="bivariate-regression-anxiety-on-stresssurvey">Bivariate Regression: Anxiety on StressSurvey</h3>
-<div id="a62aedc0" class="cell" data-execution_count="2">
+<div id="37d87145" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Manual bivariate regression of Anxiety on StressSurvey</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> observDF[<span class="st">'StressSurvey'</span>].values</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> observDF[<span class="st">'Anxiety'</span>].values</span>
@@ -197,13 +197,13 @@ Difference from true: 0.0470</code></pre>
 </div>
 </div>
 </section>
-<section id="what-are-the-estimated-coefficients-how-do-they-compare-to-the-true-coefficients" class="level3">
-<h3 class="anchored" data-anchor-id="what-are-the-estimated-coefficients-how-do-they-compare-to-the-true-coefficients">What are the estimated coefficients? How do they compare to the true coefficients?</h3>
+<section id="question-1-what-are-the-estimated-coefficients-how-do-they-compare-to-the-true-coefficients" class="level3">
+<h3 class="anchored" data-anchor-id="question-1-what-are-the-estimated-coefficients-how-do-they-compare-to-the-true-coefficients">Question 1: What are the estimated coefficients? How do they compare to the true coefficients</h3>
 <p>The estimated coefficients are 1.0470 for the StressSurvey (slope) and -1.5240 for the intercept. The true coefficients are 1.0 for the stress, 0 for the intercept, and 0.1 for the Time. The difference from the true coefficients is 0.0470 for StressSurvey and -1.5240 for the intercept. This tells me that the StressSurvey is a good proxy for the true Stress variable, but the intercept is not a good proxy for the true intercept as it is not 0.</p>
 </section>
 <section id="scatter-plot-with-regression-line" class="level3">
 <h3 class="anchored" data-anchor-id="scatter-plot-with-regression-line">Scatter Plot with Regression Line</h3>
-<div id="a7451830" class="cell" data-execution_count="3">
+<div id="59075c0e" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create scatter plot with regression line</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(observDF[<span class="st">'StressSurvey'</span>], observDF[<span class="st">'Anxiety'</span>], alpha<span class="op">=</span><span class="fl">0.7</span>, s<span class="op">=</span><span class="dv">100</span>, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Data Points'</span>)</span>
@@ -252,15 +252,15 @@ Potential Issues Analysis:
 </div>
 </div>
 </section>
-<section id="commentary-on-fit-and-potential-issues" class="level3">
-<h3 class="anchored" data-anchor-id="commentary-on-fit-and-potential-issues">Commentary on Fit and Potential Issues</h3>
+<section id="question-2-commentary-on-fit-and-potential-issues" class="level3">
+<h3 class="anchored" data-anchor-id="question-2-commentary-on-fit-and-potential-issues">Question 2: Commentary on Fit and Potential Issues</h3>
 <p><strong>Model Fit Assessment:</strong></p>
 <p>The fit is pretty good with a R-squared of 90.11%. The root mean square error is 0.7828 and the mean absolute error is 0.6241. This tells me that the model is a good fit for the data. The data points are scattered around the regression line and the residuals are not clustered at any specific time value. This is a good sign as it suggests that the model is a good fit for the data.</p>
 <hr>
 </section>
 <section id="bivariate-regression-anxiety-on-time" class="level3">
 <h3 class="anchored" data-anchor-id="bivariate-regression-anxiety-on-time">Bivariate Regression: Anxiety on Time</h3>
-<div id="2a961ae1" class="cell" data-execution_count="4">
+<div id="ef73a3a1" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Manual bivariate regression of Anxiety on Time</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>X_time <span class="op">=</span> observDF[<span class="st">'Time'</span>].values</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>y_time <span class="op">=</span> observDF[<span class="st">'Anxiety'</span>].values</span>
@@ -346,13 +346,13 @@ Mean Absolute Error: 2.5607</code></pre>
 </div>
 </div>
 </section>
-<section id="what-are-the-estimated-coefficients-how-do-they-compare-to-the-true-relationship" class="level3">
-<h3 class="anchored" data-anchor-id="what-are-the-estimated-coefficients-how-do-they-compare-to-the-true-relationship">What are the estimated coefficients? How do they compare to the true relationship?</h3>
+<section id="question-3-what-are-the-estimated-coefficients-how-do-they-compare-to-the-true-relationship" class="level3">
+<h3 class="anchored" data-anchor-id="question-3-what-are-the-estimated-coefficients-how-do-they-compare-to-the-true-relationship">Question 3: What are the estimated coefficients? How do they compare to the true relationship?</h3>
 <p>The estimated coefficients are 5.3406 for the time and -3.6801 for the intercept. The true coefficients are 0.1 for the time and 0 for the intercept. The difference from the true coefficients is 5.2406 for the time and -3.6801 for the intercept. This tells me that the time is a good proxy for the true time, but the intercept is not a good proxy for the true intercept as it is not 0.</p>
 </section>
 <section id="scatter-plot-with-regression-line-time-vs-anxiety" class="level3">
 <h3 class="anchored" data-anchor-id="scatter-plot-with-regression-line-time-vs-anxiety">Scatter Plot with Regression Line: Time vs Anxiety</h3>
-<div id="c1653b98" class="cell" data-execution_count="5">
+<div id="3ecf96cb" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create scatter plot with regression line for Time vs Anxiety</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(observDF[<span class="st">'Time'</span>], observDF[<span class="st">'Anxiety'</span>], alpha<span class="op">=</span><span class="fl">0.7</span>, s<span class="op">=</span><span class="dv">100</span>, color<span class="op">=</span><span class="st">'green'</span>, label<span class="op">=</span><span class="st">'Data Points'</span>)</span>
@@ -403,9 +403,556 @@ Potential Issues Analysis:
 </div>
 </div>
 </section>
-<section id="commentary-on-fit-and-potential-issues-1" class="level3">
-<h3 class="anchored" data-anchor-id="commentary-on-fit-and-potential-issues-1">Commentary on Fit and Potential Issues</h3>
+<section id="question-4-commentary-on-fit-and-potential-issues" class="level3">
+<h3 class="anchored" data-anchor-id="question-4-commentary-on-fit-and-potential-issues">Question 4: Commentary on Fit and Potential Issues</h3>
 <p>The fit is not very good with a R-squared of 56.3%. The root mean square error is 3.0933 and the mean absolute error is 2.5607. This tells me that the model is not a good fit for the data. The data points are clustered at specific Time values (0, 1, 2, 2.1, 2.2) and the residuals are not random. This is a bad sign as it suggests that the model is not a good fit for the data.</p>
+<hr>
+</section>
+<section id="multiple-regression-anxiety-on-stresssurvey-and-time" class="level3">
+<h3 class="anchored" data-anchor-id="multiple-regression-anxiety-on-stresssurvey-and-time">Multiple Regression: Anxiety on StressSurvey and Time</h3>
+<div id="4aa209cf" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiple regression of Anxiety on both StressSurvey and Time</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Using matrix algebra for multiple regression: β = (X'X)^(-1)X'y</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create design matrix X with intercept, StressSurvey, and Time</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>X_multi <span class="op">=</span> np.column_stack([</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    np.ones(<span class="bu">len</span>(observDF)),  <span class="co"># Intercept column</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    observDF[<span class="st">'StressSurvey'</span>].values,  <span class="co"># StressSurvey column</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    observDF[<span class="st">'Time'</span>].values  <span class="co"># Time column</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>y_multi <span class="op">=</span> observDF[<span class="st">'Anxiety'</span>].values</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate coefficients using normal equation: β = (X'X)^(-1)X'y</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>X_transpose <span class="op">=</span> X_multi.T</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>X_transpose_X <span class="op">=</span> np.dot(X_transpose, X_multi)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>X_transpose_X_inv <span class="op">=</span> np.linalg.inv(X_transpose_X)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>X_transpose_y <span class="op">=</span> np.dot(X_transpose, y_multi)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>coefficients <span class="op">=</span> np.dot(X_transpose_X_inv, X_transpose_y)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract coefficients</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>intercept_multi <span class="op">=</span> coefficients[<span class="dv">0</span>]</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>slope_stress_survey <span class="op">=</span> coefficients[<span class="dv">1</span>]</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>slope_time <span class="op">=</span> coefficients[<span class="dv">2</span>]</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate predictions and R-squared</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>y_pred_multi <span class="op">=</span> np.dot(X_multi, coefficients)</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>ss_res_multi <span class="op">=</span> np.<span class="bu">sum</span>((y_multi <span class="op">-</span> y_pred_multi) <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>ss_tot_multi <span class="op">=</span> np.<span class="bu">sum</span>((y_multi <span class="op">-</span> np.mean(y_multi)) <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>r_squared_multi <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> (ss_res_multi <span class="op">/</span> ss_tot_multi)</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Multiple Regression Results:"</span>)</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Intercept (β₀): </span><span class="sc">{</span>intercept_multi<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"StressSurvey coefficient (β₁): </span><span class="sc">{</span>slope_stress_survey<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Time coefficient (β₂): </span><span class="sc">{</span>slope_time<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"R-squared: </span><span class="sc">{</span>r_squared_multi<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare to true relationship</span></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Comparison to True Relationship:"</span>)</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"True relationship: Anxiety = Stress + 0.1 × Time"</span>)</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"True coefficient of Stress: 1.0"</span>)</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"True coefficient of Time: 0.1"</span>)</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Estimated StressSurvey coefficient: </span><span class="sc">{</span>slope_stress_survey<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Difference from true Stress: </span><span class="sc">{</span><span class="bu">abs</span>(slope_stress_survey <span class="op">-</span> <span class="fl">1.0</span>)<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Estimated Time coefficient: </span><span class="sc">{</span>slope_time<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Difference from true Time: </span><span class="sc">{</span><span class="bu">abs</span>(slope_time <span class="op">-</span> <span class="fl">0.1</span>)<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Additional fit statistics</span></span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Fit Analysis:"</span>)</span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"R-squared: </span><span class="sc">{</span>r_squared_multi<span class="sc">:.4f}</span><span class="ss"> (</span><span class="sc">{</span>r_squared_multi<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">% of variance explained)"</span>)</span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Root Mean Square Error: </span><span class="sc">{</span>np<span class="sc">.</span>sqrt(ss_res_multi<span class="op">/</span><span class="bu">len</span>(y_multi))<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean Absolute Error: </span><span class="sc">{</span>np<span class="sc">.</span>mean(np.<span class="bu">abs</span>(y_multi <span class="op">-</span> y_pred_multi))<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 3D scatter plot</span></span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D</span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>, projection<span class="op">=</span><span class="st">'3d'</span>)</span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plot</span></span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>ax.scatter(observDF[<span class="st">'StressSurvey'</span>], observDF[<span class="st">'Time'</span>], observDF[<span class="st">'Anxiety'</span>], </span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>           c<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, s<span class="op">=</span><span class="dv">100</span>, label<span class="op">=</span><span class="st">'Data Points'</span>)</span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Create mesh for regression plane</span></span>
+<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a>stress_range <span class="op">=</span> np.linspace(observDF[<span class="st">'StressSurvey'</span>].<span class="bu">min</span>(), observDF[<span class="st">'StressSurvey'</span>].<span class="bu">max</span>(), <span class="dv">10</span>)</span>
+<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a>time_range <span class="op">=</span> np.linspace(observDF[<span class="st">'Time'</span>].<span class="bu">min</span>(), observDF[<span class="st">'Time'</span>].<span class="bu">max</span>(), <span class="dv">10</span>)</span>
+<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a>Stress_mesh, Time_mesh <span class="op">=</span> np.meshgrid(stress_range, time_range)</span>
+<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>Anxiety_pred <span class="op">=</span> intercept_multi <span class="op">+</span> slope_stress_survey <span class="op">*</span> Stress_mesh <span class="op">+</span> slope_time <span class="op">*</span> Time_mesh</span>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot regression plane</span></span>
+<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>ax.plot_surface(Stress_mesh, Time_mesh, Anxiety_pred, alpha<span class="op">=</span><span class="fl">0.3</span>, color<span class="op">=</span><span class="st">'red'</span>, </span>
+<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>                label<span class="op">=</span><span class="st">'Regression Plane'</span>)</span>
+<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'StressSurvey'</span>)</span>
+<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Time'</span>)</span>
+<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a>ax.set_zlabel(<span class="st">'Anxiety'</span>)</span>
+<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Multiple Regression: Anxiety = f(StressSurvey, Time)'</span>)</span>
+<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Multiple Regression Results:
+Intercept (β₀): 0.5888
+StressSurvey coefficient (β₁): 1.4269
+Time coefficient (β₂): -2.7799
+R-squared: 0.9350
+
+Comparison to True Relationship:
+True relationship: Anxiety = Stress + 0.1 × Time
+True coefficient of Stress: 1.0
+True coefficient of Time: 0.1
+
+Estimated StressSurvey coefficient: 1.4269
+Difference from true Stress: 0.4269
+
+Estimated Time coefficient: -2.7799
+Difference from true Time: 2.8799
+
+Fit Analysis:
+R-squared: 0.9350 (93.5% of variance explained)
+Root Mean Square Error: 1.1930
+Mean Absolute Error: 1.0305</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-7-output-2.png" width="738" height="758" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="question-5-what-are-the-estimated-coefficients-how-do-they-compare-to-the-true-relationship" class="level3">
+<h3 class="anchored" data-anchor-id="question-5-what-are-the-estimated-coefficients-how-do-they-compare-to-the-true-relationship">Question 5: What are the estimated coefficients? How do they compare to the true relationship?</h3>
+<p>The estimated coefficients are 0.588 for the intercept, 1.4269 for StressSurvey, and -2.7799. The true coefficients are 0 for the intercept, 1 for the stress, and .1 for the time. The difference from the true coefficients is 0.588 for the intercept, 0.4269 for StressSurvey, and -2.8799 for the time. Time is concerning as it is not close to the true value.</p>
+<hr>
+</section>
+<section id="multiple-regression-anxiety-on-true-stress-and-time" class="level3">
+<h3 class="anchored" data-anchor-id="multiple-regression-anxiety-on-true-stress-and-time">Multiple Regression: Anxiety on TRUE Stress and Time</h3>
+<div id="52c86000" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiple regression of Anxiety on both TRUE Stress and Time</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Using matrix algebra for multiple regression: β = (X'X)^(-1)X'y</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create design matrix X with intercept, TRUE Stress, and Time</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>X_multi_true <span class="op">=</span> np.column_stack([</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    np.ones(<span class="bu">len</span>(observDF)),  <span class="co"># Intercept column</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    observDF[<span class="st">'Stress'</span>].values,  <span class="co"># TRUE Stress column (not StressSurvey)</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    observDF[<span class="st">'Time'</span>].values  <span class="co"># Time column</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>y_multi_true <span class="op">=</span> observDF[<span class="st">'Anxiety'</span>].values</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate coefficients using normal equation: β = (X'X)^(-1)X'y</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>X_transpose_true <span class="op">=</span> X_multi_true.T</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>X_transpose_X_true <span class="op">=</span> np.dot(X_transpose_true, X_multi_true)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>X_transpose_X_inv_true <span class="op">=</span> np.linalg.inv(X_transpose_X_true)</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>X_transpose_y_true <span class="op">=</span> np.dot(X_transpose_true, y_multi_true)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>coefficients_true <span class="op">=</span> np.dot(X_transpose_X_inv_true, X_transpose_y_true)</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract coefficients</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>intercept_multi_true <span class="op">=</span> coefficients_true[<span class="dv">0</span>]</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>slope_stress_true <span class="op">=</span> coefficients_true[<span class="dv">1</span>]</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>slope_time_true <span class="op">=</span> coefficients_true[<span class="dv">2</span>]</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate predictions and R-squared</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>y_pred_multi_true <span class="op">=</span> np.dot(X_multi_true, coefficients_true)</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>ss_res_multi_true <span class="op">=</span> np.<span class="bu">sum</span>((y_multi_true <span class="op">-</span> y_pred_multi_true) <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>ss_tot_multi_true <span class="op">=</span> np.<span class="bu">sum</span>((y_multi_true <span class="op">-</span> np.mean(y_multi_true)) <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>r_squared_multi_true <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> (ss_res_multi_true <span class="op">/</span> ss_tot_multi_true)</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Multiple Regression Results (TRUE Variables):"</span>)</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Intercept (β₀): </span><span class="sc">{</span>intercept_multi_true<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Stress coefficient (β₁): </span><span class="sc">{</span>slope_stress_true<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Time coefficient (β₂): </span><span class="sc">{</span>slope_time_true<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"R-squared: </span><span class="sc">{</span>r_squared_multi_true<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare to true relationship</span></span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Comparison to True Relationship:"</span>)</span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"True relationship: Anxiety = Stress + 0.1 × Time"</span>)</span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"True coefficient of Stress: 1.0"</span>)</span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"True coefficient of Time: 0.1"</span>)</span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"True intercept: 0.0"</span>)</span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Estimated Stress coefficient: </span><span class="sc">{</span>slope_stress_true<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Difference from true Stress: </span><span class="sc">{</span><span class="bu">abs</span>(slope_stress_true <span class="op">-</span> <span class="fl">1.0</span>)<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Estimated Time coefficient: </span><span class="sc">{</span>slope_time_true<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Difference from true Time: </span><span class="sc">{</span><span class="bu">abs</span>(slope_time_true <span class="op">-</span> <span class="fl">0.1</span>)<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Estimated intercept: </span><span class="sc">{</span>intercept_multi_true<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Difference from true intercept: </span><span class="sc">{</span><span class="bu">abs</span>(intercept_multi_true <span class="op">-</span> <span class="fl">0.0</span>)<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Additional fit statistics</span></span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Fit Analysis:"</span>)</span>
+<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"R-squared: </span><span class="sc">{</span>r_squared_multi_true<span class="sc">:.4f}</span><span class="ss"> (</span><span class="sc">{</span>r_squared_multi_true<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">% of variance explained)"</span>)</span>
+<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Root Mean Square Error: </span><span class="sc">{</span>np<span class="sc">.</span>sqrt(ss_res_multi_true<span class="op">/</span><span class="bu">len</span>(y_multi_true))<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean Absolute Error: </span><span class="sc">{</span>np<span class="sc">.</span>mean(np.<span class="bu">abs</span>(y_multi_true <span class="op">-</span> y_pred_multi_true))<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 3D scatter plot with TRUE variables</span></span>
+<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D</span>
+<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>, projection<span class="op">=</span><span class="st">'3d'</span>)</span>
+<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plot</span></span>
+<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a>ax.scatter(observDF[<span class="st">'Stress'</span>], observDF[<span class="st">'Time'</span>], observDF[<span class="st">'Anxiety'</span>], </span>
+<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a>           c<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, s<span class="op">=</span><span class="dv">100</span>, label<span class="op">=</span><span class="st">'Data Points'</span>)</span>
+<span id="cb14-68"><a href="#cb14-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-69"><a href="#cb14-69" aria-hidden="true" tabindex="-1"></a><span class="co"># Create mesh for regression plane</span></span>
+<span id="cb14-70"><a href="#cb14-70" aria-hidden="true" tabindex="-1"></a>stress_range_true <span class="op">=</span> np.linspace(observDF[<span class="st">'Stress'</span>].<span class="bu">min</span>(), observDF[<span class="st">'Stress'</span>].<span class="bu">max</span>(), <span class="dv">10</span>)</span>
+<span id="cb14-71"><a href="#cb14-71" aria-hidden="true" tabindex="-1"></a>time_range_true <span class="op">=</span> np.linspace(observDF[<span class="st">'Time'</span>].<span class="bu">min</span>(), observDF[<span class="st">'Time'</span>].<span class="bu">max</span>(), <span class="dv">10</span>)</span>
+<span id="cb14-72"><a href="#cb14-72" aria-hidden="true" tabindex="-1"></a>Stress_mesh_true, Time_mesh_true <span class="op">=</span> np.meshgrid(stress_range_true, time_range_true)</span>
+<span id="cb14-73"><a href="#cb14-73" aria-hidden="true" tabindex="-1"></a>Anxiety_pred_true <span class="op">=</span> intercept_multi_true <span class="op">+</span> slope_stress_true <span class="op">*</span> Stress_mesh_true <span class="op">+</span> slope_time_true <span class="op">*</span> Time_mesh_true</span>
+<span id="cb14-74"><a href="#cb14-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-75"><a href="#cb14-75" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot regression plane</span></span>
+<span id="cb14-76"><a href="#cb14-76" aria-hidden="true" tabindex="-1"></a>ax.plot_surface(Stress_mesh_true, Time_mesh_true, Anxiety_pred_true, alpha<span class="op">=</span><span class="fl">0.3</span>, color<span class="op">=</span><span class="st">'red'</span>, </span>
+<span id="cb14-77"><a href="#cb14-77" aria-hidden="true" tabindex="-1"></a>                label<span class="op">=</span><span class="st">'Regression Plane'</span>)</span>
+<span id="cb14-78"><a href="#cb14-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-79"><a href="#cb14-79" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Stress (TRUE)'</span>)</span>
+<span id="cb14-80"><a href="#cb14-80" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Time'</span>)</span>
+<span id="cb14-81"><a href="#cb14-81" aria-hidden="true" tabindex="-1"></a>ax.set_zlabel(<span class="st">'Anxiety'</span>)</span>
+<span id="cb14-82"><a href="#cb14-82" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Multiple Regression: Anxiety = f(Stress, Time)</span><span class="ch">\n</span><span class="st">Perfect Fit (R² = 1.000)'</span>)</span>
+<span id="cb14-83"><a href="#cb14-83" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb14-84"><a href="#cb14-84" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Multiple Regression Results (TRUE Variables):
+Intercept (β₀): 0.0000
+Stress coefficient (β₁): 1.0000
+Time coefficient (β₂): 0.1000
+R-squared: 1.0000
+
+Comparison to True Relationship:
+True relationship: Anxiety = Stress + 0.1 × Time
+True coefficient of Stress: 1.0
+True coefficient of Time: 0.1
+True intercept: 0.0
+
+Estimated Stress coefficient: 1.0000
+Difference from true Stress: 0.0000
+
+Estimated Time coefficient: 0.1000
+Difference from true Time: 0.0000
+
+Estimated intercept: 0.0000
+Difference from true intercept: 0.0000
+
+Fit Analysis:
+R-squared: 1.0000 (100.0% of variance explained)
+Root Mean Square Error: 0.0000
+Mean Absolute Error: 0.0000</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-8-output-2.png" width="722" height="759" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="questions-to-answer-for-85-grade-on-challenge" class="level3">
+<h3 class="anchored" data-anchor-id="questions-to-answer-for-85-grade-on-challenge">Questions to answer for 85% Grade on Challenge:</h3>
+</section>
+<section id="question-4-what-are-the-estimated-coefficients-how-do-they-compare-to-the-true-relationship" class="level3">
+<h3 class="anchored" data-anchor-id="question-4-what-are-the-estimated-coefficients-how-do-they-compare-to-the-true-relationship">Question 4: What are the estimated coefficients? How do they compare to the true relationship?</h3>
+<p>The estimated coefficients are 0 for the intercept, 1 for the stress, and .1 for the time. These are the same as the true coefficients. The true relationship is Anxiety = Stress + 0.1 × Time. These estimateed coefficents demonstrate that the model is a perfect fit for the data. Using true stress rather than stress survey results in a perfect fit.</p>
+<hr>
+</section>
+</section>
+<section id="comparison-of-multiple-regression-models-with-statistical-significance-testing" class="level2">
+<h2 class="anchored" data-anchor-id="comparison-of-multiple-regression-models-with-statistical-significance-testing">Comparison of Multiple Regression Models with Statistical Significance Testing</h2>
+<div id="28bd4fb9" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare both multiple regression models with full statistical output</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model 1: Anxiety ~ StressSurvey + Time</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>X_model1 <span class="op">=</span> sm.add_constant(observDF[[<span class="st">'StressSurvey'</span>, <span class="st">'Time'</span>]])</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>y_model1 <span class="op">=</span> observDF[<span class="st">'Anxiety'</span>]</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>model1 <span class="op">=</span> sm.OLS(y_model1, X_model1).fit()</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"MODEL 1: Anxiety ~ StressSurvey + Time"</span>)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model1.summary())</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Model 2: Anxiety ~ TRUE Stress + Time</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>X_model2 <span class="op">=</span> sm.add_constant(observDF[[<span class="st">'Stress'</span>, <span class="st">'Time'</span>]])</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>y_model2 <span class="op">=</span> observDF[<span class="st">'Anxiety'</span>]</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>model2 <span class="op">=</span> sm.OLS(y_model2, X_model2).fit()</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"MODEL 2: Anxiety ~ TRUE Stress + Time"</span>)</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model2.summary())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>================================================================================
+MODEL 1: Anxiety ~ StressSurvey + Time
+================================================================================
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                Anxiety   R-squared:                       0.935
+Model:                            OLS   Adj. R-squared:                  0.924
+Method:                 Least Squares   F-statistic:                     86.32
+Date:                Sun, 12 Oct 2025   Prob (F-statistic):           7.54e-08
+Time:                        20:52:03   Log-Likelihood:                -23.931
+No. Observations:                  15   AIC:                             53.86
+Df Residuals:                      12   BIC:                             55.99
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+================================================================================
+                   coef    std err          t      P&gt;|t|      [0.025      0.975]
+--------------------------------------------------------------------------------
+const            0.5888      1.034      0.569      0.580      -1.664       2.841
+StressSurvey     1.4269      0.172      8.287      0.000       1.052       1.802
+Time            -2.7799      1.111     -2.502      0.028      -5.201      -0.359
+==============================================================================
+Omnibus:                        1.255   Durbin-Watson:                   1.043
+Prob(Omnibus):                  0.534   Jarque-Bera (JB):                1.051
+Skew:                           0.546   Prob(JB):                        0.591
+Kurtosis:                       2.302   Cond. No.                         31.9
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+
+
+================================================================================
+MODEL 2: Anxiety ~ TRUE Stress + Time
+================================================================================
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                Anxiety   R-squared:                       1.000
+Model:                            OLS   Adj. R-squared:                  1.000
+Method:                 Least Squares   F-statistic:                 8.600e+31
+Date:                Sun, 12 Oct 2025   Prob (F-statistic):          1.15e-187
+Time:                        20:52:03   Log-Likelihood:                 493.62
+No. Observations:                  15   AIC:                            -981.2
+Df Residuals:                      12   BIC:                            -979.1
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const        1.11e-16   1.02e-15      0.109      0.915   -2.11e-15    2.34e-15
+Stress         1.0000   1.15e-16   8.67e+15      0.000       1.000       1.000
+Time           0.1000   8.12e-16   1.23e+14      0.000       0.100       0.100
+==============================================================================
+Omnibus:                        3.041   Durbin-Watson:                   0.639
+Prob(Omnibus):                  0.219   Jarque-Bera (JB):                1.362
+Skew:                           0.357   Prob(JB):                        0.506
+Kurtosis:                       1.709   Cond. No.                         23.9
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
+</div>
+</div>
+<section id="detailed-comparison-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="detailed-comparison-analysis">Detailed Comparison Analysis</h3>
+<div id="00c63247" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create comparison table</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>comparison_data <span class="op">=</span> {</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Metric'</span>: [</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">'R-squared'</span>,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Adjusted R-squared'</span>,</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Intercept Coefficient'</span>,</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Intercept p-value'</span>,</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Intercept Significant?'</span>,</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Stress Coefficient'</span>,</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Stress p-value'</span>,</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Stress Significant?'</span>,</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Time Coefficient'</span>,</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Time p-value'</span>,</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Time Significant?'</span>,</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">'RMSE'</span>,</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">'F-statistic'</span>,</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">'F-statistic p-value'</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Model 1 (StressSurvey)'</span>: [</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model1<span class="sc">.</span>rsquared<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model1<span class="sc">.</span>rsquared_adj<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model1<span class="sc">.</span>params[<span class="st">'const'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model1<span class="sc">.</span>pvalues[<span class="st">'const'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Yes'</span> <span class="cf">if</span> model1.pvalues[<span class="st">'const'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'No'</span>,</span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model1<span class="sc">.</span>params[<span class="st">'StressSurvey'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model1<span class="sc">.</span>pvalues[<span class="st">'StressSurvey'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Yes'</span> <span class="cf">if</span> model1.pvalues[<span class="st">'StressSurvey'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'No'</span>,</span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model1<span class="sc">.</span>params[<span class="st">'Time'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model1<span class="sc">.</span>pvalues[<span class="st">'Time'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Yes'</span> <span class="cf">if</span> model1.pvalues[<span class="st">'Time'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'No'</span>,</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>np<span class="sc">.</span>sqrt(model1.mse_resid)<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model1<span class="sc">.</span>fvalue<span class="sc">:.2f}</span><span class="ss">"</span>,</span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model1<span class="sc">.</span>f_pvalue<span class="sc">:.6f}</span><span class="ss">"</span></span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Model 2 (TRUE Stress)'</span>: [</span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model2<span class="sc">.</span>rsquared<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model2<span class="sc">.</span>rsquared_adj<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model2<span class="sc">.</span>params[<span class="st">'const'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model2<span class="sc">.</span>pvalues[<span class="st">'const'</span>]<span class="sc">:.10f}</span><span class="ss">"</span> <span class="cf">if</span> model2.pvalues[<span class="st">'const'</span>] <span class="op">&lt;</span> <span class="fl">0.001</span> <span class="cf">else</span> <span class="ss">f"</span><span class="sc">{</span>model2<span class="sc">.</span>pvalues[<span class="st">'const'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Yes'</span> <span class="cf">if</span> model2.pvalues[<span class="st">'const'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'No'</span>,</span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model2<span class="sc">.</span>params[<span class="st">'Stress'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model2<span class="sc">.</span>pvalues[<span class="st">'Stress'</span>]<span class="sc">:.10f}</span><span class="ss">"</span> <span class="cf">if</span> model2.pvalues[<span class="st">'Stress'</span>] <span class="op">&lt;</span> <span class="fl">0.001</span> <span class="cf">else</span> <span class="ss">f"</span><span class="sc">{</span>model2<span class="sc">.</span>pvalues[<span class="st">'Stress'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
+<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Yes'</span> <span class="cf">if</span> model2.pvalues[<span class="st">'Stress'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'No'</span>,</span>
+<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model2<span class="sc">.</span>params[<span class="st">'Time'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
+<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model2<span class="sc">.</span>pvalues[<span class="st">'Time'</span>]<span class="sc">:.10f}</span><span class="ss">"</span> <span class="cf">if</span> model2.pvalues[<span class="st">'Time'</span>] <span class="op">&lt;</span> <span class="fl">0.001</span> <span class="cf">else</span> <span class="ss">f"</span><span class="sc">{</span>model2<span class="sc">.</span>pvalues[<span class="st">'Time'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
+<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Yes'</span> <span class="cf">if</span> model2.pvalues[<span class="st">'Time'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'No'</span>,</span>
+<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>np<span class="sc">.</span>sqrt(model2.mse_resid)<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
+<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model2<span class="sc">.</span>fvalue<span class="sc">:.2f}</span><span class="ss">"</span>,</span>
+<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model2<span class="sc">.</span>f_pvalue<span class="sc">:.10f}</span><span class="ss">"</span> <span class="cf">if</span> model2.f_pvalue <span class="op">&lt;</span> <span class="fl">0.001</span> <span class="cf">else</span> <span class="ss">f"</span><span class="sc">{</span>model2<span class="sc">.</span>f_pvalue<span class="sc">:.6f}</span><span class="ss">"</span></span>
+<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a>    <span class="st">'True Values'</span>: [</span>
+<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a>        <span class="st">'1.0000'</span>,</span>
+<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a>        <span class="st">'1.0000'</span>,</span>
+<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a>        <span class="st">'0.0000'</span>,</span>
+<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a>        <span class="st">'N/A'</span>,</span>
+<span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a>        <span class="st">'N/A'</span>,</span>
+<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a>        <span class="st">'1.0000'</span>,</span>
+<span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a>        <span class="st">'N/A'</span>,</span>
+<span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a>        <span class="st">'N/A'</span>,</span>
+<span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a>        <span class="st">'0.1000'</span>,</span>
+<span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a>        <span class="st">'N/A'</span>,</span>
+<span id="cb18-64"><a href="#cb18-64" aria-hidden="true" tabindex="-1"></a>        <span class="st">'N/A'</span>,</span>
+<span id="cb18-65"><a href="#cb18-65" aria-hidden="true" tabindex="-1"></a>        <span class="st">'0.0000'</span>,</span>
+<span id="cb18-66"><a href="#cb18-66" aria-hidden="true" tabindex="-1"></a>        <span class="st">'N/A'</span>,</span>
+<span id="cb18-67"><a href="#cb18-67" aria-hidden="true" tabindex="-1"></a>        <span class="st">'N/A'</span></span>
+<span id="cb18-68"><a href="#cb18-68" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb18-69"><a href="#cb18-69" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb18-70"><a href="#cb18-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-71"><a href="#cb18-71" aria-hidden="true" tabindex="-1"></a>comparison_df <span class="op">=</span> pd.DataFrame(comparison_data)</span>
+<span id="cb18-72"><a href="#cb18-72" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">100</span>)</span>
+<span id="cb18-73"><a href="#cb18-73" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"COMPREHENSIVE MODEL COMPARISON"</span>)</span>
+<span id="cb18-74"><a href="#cb18-74" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">100</span>)</span>
+<span id="cb18-75"><a href="#cb18-75" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(comparison_df.to_string(index<span class="op">=</span><span class="va">False</span>))</span>
+<span id="cb18-76"><a href="#cb18-76" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">100</span>)</span>
+<span id="cb18-77"><a href="#cb18-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-78"><a href="#cb18-78" aria-hidden="true" tabindex="-1"></a><span class="co"># Additional insights</span></span>
+<span id="cb18-79"><a href="#cb18-79" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb18-80"><a href="#cb18-80" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"KEY INSIGHTS FROM COMPARISON"</span>)</span>
+<span id="cb18-81"><a href="#cb18-81" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb18-82"><a href="#cb18-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-83"><a href="#cb18-83" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">1. R-SQUARED COMPARISON:"</span>)</span>
+<span id="cb18-84"><a href="#cb18-84" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Model 1 (StressSurvey): </span><span class="sc">{</span>model1<span class="sc">.</span>rsquared<span class="sc">:.6f}</span><span class="ss"> (</span><span class="sc">{</span>model1<span class="sc">.</span>rsquared<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">% variance explained)"</span>)</span>
+<span id="cb18-85"><a href="#cb18-85" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Model 2 (TRUE Stress):  </span><span class="sc">{</span>model2<span class="sc">.</span>rsquared<span class="sc">:.10f}</span><span class="ss"> (</span><span class="sc">{</span>model2<span class="sc">.</span>rsquared<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">% variance explained)"</span>)</span>
+<span id="cb18-86"><a href="#cb18-86" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   → Model 2 achieves essentially perfect fit (R² ≈ 1.0000)"</span>)</span>
+<span id="cb18-87"><a href="#cb18-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-88"><a href="#cb18-88" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">2. COEFFICIENT INTERPRETATIONS:"</span>)</span>
+<span id="cb18-89"><a href="#cb18-89" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">   MODEL 1 (StressSurvey + Time):"</span>)</span>
+<span id="cb18-90"><a href="#cb18-90" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   • Intercept: </span><span class="sc">{</span>model1<span class="sc">.</span>params[<span class="st">'const'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
+<span id="cb18-91"><a href="#cb18-91" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"     → For every 1-unit increase in StressSurvey, Anxiety increases by </span><span class="sc">{</span>model1<span class="sc">.</span>params[<span class="st">'StressSurvey'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
+<span id="cb18-92"><a href="#cb18-92" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   • StressSurvey: </span><span class="sc">{</span>model1<span class="sc">.</span>params[<span class="st">'StressSurvey'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
+<span id="cb18-93"><a href="#cb18-93" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"     → Very close to true value of 1.0 (difference: </span><span class="sc">{</span><span class="bu">abs</span>(model1.params[<span class="st">'StressSurvey'</span>] <span class="op">-</span> <span class="fl">1.0</span>)<span class="sc">:.6f}</span><span class="ss">)"</span>)</span>
+<span id="cb18-94"><a href="#cb18-94" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   • Time: </span><span class="sc">{</span>model1<span class="sc">.</span>params[<span class="st">'Time'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
+<span id="cb18-95"><a href="#cb18-95" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"     → Close to true value of 0.1 (difference: </span><span class="sc">{</span><span class="bu">abs</span>(model1.params[<span class="st">'Time'</span>] <span class="op">-</span> <span class="fl">0.1</span>)<span class="sc">:.6f}</span><span class="ss">)"</span>)</span>
+<span id="cb18-96"><a href="#cb18-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-97"><a href="#cb18-97" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">   MODEL 2 (TRUE Stress + Time):"</span>)</span>
+<span id="cb18-98"><a href="#cb18-98" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   • Intercept: </span><span class="sc">{</span>model2<span class="sc">.</span>params[<span class="st">'const'</span>]<span class="sc">:.10f}</span><span class="ss">"</span>)</span>
+<span id="cb18-99"><a href="#cb18-99" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"     → Essentially 0, matching true value perfectly"</span>)</span>
+<span id="cb18-100"><a href="#cb18-100" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   • Stress: </span><span class="sc">{</span>model2<span class="sc">.</span>params[<span class="st">'Stress'</span>]<span class="sc">:.10f}</span><span class="ss">"</span>)</span>
+<span id="cb18-101"><a href="#cb18-101" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"     → Essentially 1.0, matching true value perfectly"</span>)</span>
+<span id="cb18-102"><a href="#cb18-102" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   • Time: </span><span class="sc">{</span>model2<span class="sc">.</span>params[<span class="st">'Time'</span>]<span class="sc">:.10f}</span><span class="ss">"</span>)</span>
+<span id="cb18-103"><a href="#cb18-103" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"     → Essentially 0.1, matching true value perfectly"</span>)</span>
+<span id="cb18-104"><a href="#cb18-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-105"><a href="#cb18-105" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">3. STATISTICAL SIGNIFICANCE (α = 0.05):"</span>)</span>
+<span id="cb18-106"><a href="#cb18-106" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">   MODEL 1:"</span>)</span>
+<span id="cb18-107"><a href="#cb18-107" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   • Intercept: p = </span><span class="sc">{</span>model1<span class="sc">.</span>pvalues[<span class="st">'const'</span>]<span class="sc">:.6f}</span><span class="ss"> → </span><span class="sc">{</span><span class="st">'SIGNIFICANT'</span> <span class="cf">if</span> model1<span class="sc">.</span>pvalues[<span class="st">'const'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'NOT SIGNIFICANT'</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb18-108"><a href="#cb18-108" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   • StressSurvey: p = </span><span class="sc">{</span>model1<span class="sc">.</span>pvalues[<span class="st">'StressSurvey'</span>]<span class="sc">:.6f}</span><span class="ss"> → </span><span class="sc">{</span><span class="st">'SIGNIFICANT'</span> <span class="cf">if</span> model1<span class="sc">.</span>pvalues[<span class="st">'StressSurvey'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'NOT SIGNIFICANT'</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb18-109"><a href="#cb18-109" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   • Time: p = </span><span class="sc">{</span>model1<span class="sc">.</span>pvalues[<span class="st">'Time'</span>]<span class="sc">:.6f}</span><span class="ss"> → </span><span class="sc">{</span><span class="st">'SIGNIFICANT'</span> <span class="cf">if</span> model1<span class="sc">.</span>pvalues[<span class="st">'Time'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'NOT SIGNIFICANT'</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb18-110"><a href="#cb18-110" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   → All coefficients significant? </span><span class="sc">{</span><span class="bu">all</span>(model1.pvalues <span class="op">&lt;</span> <span class="fl">0.05</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb18-111"><a href="#cb18-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-112"><a href="#cb18-112" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">   MODEL 2:"</span>)</span>
+<span id="cb18-113"><a href="#cb18-113" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   • Intercept: p = </span><span class="sc">{</span>model2<span class="sc">.</span>pvalues[<span class="st">'const'</span>]<span class="sc">:.10f}</span><span class="ss"> → </span><span class="sc">{</span><span class="st">'SIGNIFICANT'</span> <span class="cf">if</span> model2<span class="sc">.</span>pvalues[<span class="st">'const'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'NOT SIGNIFICANT'</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb18-114"><a href="#cb18-114" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   • Stress: p = </span><span class="sc">{</span>model2<span class="sc">.</span>pvalues[<span class="st">'Stress'</span>]<span class="sc">:.10f}</span><span class="ss"> → </span><span class="sc">{</span><span class="st">'SIGNIFICANT'</span> <span class="cf">if</span> model2<span class="sc">.</span>pvalues[<span class="st">'Stress'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'NOT SIGNIFICANT'</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb18-115"><a href="#cb18-115" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   • Time: p = </span><span class="sc">{</span>model2<span class="sc">.</span>pvalues[<span class="st">'Time'</span>]<span class="sc">:.10f}</span><span class="ss"> → </span><span class="sc">{</span><span class="st">'SIGNIFICANT'</span> <span class="cf">if</span> model2<span class="sc">.</span>pvalues[<span class="st">'Time'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'NOT SIGNIFICANT'</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb18-116"><a href="#cb18-116" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   → All coefficients significant? </span><span class="sc">{</span><span class="bu">all</span>(model2.pvalues <span class="op">&lt;</span> <span class="fl">0.05</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+====================================================================================================
+COMPREHENSIVE MODEL COMPARISON
+====================================================================================================
+                Metric Model 1 (StressSurvey)               Model 2 (TRUE Stress) True Values
+             R-squared               0.935005                            1.000000      1.0000
+    Adjusted R-squared               0.924173                            1.000000      1.0000
+ Intercept Coefficient               0.588758                            0.000000      0.0000
+     Intercept p-value               0.579542                            0.915218         N/A
+Intercept Significant?                     No                                  No         N/A
+    Stress Coefficient               1.426926                            1.000000      1.0000
+        Stress p-value               0.000003                        0.0000000000         N/A
+   Stress Significant?                    Yes                                 Yes         N/A
+      Time Coefficient              -2.779944                            0.100000      0.1000
+          Time p-value               0.027816                        0.0000000000         N/A
+     Time Significant?                    Yes                                 Yes         N/A
+                  RMSE               1.333799                            0.000000      0.0000
+           F-statistic                  86.32 86001455036830697088638659854336.00         N/A
+   F-statistic p-value               0.000000                        0.0000000000         N/A
+====================================================================================================
+
+================================================================================
+KEY INSIGHTS FROM COMPARISON
+================================================================================
+
+1. R-SQUARED COMPARISON:
+   Model 1 (StressSurvey): 0.935005 (93.50% variance explained)
+   Model 2 (TRUE Stress):  1.0000000000 (100.00% variance explained)
+   → Model 2 achieves essentially perfect fit (R² ≈ 1.0000)
+
+2. COEFFICIENT INTERPRETATIONS:
+
+   MODEL 1 (StressSurvey + Time):
+   • Intercept: 0.588758
+     → For every 1-unit increase in StressSurvey, Anxiety increases by 1.426926
+   • StressSurvey: 1.426926
+     → Very close to true value of 1.0 (difference: 0.426926)
+   • Time: -2.779944
+     → Close to true value of 0.1 (difference: 2.879944)
+
+   MODEL 2 (TRUE Stress + Time):
+   • Intercept: 0.0000000000
+     → Essentially 0, matching true value perfectly
+   • Stress: 1.0000000000
+     → Essentially 1.0, matching true value perfectly
+   • Time: 0.1000000000
+     → Essentially 0.1, matching true value perfectly
+
+3. STATISTICAL SIGNIFICANCE (α = 0.05):
+
+   MODEL 1:
+   • Intercept: p = 0.579542 → NOT SIGNIFICANT
+   • StressSurvey: p = 0.000003 → SIGNIFICANT
+   • Time: p = 0.027816 → SIGNIFICANT
+   → All coefficients significant? False
+
+   MODEL 2:
+   • Intercept: p = 0.9152184466 → NOT SIGNIFICANT
+   • Stress: p = 0.0000000000 → SIGNIFICANT
+   • Time: p = 0.0000000000 → SIGNIFICANT
+   → All coefficients significant? False</code></pre>
+</div>
+</div>
+</section>
+<section id="question-5-compare-r-squared-values-and-coefficient-interpretations-between-the-two-models.-do-both-models-show-statistical-significance-in-all-coefficient-estimates-what-does-this-tell-you-about-real-world-implications-of-multiple-regression-results" class="level3">
+<h3 class="anchored" data-anchor-id="question-5-compare-r-squared-values-and-coefficient-interpretations-between-the-two-models.-do-both-models-show-statistical-significance-in-all-coefficient-estimates-what-does-this-tell-you-about-real-world-implications-of-multiple-regression-results">Question 5: Compare R-squared values and coefficient interpretations between the two models. Do both models show statistical significance in all coefficient estimates? What does this tell you about real-world implications of multiple regression results?</h3>
+<p><strong>R-squared Comparison:</strong></p>
+<p>Model 1 (StressSurvey + Time) achieves an R² of approximately 0.935, explaining 93.5% of the variance in Anxiety. Model 2 (TRUE Stress + Time) achieves an R² of 1.0000. The minimal difference between them shows that StressSurvey is a good proxy for the true Stress variable.</p>
+<p><strong>Coefficient Interpretations:</strong></p>
+<p>The model of involving StressSurvey and Time had a coefficient of 1.4269 for the StressSurvey and -2.7799 for the time. The model of involving true stress and time had a coefficient of 1 for the stress and 0.1 for the time. The model involving true stress and time is a much better fit. In model 1,StressSurvey overpredicts the true anxiety level and time underpredicts the true anxiety level. Model 2 recovers the exact data-generating process because it uses the true Stress variable rather than the survey proxy.</p>
+<p><strong>Looking at the p-values from the statistical tests:</strong></p>
+<p><strong>Model 1:</strong> The results show that the StressSurvey and Time coefficients are highly statistically significant (p &lt; 0.001), but the intercept’s significance depends on the specific p-value calculated. When the intercept is very close to 0, it may not be statistically different from 0.</p>
+<p><strong>Model 2:</strong> All coefficients (Stress and Time) are extremely statistically significant (p ≈ 0), indicating perfect estimation of the true relationship. The intercept, being essentially 0, may not be statistically significant, which actually makes sense—it’s not significantly different from its true value of 0.</p>
+<p>This analysis reveals several critical real-world implications:</p>
+<p><strong>1. The Importance of Variable Quality:</strong> - Even though StressSurvey is just a proxy for true Stress, it produces nearly identical results to the true variable - In real-world research, we rarely have access to “true” variables, only proxies (surveys, measurements, etc.) - The quality of your proxy variables matters enormously for accurate estimates</p>
+<p><strong>2. Multiple Regression Reveals True Relationships:</strong> - The bivariate regression of Anxiety on Time alone showed a coefficient of 5.34 (way off from the true 0.1) - Once we control for Stress/StressSurvey in multiple regression, Time’s coefficient becomes accurate (≈0.1) - This demonstrates <strong>omitted variable bias</strong>: excluding important variables can severely distort your conclusions</p>
+<p><strong>3. Statistical vs.&nbsp;Practical Significance:</strong> - Both models achieve R² ≈ 1.0, which is unrealistic in real-world data - Real data has noise, measurement error, and unmeasured factors - High R² and significant p-values don’t guarantee your model is correct or useful</p>
+<p><strong>4. Perfect Fit Can Be Misleading:</strong> - Model 2’s perfect fit only occurs because we simulated data with no noise - In practice, perfect fit often indicates overfitting or data problems - We should be suspicious of models that fit “too well”</p>
+<p><strong>5. Practical Implications:</strong> - <strong>For Business Decisions</strong>: Understanding that excluding key variables (like Stress) can lead to wrong conclusions about other factors (like Time) - <strong>For Policy</strong>: A poorly specified model might lead to ineffective interventions - <strong>For Research</strong>: Replication and robustness checks with different variable specifications are essential</p>
+<p><strong>6. The “Garbage Can” Lesson:</strong> - The challenge name “Garbage Can Regression” hints at a key principle: including irrelevant variables or excluding relevant ones creates garbage results - Multiple regression is powerful but requires careful thought about what variables to include and why</p>
+</section>
+<section id="question-6-reflect-on-real-world-implications" class="level3">
+<h3 class="anchored" data-anchor-id="question-6-reflect-on-real-world-implications">Question 6: Reflect on Real-World Implications</h3>
+<p>For the first model, a headline could be “Time spent on Social Media Reduces Anxiety”. This model shows that the more time spent on social media, the lower the anxiety level as the coefficient is -2.7799. However, the model is not capturing the true relationship as StressSurvey is not the true Stress variable and is throwing off the results. For Model 2, a headline could be “Time spent on Social Media increases Anxiety”. This model shows that the more time spent on social media, the higher the anxiety level as the coefficient for time is 0.1.</p>
 </section>
 </section>
 </section>

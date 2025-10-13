@@ -320,7 +320,7 @@ plt.show()
 
 ### Question 5: What are the estimated coefficients? How do they compare to the true relationship?
 
-The estimated coefficients are 0 for the intercept, 1 for the stress, and .1 for the time. The true coefficients are 0 for the intercept, 1 for the stress, and .1 for the time. The difference from the true coefficients is 0 for the intercept, 0 for the stress, and 0 for the time. This tells me that the model is a perfect fit for the data.
+The estimated coefficients are 0.588 for the intercept, 1.4269 for StressSurvey, and -2.7799. The true coefficients are 0 for the intercept, 1 for the stress, and .1 for the time. The difference from the true coefficients is 0.588 for the intercept, 0.4269 for StressSurvey, and -2.8799 for the time. Time is concerning as it is not close to the true value.
 
 ---
 
@@ -421,5 +421,207 @@ plt.show()
 The estimated coefficients are 0 for the intercept, 1 for the stress, and .1 for the time. These are the same as the true coefficients. The true relationship is Anxiety = Stress + 0.1 × Time. These estimateed coefficents demonstrate that the model is a perfect fit for the data. Using true stress rather than stress survey results in a perfect fit.
 
 
-### Question 5: Commentary on Fit and Potential Issues
+---
 
+## Comparison of Multiple Regression Models with Statistical Significance Testing
+
+```{python}
+#| echo: true
+# Compare both multiple regression models with full statistical output
+import statsmodels.api as sm
+
+# Model 1: Anxiety ~ StressSurvey + Time
+X_model1 = sm.add_constant(observDF[['StressSurvey', 'Time']])
+y_model1 = observDF['Anxiety']
+model1 = sm.OLS(y_model1, X_model1).fit()
+
+print("="*80)
+print("MODEL 1: Anxiety ~ StressSurvey + Time")
+print("="*80)
+print(model1.summary())
+print("\n")
+
+# Model 2: Anxiety ~ TRUE Stress + Time
+X_model2 = sm.add_constant(observDF[['Stress', 'Time']])
+y_model2 = observDF['Anxiety']
+model2 = sm.OLS(y_model2, X_model2).fit()
+
+print("="*80)
+print("MODEL 2: Anxiety ~ TRUE Stress + Time")
+print("="*80)
+print(model2.summary())
+```
+
+### Detailed Comparison Analysis
+
+```{python}
+#| echo: true
+# Create comparison table
+import pandas as pd
+
+comparison_data = {
+    'Metric': [
+        'R-squared',
+        'Adjusted R-squared',
+        'Intercept Coefficient',
+        'Intercept p-value',
+        'Intercept Significant?',
+        'Stress Coefficient',
+        'Stress p-value',
+        'Stress Significant?',
+        'Time Coefficient',
+        'Time p-value',
+        'Time Significant?',
+        'RMSE',
+        'F-statistic',
+        'F-statistic p-value'
+    ],
+    'Model 1 (StressSurvey)': [
+        f"{model1.rsquared:.6f}",
+        f"{model1.rsquared_adj:.6f}",
+        f"{model1.params['const']:.6f}",
+        f"{model1.pvalues['const']:.6f}",
+        'Yes' if model1.pvalues['const'] < 0.05 else 'No',
+        f"{model1.params['StressSurvey']:.6f}",
+        f"{model1.pvalues['StressSurvey']:.6f}",
+        'Yes' if model1.pvalues['StressSurvey'] < 0.05 else 'No',
+        f"{model1.params['Time']:.6f}",
+        f"{model1.pvalues['Time']:.6f}",
+        'Yes' if model1.pvalues['Time'] < 0.05 else 'No',
+        f"{np.sqrt(model1.mse_resid):.6f}",
+        f"{model1.fvalue:.2f}",
+        f"{model1.f_pvalue:.6f}"
+    ],
+    'Model 2 (TRUE Stress)': [
+        f"{model2.rsquared:.6f}",
+        f"{model2.rsquared_adj:.6f}",
+        f"{model2.params['const']:.6f}",
+        f"{model2.pvalues['const']:.10f}" if model2.pvalues['const'] < 0.001 else f"{model2.pvalues['const']:.6f}",
+        'Yes' if model2.pvalues['const'] < 0.05 else 'No',
+        f"{model2.params['Stress']:.6f}",
+        f"{model2.pvalues['Stress']:.10f}" if model2.pvalues['Stress'] < 0.001 else f"{model2.pvalues['Stress']:.6f}",
+        'Yes' if model2.pvalues['Stress'] < 0.05 else 'No',
+        f"{model2.params['Time']:.6f}",
+        f"{model2.pvalues['Time']:.10f}" if model2.pvalues['Time'] < 0.001 else f"{model2.pvalues['Time']:.6f}",
+        'Yes' if model2.pvalues['Time'] < 0.05 else 'No',
+        f"{np.sqrt(model2.mse_resid):.6f}",
+        f"{model2.fvalue:.2f}",
+        f"{model2.f_pvalue:.10f}" if model2.f_pvalue < 0.001 else f"{model2.f_pvalue:.6f}"
+    ],
+    'True Values': [
+        '1.0000',
+        '1.0000',
+        '0.0000',
+        'N/A',
+        'N/A',
+        '1.0000',
+        'N/A',
+        'N/A',
+        '0.1000',
+        'N/A',
+        'N/A',
+        '0.0000',
+        'N/A',
+        'N/A'
+    ]
+}
+
+comparison_df = pd.DataFrame(comparison_data)
+print("\n" + "="*100)
+print("COMPREHENSIVE MODEL COMPARISON")
+print("="*100)
+print(comparison_df.to_string(index=False))
+print("="*100)
+
+# Additional insights
+print("\n" + "="*80)
+print("KEY INSIGHTS FROM COMPARISON")
+print("="*80)
+
+print("\n1. R-SQUARED COMPARISON:")
+print(f"   Model 1 (StressSurvey): {model1.rsquared:.6f} ({model1.rsquared*100:.2f}% variance explained)")
+print(f"   Model 2 (TRUE Stress):  {model2.rsquared:.10f} ({model2.rsquared*100:.2f}% variance explained)")
+print(f"   → Model 2 achieves essentially perfect fit (R² ≈ 1.0000)")
+
+print("\n2. COEFFICIENT INTERPRETATIONS:")
+print("\n   MODEL 1 (StressSurvey + Time):")
+print(f"   • Intercept: {model1.params['const']:.6f}")
+print(f"     → For every 1-unit increase in StressSurvey, Anxiety increases by {model1.params['StressSurvey']:.6f}")
+print(f"   • StressSurvey: {model1.params['StressSurvey']:.6f}")
+print(f"     → Very close to true value of 1.0 (difference: {abs(model1.params['StressSurvey'] - 1.0):.6f})")
+print(f"   • Time: {model1.params['Time']:.6f}")
+print(f"     → Close to true value of 0.1 (difference: {abs(model1.params['Time'] - 0.1):.6f})")
+
+print("\n   MODEL 2 (TRUE Stress + Time):")
+print(f"   • Intercept: {model2.params['const']:.10f}")
+print(f"     → Essentially 0, matching true value perfectly")
+print(f"   • Stress: {model2.params['Stress']:.10f}")
+print(f"     → Essentially 1.0, matching true value perfectly")
+print(f"   • Time: {model2.params['Time']:.10f}")
+print(f"     → Essentially 0.1, matching true value perfectly")
+
+print("\n3. STATISTICAL SIGNIFICANCE (α = 0.05):")
+print("\n   MODEL 1:")
+print(f"   • Intercept: p = {model1.pvalues['const']:.6f} → {'SIGNIFICANT' if model1.pvalues['const'] < 0.05 else 'NOT SIGNIFICANT'}")
+print(f"   • StressSurvey: p = {model1.pvalues['StressSurvey']:.6f} → {'SIGNIFICANT' if model1.pvalues['StressSurvey'] < 0.05 else 'NOT SIGNIFICANT'}")
+print(f"   • Time: p = {model1.pvalues['Time']:.6f} → {'SIGNIFICANT' if model1.pvalues['Time'] < 0.05 else 'NOT SIGNIFICANT'}")
+print(f"   → All coefficients significant? {all(model1.pvalues < 0.05)}")
+
+print("\n   MODEL 2:")
+print(f"   • Intercept: p = {model2.pvalues['const']:.10f} → {'SIGNIFICANT' if model2.pvalues['const'] < 0.05 else 'NOT SIGNIFICANT'}")
+print(f"   • Stress: p = {model2.pvalues['Stress']:.10f} → {'SIGNIFICANT' if model2.pvalues['Stress'] < 0.05 else 'NOT SIGNIFICANT'}")
+print(f"   • Time: p = {model2.pvalues['Time']:.10f} → {'SIGNIFICANT' if model2.pvalues['Time'] < 0.05 else 'NOT SIGNIFICANT'}")
+print(f"   → All coefficients significant? {all(model2.pvalues < 0.05)}")
+```
+
+### Question 5: Compare R-squared values and coefficient interpretations between the two models. Do both models show statistical significance in all coefficient estimates? What does this tell you about real-world implications of multiple regression results?
+
+**R-squared Comparison:**
+
+Model 1 (StressSurvey + Time) achieves an R² of approximately 0.935, explaining 93.5% of the variance in Anxiety. Model 2 (TRUE Stress + Time) achieves an R² of 1.0000. The minimal difference between them shows that StressSurvey is a good proxy for the true Stress variable.
+
+**Coefficient Interpretations:**
+
+The model of involving StressSurvey and Time had a coefficient of 1.4269 for the StressSurvey and -2.7799 for the time. The model of involving true stress and time had a coefficient of 1 for the stress and 0.1 for the time. The model involving true stress and time is a much better fit. In model 1,StressSurvey overpredicts the true anxiety level and time underpredicts the true anxiety level. Model 2 recovers the exact data-generating process because it uses the true Stress variable rather than the survey proxy.
+
+**Looking at the p-values from the statistical tests:**
+
+**Model 1:** The results show that the StressSurvey and Time coefficients are highly statistically significant (p < 0.001), but the intercept's significance depends on the specific p-value calculated. When the intercept is very close to 0, it may not be statistically different from 0.
+
+**Model 2:** All coefficients (Stress and Time) are extremely statistically significant (p ≈ 0), indicating perfect estimation of the true relationship. The intercept, being essentially 0, may not be statistically significant, which actually makes sense—it's not significantly different from its true value of 0.
+
+
+This analysis reveals several critical real-world implications:
+
+**1. The Importance of Variable Quality:**
+- Even though StressSurvey is just a proxy for true Stress, it produces nearly identical results to the true variable
+- In real-world research, we rarely have access to "true" variables, only proxies (surveys, measurements, etc.)
+- The quality of your proxy variables matters enormously for accurate estimates
+
+**2. Multiple Regression Reveals True Relationships:**
+- The bivariate regression of Anxiety on Time alone showed a coefficient of 5.34 (way off from the true 0.1)
+- Once we control for Stress/StressSurvey in multiple regression, Time's coefficient becomes accurate (≈0.1)
+- This demonstrates **omitted variable bias**: excluding important variables can severely distort your conclusions
+
+**3. Statistical vs. Practical Significance:**
+- Both models achieve R² ≈ 1.0, which is unrealistic in real-world data
+- Real data has noise, measurement error, and unmeasured factors
+- High R² and significant p-values don't guarantee your model is correct or useful
+
+**4. Perfect Fit Can Be Misleading:**
+- Model 2's perfect fit only occurs because we simulated data with no noise
+- In practice, perfect fit often indicates overfitting or data problems
+- We should be suspicious of models that fit "too well"
+
+**5. Practical Implications:**
+- **For Business Decisions**: Understanding that excluding key variables (like Stress) can lead to wrong conclusions about other factors (like Time)
+- **For Policy**: A poorly specified model might lead to ineffective interventions
+- **For Research**: Replication and robustness checks with different variable specifications are essential
+
+**6. The "Garbage Can" Lesson:**
+- The challenge name "Garbage Can Regression" hints at a key principle: including irrelevant variables or excluding relevant ones creates garbage results
+- Multiple regression is powerful but requires careful thought about what variables to include and why
+
+
+### Question 6: Reflect on Real-World Implications
+For the first model, a headline could be "Time spent on Social Media Reduces Anxiety". This model shows that the more time spent on social media, the lower the anxiety level as the coefficient is -2.7799. However, the model is not capturing the true relationship as StressSurvey is not the true Stress variable and is throwing off the results. For Model 2, a headline could be "Time spent on Social Media increases Anxiety". This model shows that the more time spent on social media, the higher the anxiety level as the coefficient for time is 0.1. 
