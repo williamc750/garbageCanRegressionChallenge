@@ -104,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Choose R or Python and delete the other code chunk.</strong></p>
 <section id="python-code" class="level2">
 <h2 class="anchored" data-anchor-id="python-code">Python Code</h2>
-<div id="51961986" class="cell" data-execution_count="1">
+<div id="e1c29073" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -147,7 +147,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="your-analysis">Your Analysis</h2>
 <section id="bivariate-regression-anxiety-on-stresssurvey" class="level3">
 <h3 class="anchored" data-anchor-id="bivariate-regression-anxiety-on-stresssurvey">Bivariate Regression: Anxiety on StressSurvey</h3>
-<div id="ca96b05d" class="cell" data-execution_count="2">
+<div id="95cc9e70" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Manual bivariate regression of Anxiety on StressSurvey</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> observDF[<span class="st">'StressSurvey'</span>].values</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> observDF[<span class="st">'Anxiety'</span>].values</span>
@@ -203,7 +203,7 @@ Difference from true: 0.0470</code></pre>
 </section>
 <section id="scatter-plot-with-regression-line" class="level3">
 <h3 class="anchored" data-anchor-id="scatter-plot-with-regression-line">Scatter Plot with Regression Line</h3>
-<div id="2938693f" class="cell" data-execution_count="3">
+<div id="dfb66e80" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create scatter plot with regression line</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(observDF[<span class="st">'StressSurvey'</span>], observDF[<span class="st">'Anxiety'</span>], alpha<span class="op">=</span><span class="fl">0.7</span>, s<span class="op">=</span><span class="dv">100</span>, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Data Points'</span>)</span>
@@ -260,7 +260,7 @@ Potential Issues Analysis:
 </section>
 <section id="bivariate-regression-anxiety-on-time" class="level3">
 <h3 class="anchored" data-anchor-id="bivariate-regression-anxiety-on-time">Bivariate Regression: Anxiety on Time</h3>
-<div id="ada34307" class="cell" data-execution_count="4">
+<div id="bafd3d64" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Manual bivariate regression of Anxiety on Time</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>X_time <span class="op">=</span> observDF[<span class="st">'Time'</span>].values</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>y_time <span class="op">=</span> observDF[<span class="st">'Anxiety'</span>].values</span>
@@ -352,7 +352,7 @@ Mean Absolute Error: 2.5607</code></pre>
 </section>
 <section id="scatter-plot-with-regression-line-time-vs-anxiety" class="level3">
 <h3 class="anchored" data-anchor-id="scatter-plot-with-regression-line-time-vs-anxiety">Scatter Plot with Regression Line: Time vs Anxiety</h3>
-<div id="e3d03c7f" class="cell" data-execution_count="5">
+<div id="1e3ec74a" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create scatter plot with regression line for Time vs Anxiety</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(observDF[<span class="st">'Time'</span>], observDF[<span class="st">'Anxiety'</span>], alpha<span class="op">=</span><span class="fl">0.7</span>, s<span class="op">=</span><span class="dv">100</span>, color<span class="op">=</span><span class="st">'green'</span>, label<span class="op">=</span><span class="st">'Data Points'</span>)</span>
@@ -410,7 +410,7 @@ Potential Issues Analysis:
 </section>
 <section id="multiple-regression-anxiety-on-stresssurvey-and-time" class="level3">
 <h3 class="anchored" data-anchor-id="multiple-regression-anxiety-on-stresssurvey-and-time">Multiple Regression: Anxiety on StressSurvey and Time</h3>
-<div id="d78efa6e" class="cell" data-execution_count="6">
+<div id="8c24f4cd" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiple regression of Anxiety on both StressSurvey and Time</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Using matrix algebra for multiple regression: β = (X'X)^(-1)X'y</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -530,7 +530,7 @@ Mean Absolute Error: 1.0305</code></pre>
 </section>
 <section id="multiple-regression-anxiety-on-true-stress-and-time" class="level3">
 <h3 class="anchored" data-anchor-id="multiple-regression-anxiety-on-true-stress-and-time">Multiple Regression: Anxiety on TRUE Stress and Time</h3>
-<div id="c2ea05cd" class="cell" data-execution_count="7">
+<div id="595b0cdd" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiple regression of Anxiety on both TRUE Stress and Time</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Using matrix algebra for multiple regression: β = (X'X)^(-1)X'y</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -662,7 +662,7 @@ Mean Absolute Error: 0.0000</code></pre>
 </section>
 <section id="comparison-of-multiple-regression-models-with-statistical-significance-testing" class="level2">
 <h2 class="anchored" data-anchor-id="comparison-of-multiple-regression-models-with-statistical-significance-testing">Comparison of Multiple Regression Models with Statistical Significance Testing</h2>
-<div id="6d159b80" class="cell" data-execution_count="8">
+<div id="2a214754" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare both multiple regression models with full statistical output</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -696,7 +696,7 @@ Dep. Variable:                Anxiety   R-squared:                       0.935
 Model:                            OLS   Adj. R-squared:                  0.924
 Method:                 Least Squares   F-statistic:                     86.32
 Date:                Mon, 13 Oct 2025   Prob (F-statistic):           7.54e-08
-Time:                        21:45:17   Log-Likelihood:                -23.931
+Time:                        21:54:31   Log-Likelihood:                -23.931
 No. Observations:                  15   AIC:                             53.86
 Df Residuals:                      12   BIC:                             55.99
 Df Model:                           2                                         
@@ -727,7 +727,7 @@ Dep. Variable:                Anxiety   R-squared:                       1.000
 Model:                            OLS   Adj. R-squared:                  1.000
 Method:                 Least Squares   F-statistic:                 8.600e+31
 Date:                Mon, 13 Oct 2025   Prob (F-statistic):          1.15e-187
-Time:                        21:45:17   Log-Likelihood:                 493.62
+Time:                        21:54:31   Log-Likelihood:                 493.62
 No. Observations:                  15   AIC:                            -981.2
 Df Residuals:                      12   BIC:                            -979.1
 Df Model:                           2                                         
@@ -751,7 +751,7 @@ Notes:
 </div>
 <section id="detailed-comparison-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="detailed-comparison-analysis">Detailed Comparison Analysis</h3>
-<div id="48755b2b" class="cell" data-execution_count="9">
+<div id="c4626039" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create comparison table</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -957,7 +957,7 @@ KEY INSIGHTS FROM COMPARISON
 <h2 class="anchored" data-anchor-id="sample-splitting-analysis-high-stress-regime">Sample Splitting Analysis: High Stress Regime</h2>
 <section id="data-exploration-identifying-statistical-regimes" class="level3">
 <h3 class="anchored" data-anchor-id="data-exploration-identifying-statistical-regimes">Data Exploration: Identifying Statistical Regimes</h3>
-<div id="d69fd87a" class="cell" data-execution_count="10">
+<div id="455cd9fa" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, let's explore the data structure to identify meaningful subsets</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"DATA EXPLORATION: IDENTIFYING STATISTICAL REGIMES"</span>)</span>
@@ -1017,7 +1017,7 @@ This split makes theoretical sense: low vs. high stress environments</code></pre
 </section>
 <section id="choosing-a-meaningful-subset" class="level3">
 <h3 class="anchored" data-anchor-id="choosing-a-meaningful-subset">Choosing a Meaningful Subset</h3>
-<div id="006c1e56" class="cell" data-execution_count="11">
+<div id="86c6994f" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create meaningful subsets based on stress levels</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"SUBSET ANALYSIS: HIGH STRESS REGIME"</span>)</span>
@@ -1062,7 +1062,7 @@ Why this subset?
 </section>
 <section id="graphical-diagnostics-for-the-subset" class="level3">
 <h3 class="anchored" data-anchor-id="graphical-diagnostics-for-the-subset">Graphical Diagnostics for the Subset</h3>
-<div id="e8550be0" class="cell" data-execution_count="12">
+<div id="e355b2a9" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Graphical diagnostics for the subset</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D</span>
@@ -1144,7 +1144,7 @@ clear linear relationships with Anxiety, supporting the multiple regression appr
 </section>
 <section id="multiple-regression-on-the-subset" class="level3">
 <h3 class="anchored" data-anchor-id="multiple-regression-on-the-subset">Multiple Regression on the Subset</h3>
-<div id="99e0a7d8" class="cell" data-execution_count="13">
+<div id="21c44790" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiple regression on the high stress subset</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"MULTIPLE REGRESSION: HIGH STRESS SUBSET"</span>)</span>
@@ -1192,7 +1192,7 @@ Dep. Variable:                Anxiety   R-squared:                       1.000
 Model:                            OLS   Adj. R-squared:                  1.000
 Method:                 Least Squares   F-statistic:                 3.760e+28
 Date:                Mon, 13 Oct 2025   Prob (F-statistic):           2.52e-43
-Time:                        21:45:19   Log-Likelihood:                 183.48
+Time:                        21:54:33   Log-Likelihood:                 183.48
 No. Observations:                   6   AIC:                            -361.0
 Df Residuals:                       3   BIC:                            -361.6
 Df Model:                           2                                         
@@ -1244,7 +1244,7 @@ All coefficients significant? True</code></pre>
 </section>
 <section id="comparison-subset-vs.-full-sample" class="level3">
 <h3 class="anchored" data-anchor-id="comparison-subset-vs.-full-sample">Comparison: Subset vs.&nbsp;Full Sample</h3>
-<div id="8847d637" class="cell" data-execution_count="14">
+<div id="6ce15aea" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare subset results with full sample results</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"SUBSET vs. FULL SAMPLE COMPARISON"</span>)</span>
