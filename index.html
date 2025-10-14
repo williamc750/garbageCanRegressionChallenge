@@ -104,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Choose R or Python and delete the other code chunk.</strong></p>
 <section id="python-code" class="level2">
 <h2 class="anchored" data-anchor-id="python-code">Python Code</h2>
-<div id="d32c51aa" class="cell" data-execution_count="1">
+<div id="5415f95e" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -147,7 +147,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="your-analysis">Your Analysis</h2>
 <section id="bivariate-regression-anxiety-on-stresssurvey" class="level3">
 <h3 class="anchored" data-anchor-id="bivariate-regression-anxiety-on-stresssurvey">Bivariate Regression: Anxiety on StressSurvey</h3>
-<div id="37d87145" class="cell" data-execution_count="2">
+<div id="3467d348" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Manual bivariate regression of Anxiety on StressSurvey</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> observDF[<span class="st">'StressSurvey'</span>].values</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> observDF[<span class="st">'Anxiety'</span>].values</span>
@@ -203,7 +203,7 @@ Difference from true: 0.0470</code></pre>
 </section>
 <section id="scatter-plot-with-regression-line" class="level3">
 <h3 class="anchored" data-anchor-id="scatter-plot-with-regression-line">Scatter Plot with Regression Line</h3>
-<div id="59075c0e" class="cell" data-execution_count="3">
+<div id="2f015b2c" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create scatter plot with regression line</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(observDF[<span class="st">'StressSurvey'</span>], observDF[<span class="st">'Anxiety'</span>], alpha<span class="op">=</span><span class="fl">0.7</span>, s<span class="op">=</span><span class="dv">100</span>, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Data Points'</span>)</span>
@@ -260,7 +260,7 @@ Potential Issues Analysis:
 </section>
 <section id="bivariate-regression-anxiety-on-time" class="level3">
 <h3 class="anchored" data-anchor-id="bivariate-regression-anxiety-on-time">Bivariate Regression: Anxiety on Time</h3>
-<div id="ef73a3a1" class="cell" data-execution_count="4">
+<div id="2026dfec" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Manual bivariate regression of Anxiety on Time</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>X_time <span class="op">=</span> observDF[<span class="st">'Time'</span>].values</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>y_time <span class="op">=</span> observDF[<span class="st">'Anxiety'</span>].values</span>
@@ -348,11 +348,11 @@ Mean Absolute Error: 2.5607</code></pre>
 </section>
 <section id="question-3-what-are-the-estimated-coefficients-how-do-they-compare-to-the-true-relationship" class="level3">
 <h3 class="anchored" data-anchor-id="question-3-what-are-the-estimated-coefficients-how-do-they-compare-to-the-true-relationship">Question 3: What are the estimated coefficients? How do they compare to the true relationship?</h3>
-<p>The estimated coefficients are 5.3406 for the time and -3.6801 for the intercept. The true coefficients are 0.1 for the time and 0 for the intercept. The difference from the true coefficients is 5.2406 for the time and -3.6801 for the intercept. This tells me that the time is a good proxy for the true time, but the intercept is not a good proxy for the true intercept as it is not 0.</p>
+<p>The estimated coefficients are 5.3406 for the time and -3.6801 for the intercept. The true coefficients are 0.1 for the time and 0 for the intercept. The difference from the true coefficients is 5.2406 for the time and -3.6801 for the intercept. The time coefficient is much larger than the true value, which means that the model overestimates the effect of time on anxiety.</p>
 </section>
 <section id="scatter-plot-with-regression-line-time-vs-anxiety" class="level3">
 <h3 class="anchored" data-anchor-id="scatter-plot-with-regression-line-time-vs-anxiety">Scatter Plot with Regression Line: Time vs Anxiety</h3>
-<div id="3ecf96cb" class="cell" data-execution_count="5">
+<div id="fec60077" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create scatter plot with regression line for Time vs Anxiety</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(observDF[<span class="st">'Time'</span>], observDF[<span class="st">'Anxiety'</span>], alpha<span class="op">=</span><span class="fl">0.7</span>, s<span class="op">=</span><span class="dv">100</span>, color<span class="op">=</span><span class="st">'green'</span>, label<span class="op">=</span><span class="st">'Data Points'</span>)</span>
@@ -405,12 +405,12 @@ Potential Issues Analysis:
 </section>
 <section id="question-4-commentary-on-fit-and-potential-issues" class="level3">
 <h3 class="anchored" data-anchor-id="question-4-commentary-on-fit-and-potential-issues">Question 4: Commentary on Fit and Potential Issues</h3>
-<p>The fit is not very good with a R-squared of 56.3%. The root mean square error is 3.0933 and the mean absolute error is 2.5607. This tells me that the model is not a good fit for the data. The data points are clustered at specific Time values (0, 1, 2, 2.1, 2.2) and the residuals are not random. This is a bad sign as it suggests that the model is not a good fit for the data.</p>
+<p>The fit is not very good with a R-squared of 56.3%. The root mean square error is 3.0933 and the mean absolute error is 2.5607. This tells me that the model is not a good fit for the data. The data points are clustered at specific Time values (0, 1, 2, 2.1, 2.2) and the residuals are not random. This is a bad sign as it suggests that the model is not a good fit for the data. Time by itself is not a good predictor of anxiety.</p>
 <hr>
 </section>
 <section id="multiple-regression-anxiety-on-stresssurvey-and-time" class="level3">
 <h3 class="anchored" data-anchor-id="multiple-regression-anxiety-on-stresssurvey-and-time">Multiple Regression: Anxiety on StressSurvey and Time</h3>
-<div id="4aa209cf" class="cell" data-execution_count="6">
+<div id="880164e6" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiple regression of Anxiety on both StressSurvey and Time</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Using matrix algebra for multiple regression: β = (X'X)^(-1)X'y</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -525,12 +525,12 @@ Mean Absolute Error: 1.0305</code></pre>
 </section>
 <section id="question-5-what-are-the-estimated-coefficients-how-do-they-compare-to-the-true-relationship" class="level3">
 <h3 class="anchored" data-anchor-id="question-5-what-are-the-estimated-coefficients-how-do-they-compare-to-the-true-relationship">Question 5: What are the estimated coefficients? How do they compare to the true relationship?</h3>
-<p>The estimated coefficients are 0.588 for the intercept, 1.4269 for StressSurvey, and -2.7799. The true coefficients are 0 for the intercept, 1 for the stress, and .1 for the time. The difference from the true coefficients is 0.588 for the intercept, 0.4269 for StressSurvey, and -2.8799 for the time. Time is concerning as it is not close to the true value.</p>
+<p>The estimated coefficients are 0.588 for the intercept, 1.4269 for StressSurvey, and -2.7799. The true coefficients are 0 for the intercept, 1 for the stress, and .1 for the time. Time is concerning as it is not close to the true value. The time coefficient suggest that for every 1 unit of time, the anxiety decreases by 2.7799 units. This is quite different from the true relationship.</p>
 <hr>
 </section>
 <section id="multiple-regression-anxiety-on-true-stress-and-time" class="level3">
 <h3 class="anchored" data-anchor-id="multiple-regression-anxiety-on-true-stress-and-time">Multiple Regression: Anxiety on TRUE Stress and Time</h3>
-<div id="52c86000" class="cell" data-execution_count="7">
+<div id="b2486d80" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiple regression of Anxiety on both TRUE Stress and Time</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Using matrix algebra for multiple regression: β = (X'X)^(-1)X'y</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -662,7 +662,7 @@ Mean Absolute Error: 0.0000</code></pre>
 </section>
 <section id="comparison-of-multiple-regression-models-with-statistical-significance-testing" class="level2">
 <h2 class="anchored" data-anchor-id="comparison-of-multiple-regression-models-with-statistical-significance-testing">Comparison of Multiple Regression Models with Statistical Significance Testing</h2>
-<div id="28bd4fb9" class="cell" data-execution_count="8">
+<div id="fc285b69" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare both multiple regression models with full statistical output</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -695,8 +695,8 @@ MODEL 1: Anxiety ~ StressSurvey + Time
 Dep. Variable:                Anxiety   R-squared:                       0.935
 Model:                            OLS   Adj. R-squared:                  0.924
 Method:                 Least Squares   F-statistic:                     86.32
-Date:                Sun, 12 Oct 2025   Prob (F-statistic):           7.54e-08
-Time:                        20:52:03   Log-Likelihood:                -23.931
+Date:                Mon, 13 Oct 2025   Prob (F-statistic):           7.54e-08
+Time:                        21:02:54   Log-Likelihood:                -23.931
 No. Observations:                  15   AIC:                             53.86
 Df Residuals:                      12   BIC:                             55.99
 Df Model:                           2                                         
@@ -726,8 +726,8 @@ MODEL 2: Anxiety ~ TRUE Stress + Time
 Dep. Variable:                Anxiety   R-squared:                       1.000
 Model:                            OLS   Adj. R-squared:                  1.000
 Method:                 Least Squares   F-statistic:                 8.600e+31
-Date:                Sun, 12 Oct 2025   Prob (F-statistic):          1.15e-187
-Time:                        20:52:03   Log-Likelihood:                 493.62
+Date:                Mon, 13 Oct 2025   Prob (F-statistic):          1.15e-187
+Time:                        21:02:54   Log-Likelihood:                 493.62
 No. Observations:                  15   AIC:                            -981.2
 Df Residuals:                      12   BIC:                            -979.1
 Df Model:                           2                                         
@@ -751,7 +751,7 @@ Notes:
 </div>
 <section id="detailed-comparison-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="detailed-comparison-analysis">Detailed Comparison Analysis</h3>
-<div id="00c63247" class="cell" data-execution_count="9">
+<div id="b9b11c9a" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create comparison table</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -938,21 +938,18 @@ KEY INSIGHTS FROM COMPARISON
 <p><strong>R-squared Comparison:</strong></p>
 <p>Model 1 (StressSurvey + Time) achieves an R² of approximately 0.935, explaining 93.5% of the variance in Anxiety. Model 2 (TRUE Stress + Time) achieves an R² of 1.0000. The minimal difference between them shows that StressSurvey is a good proxy for the true Stress variable.</p>
 <p><strong>Coefficient Interpretations:</strong></p>
-<p>The model of involving StressSurvey and Time had a coefficient of 1.4269 for the StressSurvey and -2.7799 for the time. The model of involving true stress and time had a coefficient of 1 for the stress and 0.1 for the time. The model involving true stress and time is a much better fit. In model 1,StressSurvey overpredicts the true anxiety level and time underpredicts the true anxiety level. Model 2 recovers the exact data-generating process because it uses the true Stress variable rather than the survey proxy.</p>
+<p>The model involving StressSurvey and Time had a coefficient of 1.4269 for the StressSurvey and -2.7799 for the time. The model involving true stress and time had a coefficient of 1 for the stress and 0.1 for the time. The model involving true stress and time is a much better fit. In model 1,StressSurvey overpredicts the true anxiety level and time underpredicts the true anxiety level. Model 2 is much more accurate because it uses the true Stress variable rather than the survey proxy.</p>
 <p><strong>Looking at the p-values from the statistical tests:</strong></p>
 <p><strong>Model 1:</strong> The results show that the StressSurvey and Time coefficients are highly statistically significant (p &lt; 0.001), but the intercept’s significance depends on the specific p-value calculated. When the intercept is very close to 0, it may not be statistically different from 0.</p>
 <p><strong>Model 2:</strong> All coefficients (Stress and Time) are extremely statistically significant (p ≈ 0), indicating perfect estimation of the true relationship. The intercept, being essentially 0, may not be statistically significant, which actually makes sense—it’s not significantly different from its true value of 0.</p>
-<p>This analysis reveals several critical real-world implications:</p>
-<p><strong>1. The Importance of Variable Quality:</strong> - Even though StressSurvey is just a proxy for true Stress, it produces nearly identical results to the true variable - In real-world research, we rarely have access to “true” variables, only proxies (surveys, measurements, etc.) - The quality of your proxy variables matters enormously for accurate estimates</p>
-<p><strong>2. Multiple Regression Reveals True Relationships:</strong> - The bivariate regression of Anxiety on Time alone showed a coefficient of 5.34 (way off from the true 0.1) - Once we control for Stress/StressSurvey in multiple regression, Time’s coefficient becomes accurate (≈0.1) - This demonstrates <strong>omitted variable bias</strong>: excluding important variables can severely distort your conclusions</p>
-<p><strong>3. Statistical vs.&nbsp;Practical Significance:</strong> - Both models achieve R² ≈ 1.0, which is unrealistic in real-world data - Real data has noise, measurement error, and unmeasured factors - High R² and significant p-values don’t guarantee your model is correct or useful</p>
-<p><strong>4. Perfect Fit Can Be Misleading:</strong> - Model 2’s perfect fit only occurs because we simulated data with no noise - In practice, perfect fit often indicates overfitting or data problems - We should be suspicious of models that fit “too well”</p>
-<p><strong>5. Practical Implications:</strong> - <strong>For Business Decisions</strong>: Understanding that excluding key variables (like Stress) can lead to wrong conclusions about other factors (like Time) - <strong>For Policy</strong>: A poorly specified model might lead to ineffective interventions - <strong>For Research</strong>: Replication and robustness checks with different variable specifications are essential</p>
-<p><strong>6. The “Garbage Can” Lesson:</strong> - The challenge name “Garbage Can Regression” hints at a key principle: including irrelevant variables or excluding relevant ones creates garbage results - Multiple regression is powerful but requires careful thought about what variables to include and why</p>
+<p>Time spent on social media is not a good predictor of anxiety levels by itself since it had a R-squared of 56.3% and a coefficient of 5.3406. Once we ran multiple regressions with both stress and StressSurvey, the model become much more accurate. The real-world implications learned from these results is to be careful with adding in variables in multiple regression since it can lead to overfitting and misleading conclusions.</p>
 </section>
 <section id="question-6-reflect-on-real-world-implications" class="level3">
 <h3 class="anchored" data-anchor-id="question-6-reflect-on-real-world-implications">Question 6: Reflect on Real-World Implications</h3>
-<p>For the first model, a headline could be “Time spent on Social Media Reduces Anxiety”. This model shows that the more time spent on social media, the lower the anxiety level as the coefficient is -2.7799. However, the model is not capturing the true relationship as StressSurvey is not the true Stress variable and is throwing off the results. For Model 2, a headline could be “Time spent on Social Media increases Anxiety”. This model shows that the more time spent on social media, the higher the anxiety level as the coefficient for time is 0.1.</p>
+<p>For the first model, a headline could be “Time spent on Social Media Reduces Anxiety”. This model shows that the more time spent on social media, the lower the anxiety level as the coefficient is -2.7799. However, the model is not capturing the true relationship as StressSurvey is not the true Stress variable and is throwing off the results. For Model 2, a headline could be “Time spent on Social Media increases Anxiety”. This model shows that the more time spent on social media, the higher the anxiety level as the coefficient for time is 0.1. A typical parent will believe the second headline as it plays into the parent’s belief that social media is harmful to their children. As for Facebook, Instagram, and TikTok executives, they will likely believe the first headline as it plays into their belief that social media is beneficial to their users and can actually reduce anxiety.</p>
+</section>
+<section id="question-7-avoiding-misleading-statistical-significance" class="level3">
+<h3 class="anchored" data-anchor-id="question-7-avoiding-misleading-statistical-significance">Question 7: Avoiding Misleading Statistical Significance:</h3>
 </section>
 </section>
 </section>
