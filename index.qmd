@@ -418,7 +418,7 @@ plt.show()
 
 ### Question 4: What are the estimated coefficients? How do they compare to the true relationship?
 
-The estimated coefficients are 0 for the intercept, 1 for the stress, and .1 for the time. These are the same as the true coefficients. The true relationship is Anxiety = Stress + 0.1 × Time. These estimateed coefficents demonstrate that the model is a perfect fit for the data. Using true stress rather than stress survey results in a perfect fit.
+The estimated coefficients are 0 for the intercept, 1 for the stress, and .1 for the time. These are the same as the true coefficients. The true relationship is Anxiety = Stress + 0.1 × Time. These estimated coefficents demonstrate that the model is a perfect fit for the data. Using true stress rather than stress survey results in a perfect fit.
 
 
 ---
@@ -596,7 +596,7 @@ The model involving StressSurvey and Time had a coefficient of 1.4269 for the St
 
 
 ### Question 6: Reflect on Real-World Implications
-For the first model, a headline could be "Time spent on Social Media Reduces Anxiety". This model shows that the more time spent on social media, the lower the anxiety level as the coefficient is -2.7799. However, the model is not capturing the true relationship as StressSurvey is not the true Stress variable and is throwing off the results. For Model 2, a headline could be "Time spent on Social Media increases Anxiety". This model shows that the more time spent on social media, the higher the anxiety level as the coefficient for time is 0.1. A typical parent will believe the second headline as it plays into the parent's belief that social media is harmful to their children. As for Facebook, Instagram, and TikTok executives, they will likely believe the first headline as it plays into their belief that social media is beneficial to their users and can actually reduce anxiety.
+For the first model, a headline could be "Social Media is Therapeutic!". This model shows that the more time spent on social media, the lower the anxiety level as the coefficient is -2.7799. However, the model is not capturing the true relationship as StressSurvey is not the true Stress variable and is throwing off the results. For Model 2, a headline could be "Get off Social Media!". This model shows that the more time spent on social media, the higher the anxiety level as the coefficient for time is 0.1. A typical parent will believe the second headline as it plays into the parent's belief that social media is harmful to their children. As for Facebook, Instagram, and TikTok executives, they will likely believe the first headline as it plays into their belief that social media is beneficial to their users and can actually reduce anxiety.
 
 
 
