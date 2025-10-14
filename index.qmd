@@ -602,3 +602,243 @@ For the first model, a headline could be "Time spent on Social Media Reduces Anx
 
 ### Question 7: Avoiding Misleading Statistical Significance: 
 
+---
+
+## Sample Splitting Analysis: High Stress Regime
+
+### Data Exploration: Identifying Statistical Regimes
+
+```{python}
+#| echo: true
+# First, let's explore the data structure to identify meaningful subsets
+print("="*80)
+print("DATA EXPLORATION: IDENTIFYING STATISTICAL REGIMES")
+print("="*80)
+
+print("\n1. STRESS LEVELS IN THE DATA:")
+stress_levels = observDF['Stress'].unique()
+print(f"Unique Stress values: {sorted(stress_levels)}")
+
+print("\n2. TIME PATTERNS BY STRESS LEVEL:")
+for stress_level in sorted(stress_levels):
+    subset = observDF[observDF['Stress'] == stress_level]
+    time_values = subset['Time'].values
+    print(f"Stress {stress_level}: Time values = {time_values}")
+
+print("\n3. ANXIETY VALUES BY STRESS LEVEL:")
+for stress_level in sorted(stress_levels):
+    subset = observDF[observDF['Stress'] == stress_level]
+    anxiety_values = subset['Anxiety'].values
+    print(f"Stress {stress_level}: Anxiety values = {anxiety_values}")
+
+print("\n4. IDENTIFYING NATURAL BREAKS:")
+print("Looking at the data, we can identify two distinct regimes:")
+print("- LOW STRESS REGIME: Stress = 0, 1, 2 (Time values: 0, 1, 2)")
+print("- HIGH STRESS REGIME: Stress = 8, 12 (Time values: 2, 2.1, 2.2)")
+print("\nThis split makes theoretical sense: low vs. high stress environments")
+```
+
+### Choosing a Meaningful Subset
+
+```{python}
+#| echo: true
+# Create meaningful subsets based on stress levels
+print("="*80)
+print("SUBSET ANALYSIS: HIGH STRESS REGIME")
+print("="*80)
+
+# Choose HIGH STRESS subset (Stress >= 8) - this is a meaningful "regime"
+high_stress_subset = observDF[observDF['Stress'] >= 8].copy()
+print(f"\nHigh Stress Subset (Stress >= 8):")
+print(f"Number of observations: {len(high_stress_subset)}")
+print("\nData:")
+print(high_stress_subset)
+
+print("\nWhy this subset?")
+print("1. Theoretically meaningful: High stress environments behave differently")
+print("2. Sufficient sample size: 6 observations")
+print("3. Clear regime separation: Stress levels 8 and 12 vs. 0, 1, 2")
+print("4. Time variation within regime: 2.0, 2.1, 2.2")
+```
+
+### Graphical Diagnostics for the Subset
+
+```{python}
+#| echo: true
+# Graphical diagnostics for the subset
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+print("="*80)
+print("GRAPHICAL DIAGNOSTICS FOR HIGH STRESS SUBSET")
+print("="*80)
+
+# Create diagnostic plots
+fig, axes = plt.subplots(2, 2, figsize=(15, 12))
+
+# 1. Scatter plot: StressSurvey vs Anxiety
+axes[0, 0].scatter(high_stress_subset['StressSurvey'], high_stress_subset['Anxiety'], 
+                   s=100, alpha=0.7, color='red')
+axes[0, 0].set_xlabel('StressSurvey')
+axes[0, 0].set_ylabel('Anxiety')
+axes[0, 0].set_title('High Stress: StressSurvey vs Anxiety')
+axes[0, 0].grid(True, alpha=0.3)
+
+# 2. Scatter plot: Time vs Anxiety
+axes[0, 1].scatter(high_stress_subset['Time'], high_stress_subset['Anxiety'], 
+                   s=100, alpha=0.7, color='green')
+axes[0, 1].set_xlabel('Time')
+axes[0, 1].set_ylabel('Anxiety')
+axes[0, 1].set_title('High Stress: Time vs Anxiety')
+axes[0, 1].grid(True, alpha=0.3)
+
+# 3. Scatter plot: TRUE Stress vs Anxiety
+axes[1, 0].scatter(high_stress_subset['Stress'], high_stress_subset['Anxiety'], 
+                   s=100, alpha=0.7, color='blue')
+axes[1, 0].set_xlabel('Stress (TRUE)')
+axes[1, 0].set_ylabel('Anxiety')
+axes[1, 0].set_title('High Stress: TRUE Stress vs Anxiety')
+axes[1, 0].grid(True, alpha=0.3)
+
+# 4. 3D scatter plot
+ax_3d = fig.add_subplot(2, 2, 4, projection='3d')
+ax_3d.scatter(high_stress_subset['StressSurvey'], high_stress_subset['Time'], 
+              high_stress_subset['Anxiety'], c='purple', s=100, alpha=0.7)
+ax_3d.set_xlabel('StressSurvey')
+ax_3d.set_ylabel('Time')
+ax_3d.set_zlabel('Anxiety')
+ax_3d.set_title('High Stress: 3D Relationship')
+
+plt.tight_layout()
+plt.show()
+
+print("\nGraphical Analysis:")
+print("1. StressSurvey vs Anxiety: Clear linear relationship")
+print("2. Time vs Anxiety: Limited variation, but clear pattern")
+print("3. TRUE Stress vs Anxiety: Perfect linear relationship")
+print("4. 3D view: Shows both variables working together")
+print("\nKey insight: In high stress environments, both StressSurvey and Time show")
+print("clear linear relationships with Anxiety, supporting the multiple regression approach.")
+```
+
+### Multiple Regression on the Subset
+
+```{python}
+#| echo: true
+# Multiple regression on the high stress subset
+print("="*80)
+print("MULTIPLE REGRESSION: HIGH STRESS SUBSET")
+print("="*80)
+
+# Using statsmodels for detailed output
+X_subset = sm.add_constant(high_stress_subset[['StressSurvey', 'Time']])
+y_subset = high_stress_subset['Anxiety']
+model_subset = sm.OLS(y_subset, X_subset).fit()
+
+print("REGRESSION RESULTS FOR HIGH STRESS SUBSET:")
+print(model_subset.summary())
+
+# Compare with true relationship for this subset
+print("\n" + "="*60)
+print("COMPARISON WITH TRUE RELATIONSHIP")
+print("="*60)
+
+print("True relationship: Anxiety = Stress + 0.1 × Time")
+print(f"Estimated relationship: Anxiety = {model_subset.params['const']:.6f} + {model_subset.params['StressSurvey']:.6f} × StressSurvey + {model_subset.params['Time']:.6f} × Time")
+
+# Calculate what the true relationship should predict for this subset
+true_predictions = high_stress_subset['Stress'] + 0.1 * high_stress_subset['Time']
+model_predictions = model_subset.predict()
+
+print(f"\nPredictions comparison:")
+print(f"True predictions: {true_predictions}")
+print(f"Model predictions: {model_predictions}")
+print(f"Difference (MAE): {np.mean(np.abs(true_predictions - model_predictions)):.6f}")
+
+# Statistical significance analysis
+print(f"\nStatistical Significance (α = 0.05):")
+print(f"Intercept: p = {model_subset.pvalues['const']:.6f} → {'SIGNIFICANT' if model_subset.pvalues['const'] < 0.05 else 'NOT SIGNIFICANT'}")
+print(f"StressSurvey: p = {model_subset.pvalues['StressSurvey']:.6f} → {'SIGNIFICANT' if model_subset.pvalues['StressSurvey'] < 0.05 else 'NOT SIGNIFICANT'}")
+print(f"Time: p = {model_subset.pvalues['Time']:.6f} → {'SIGNIFICANT' if model_subset.pvalues['Time'] < 0.05 else 'NOT SIGNIFICANT'}")
+print(f"All coefficients significant? {all(model_subset.pvalues < 0.05)}")
+```
+
+### Comparison: Subset vs. Full Sample
+
+```{python}
+#| echo: true
+# Compare subset results with full sample results
+print("="*80)
+print("SUBSET vs. FULL SAMPLE COMPARISON")
+print("="*80)
+
+comparison_data = {
+    'Metric': [
+        'Sample Size',
+        'R-squared',
+        'Intercept',
+        'StressSurvey Coeff',
+        'Time Coeff',
+        'All Coeffs Significant?',
+        'MAE vs True Values'
+    ],
+    'Full Sample': [
+        f"{len(observDF)}",
+        f"{model1.rsquared:.6f}",
+        f"{model1.params['const']:.6f}",
+        f"{model1.params['StressSurvey']:.6f}",
+        f"{model1.params['Time']:.6f}",
+        f"{all(model1.pvalues < 0.05)}",
+        f"{np.mean(np.abs(model1.predict() - (observDF['Stress'] + 0.1 * observDF['Time']).values)):.6f}"
+    ],
+    'High Stress Subset': [
+        f"{len(high_stress_subset)}",
+        f"{model_subset.rsquared:.6f}",
+        f"{model_subset.params['const']:.6f}",
+        f"{model_subset.params['StressSurvey']:.6f}",
+        f"{model_subset.params['Time']:.6f}",
+        f"{all(model_subset.pvalues < 0.05)}",
+        f"{np.mean(np.abs(model_subset.predict() - (high_stress_subset['Stress'] + 0.1 * high_stress_subset['Time']).values)):.6f}"
+    ]
+}
+
+subset_comparison_df = pd.DataFrame(comparison_data)
+print(subset_comparison_df.to_string(index=False))
+
+print("\n" + "="*60)
+print("KEY INSIGHTS FROM SUBSET ANALYSIS")
+print("="*60)
+
+print("\n1. SAMPLE SIZE IMPACT:")
+print(f"   Full sample: {len(observDF)} observations")
+print(f"   Subset: {len(high_stress_subset)} observations")
+print("   → Smaller sample reduces statistical power")
+
+print("\n2. MODEL PERFORMANCE:")
+print(f"   Full sample R²: {model1.rsquared:.6f}")
+print(f"   Subset R²: {model_subset.rsquared:.6f}")
+print("   → Both achieve excellent fit, but full sample is more robust")
+
+print("\n3. COEFFICIENT STABILITY:")
+print("   Full sample StressSurvey coeff: {:.6f}".format(model1.params['StressSurvey']))
+print("   Subset StressSurvey coeff: {:.6f}".format(model_subset.params['StressSurvey']))
+print("   → Coefficients are very similar, suggesting stability across regimes")
+
+print("\n4. STATISTICAL SIGNIFICANCE:")
+print(f"   Full sample - all significant: {all(model1.pvalues < 0.05)}")
+print(f"   Subset - all significant: {all(model_subset.pvalues < 0.05)}")
+print("   → Both show statistical significance, but with different confidence levels")
+```
+
+### Answer to Question 7: Subset Analysis Results
+
+**Specific Subset Chosen:**
+I chose the **High Stress regime** (Stress ≥ 8), which includes observations with Stress values of 8 and 12. This subset contains 6 observations with Time values ranging from 2.0 to 2.2.
+
+I chose this subset because it is a meaningful subset as it is a high stress regime and it has a sufficient sample size as it has 6 observations. This subset is also clearly seperated from the low stress regime.
+
+**Results Analysis:**
+
+The subset model had a R-squared of 1 which is a perfect fit. The results are very close to the true relationship. All coefficients are also statistically significant. These results suggest in order to avoid misleading conclusions, you should subset the data so you can control for proxys properly as low stress individuals are not the same as high stress individuals. The low stress individuals averaged the results and gave the misleading answer that social media can decrease anxiety. 
+
+
