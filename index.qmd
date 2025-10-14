@@ -14,6 +14,7 @@ execute:
 ## Python Code
 
 ```{python}
+#| echo: false
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -39,6 +40,7 @@ print(observDF)
 ### Bivariate Regression: Anxiety on StressSurvey
 
 ```{python}
+#| echo: false
 # Manual bivariate regression of Anxiety on StressSurvey
 X = observDF['StressSurvey'].values
 y = observDF['Anxiety'].values
@@ -83,6 +85,7 @@ The estimated coefficients are 1.0470 for the StressSurvey (slope) and -1.5240 f
 ### Scatter Plot with Regression Line
 
 ```{python}
+#| echo: false
 # Create scatter plot with regression line
 plt.figure(figsize=(10, 6))
 plt.scatter(observDF['StressSurvey'], observDF['Anxiety'], alpha=0.7, s=100, color='blue', label='Data Points')
@@ -124,6 +127,7 @@ The fit is pretty good with a R-squared of 90.11%. The root mean square error is
 ### Bivariate Regression: Anxiety on Time
 
 ```{python}
+#| echo: false
 # Manual bivariate regression of Anxiety on Time
 X_time = observDF['Time'].values
 y_time = observDF['Anxiety'].values
@@ -190,6 +194,7 @@ The estimated coefficients are 5.3406 for the time and -3.6801 for the intercept
 ### Scatter Plot with Regression Line: Time vs Anxiety
 
 ```{python}
+#| echo: false
 # Create scatter plot with regression line for Time vs Anxiety
 plt.figure(figsize=(10, 6))
 plt.scatter(observDF['Time'], observDF['Anxiety'], alpha=0.7, s=100, color='green', label='Data Points')
@@ -230,6 +235,7 @@ The fit is not very good with a R-squared of 56.3%. The root mean square error i
 ### Multiple Regression: Anxiety on StressSurvey and Time
 
 ```{python}
+#| echo: false
 # Multiple regression of Anxiety on both StressSurvey and Time
 # Using matrix algebra for multiple regression: β = (X'X)^(-1)X'y
 
@@ -321,6 +327,7 @@ The estimated coefficients are 0.588 for the intercept, 1.4269 for StressSurvey,
 ### Multiple Regression: Anxiety on TRUE Stress and Time
 
 ```{python}
+#| echo: false
 # Multiple regression of Anxiety on both TRUE Stress and Time
 # Using matrix algebra for multiple regression: β = (X'X)^(-1)X'y
 
@@ -419,6 +426,7 @@ The estimated coefficients are 0 for the intercept, 1 for the stress, and .1 for
 ## Comparison of Multiple Regression Models with Statistical Significance Testing
 
 ```{python}
+#| echo: false
 # Compare both multiple regression models with full statistical output
 import statsmodels.api as sm
 
@@ -447,6 +455,7 @@ print(model2.summary())
 ### Detailed Comparison Analysis
 
 ```{python}
+#| echo: false
 # Create comparison table
 import pandas as pd
 
@@ -600,6 +609,7 @@ For the first model, a headline could be "Time spent on Social Media Reduces Anx
 ### Data Exploration: Identifying Statistical Regimes
 
 ```{python}
+#| echo: false
 # First, let's explore the data structure to identify meaningful subsets
 print("="*80)
 print("DATA EXPLORATION: IDENTIFYING STATISTICAL REGIMES")
@@ -631,6 +641,7 @@ print("\nThis split makes theoretical sense: low vs. high stress environments")
 ### Choosing a Meaningful Subset
 
 ```{python}
+#| echo: false
 # Create meaningful subsets based on stress levels
 print("="*80)
 print("SUBSET ANALYSIS: HIGH STRESS REGIME")
@@ -653,6 +664,7 @@ print("4. Time variation within regime: 2.0, 2.1, 2.2")
 ### Graphical Diagnostics for the Subset
 
 ```{python}
+#| echo: false
 # Graphical diagnostics for the subset
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -712,6 +724,7 @@ print("clear linear relationships with Anxiety, supporting the multiple regressi
 ### Multiple Regression on the Subset
 
 ```{python}
+#| echo: false
 # Multiple regression on the high stress subset
 print("="*80)
 print("MULTIPLE REGRESSION: HIGH STRESS SUBSET")
@@ -753,6 +766,7 @@ print(f"All coefficients significant? {all(model_subset.pvalues < 0.05)}")
 ### Comparison: Subset vs. Full Sample
 
 ```{python}
+#| echo: false
 # Compare subset results with full sample results
 print("="*80)
 print("SUBSET vs. FULL SAMPLE COMPARISON")

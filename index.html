@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -104,25 +69,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Choose R or Python and delete the other code chunk.</strong></p>
 <section id="python-code" class="level2">
 <h2 class="anchored" data-anchor-id="python-code">Python Code</h2>
-<div id="e1c29073" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> r2_score</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Data with known true relationships: Anxiety = Stress + 0.1 × Time</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Stress'</span>: [<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">12</span>,<span class="dv">12</span>,<span class="dv">12</span>],</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'StressSurvey'</span>: [<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">6</span>,<span class="dv">6</span>,<span class="dv">9</span>,<span class="dv">9</span>,<span class="dv">9</span>,<span class="dv">12</span>,<span class="dv">12</span>,<span class="dv">12</span>],</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Time'</span>: [<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="fl">2.1</span>,<span class="fl">2.2</span>,<span class="fl">2.2</span>,<span class="fl">2.2</span>],</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Anxiety'</span>: [<span class="dv">0</span>,<span class="fl">0.1</span>,<span class="fl">0.1</span>,<span class="fl">1.1</span>,<span class="fl">1.1</span>,<span class="fl">1.1</span>,<span class="fl">2.2</span>,<span class="fl">2.2</span>,<span class="fl">2.2</span>,<span class="fl">8.2</span>,<span class="fl">8.2</span>,<span class="fl">8.21</span>,<span class="fl">12.22</span>,<span class="fl">12.22</span>,<span class="fl">12.22</span>]</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>observDF <span class="op">=</span> pd.DataFrame(data)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(observDF)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="b4847c17" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
 <pre><code>    Stress  StressSurvey  Time  Anxiety
 0        0             0   0.0     0.00
@@ -147,42 +94,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="your-analysis">Your Analysis</h2>
 <section id="bivariate-regression-anxiety-on-stresssurvey" class="level3">
 <h3 class="anchored" data-anchor-id="bivariate-regression-anxiety-on-stresssurvey">Bivariate Regression: Anxiety on StressSurvey</h3>
-<div id="95cc9e70" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Manual bivariate regression of Anxiety on StressSurvey</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> observDF[<span class="st">'StressSurvey'</span>].values</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> observDF[<span class="st">'Anxiety'</span>].values</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate regression coefficients manually</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">len</span>(X)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>sum_x <span class="op">=</span> np.<span class="bu">sum</span>(X)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>sum_y <span class="op">=</span> np.<span class="bu">sum</span>(y)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>sum_xy <span class="op">=</span> np.<span class="bu">sum</span>(X <span class="op">*</span> y)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>sum_x2 <span class="op">=</span> np.<span class="bu">sum</span>(X <span class="op">*</span> X)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Slope (beta1) = (n*sum_xy - sum_x*sum_y) / (n*sum_x2 - sum_x*sum_x)</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>slope <span class="op">=</span> (n <span class="op">*</span> sum_xy <span class="op">-</span> sum_x <span class="op">*</span> sum_y) <span class="op">/</span> (n <span class="op">*</span> sum_x2 <span class="op">-</span> sum_x <span class="op">*</span> sum_x)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Intercept (beta0) = (sum_y - beta1*sum_x) / n</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>intercept <span class="op">=</span> (sum_y <span class="op">-</span> slope <span class="op">*</span> sum_x) <span class="op">/</span> n</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate R-squared</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> intercept <span class="op">+</span> slope <span class="op">*</span> X</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>ss_res <span class="op">=</span> np.<span class="bu">sum</span>((y <span class="op">-</span> y_pred) <span class="op">**</span> <span class="dv">2</span>)</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>ss_tot <span class="op">=</span> np.<span class="bu">sum</span>((y <span class="op">-</span> np.mean(y)) <span class="op">**</span> <span class="dv">2</span>)</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>r_squared <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> (ss_res <span class="op">/</span> ss_tot)</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Regression Results:"</span>)</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Intercept (beta0): </span><span class="sc">{</span>intercept<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Slope (beta1): </span><span class="sc">{</span>slope<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"R-squared: </span><span class="sc">{</span>r_squared<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare to true relationship</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Comparison to True Relationship:"</span>)</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"True relationship: Anxiety = Stress + 0.1 × Time"</span>)</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"True coefficient of Stress: 1.0"</span>)</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Estimated coefficient of StressSurvey: </span><span class="sc">{</span>slope<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Difference from true: </span><span class="sc">{</span><span class="bu">abs</span>(slope <span class="op">-</span> <span class="fl">1.0</span>)<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="55bcb35f" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
 <pre><code>Regression Results:
 Intercept (beta0): -1.5240
@@ -203,35 +115,7 @@ Difference from true: 0.0470</code></pre>
 </section>
 <section id="scatter-plot-with-regression-line" class="level3">
 <h3 class="anchored" data-anchor-id="scatter-plot-with-regression-line">Scatter Plot with Regression Line</h3>
-<div id="dfb66e80" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create scatter plot with regression line</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(observDF[<span class="st">'StressSurvey'</span>], observDF[<span class="st">'Anxiety'</span>], alpha<span class="op">=</span><span class="fl">0.7</span>, s<span class="op">=</span><span class="dv">100</span>, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Data Points'</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot regression line</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>x_range <span class="op">=</span> np.linspace(observDF[<span class="st">'StressSurvey'</span>].<span class="bu">min</span>(), observDF[<span class="st">'StressSurvey'</span>].<span class="bu">max</span>(), <span class="dv">100</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>y_pred_line <span class="op">=</span> intercept <span class="op">+</span> slope <span class="op">*</span> x_range</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>plt.plot(x_range, y_pred_line, <span class="st">'r-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="ss">f'Regression Line (y = </span><span class="sc">{</span>intercept<span class="sc">:.3f}</span><span class="ss"> + </span><span class="sc">{</span>slope<span class="sc">:.3f}</span><span class="ss">x)'</span>)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'StressSurvey'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Anxiety'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Relationship between StressSurvey and Anxiety'</span>, fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Additional analysis</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Fit Analysis:"</span>)</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"R-squared: </span><span class="sc">{</span>r_squared<span class="sc">:.4f}</span><span class="ss"> (</span><span class="sc">{</span>r_squared<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">% of variance explained)"</span>)</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Root Mean Square Error: </span><span class="sc">{</span>np<span class="sc">.</span>sqrt(ss_res<span class="op">/</span>n)<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean Absolute Error: </span><span class="sc">{</span>np<span class="sc">.</span>mean(np.<span class="bu">abs</span>(y <span class="op">-</span> y_pred))<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for potential issues</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Potential Issues Analysis:"</span>)</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"1. Clustering: Notice the data points cluster at specific StressSurvey values (0, 3, 6, 9, 12)"</span>)</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"2. Limited variability: Most variation occurs at discrete levels rather than continuous"</span>)</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"3. Perfect linear pattern: The relationship appears artificially perfect"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="5acd5608" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -260,64 +144,7 @@ Potential Issues Analysis:
 </section>
 <section id="bivariate-regression-anxiety-on-time" class="level3">
 <h3 class="anchored" data-anchor-id="bivariate-regression-anxiety-on-time">Bivariate Regression: Anxiety on Time</h3>
-<div id="bafd3d64" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Manual bivariate regression of Anxiety on Time</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>X_time <span class="op">=</span> observDF[<span class="st">'Time'</span>].values</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>y_time <span class="op">=</span> observDF[<span class="st">'Anxiety'</span>].values</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate regression coefficients manually</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>n_time <span class="op">=</span> <span class="bu">len</span>(X_time)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>sum_x_time <span class="op">=</span> np.<span class="bu">sum</span>(X_time)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>sum_y_time <span class="op">=</span> np.<span class="bu">sum</span>(y_time)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>sum_xy_time <span class="op">=</span> np.<span class="bu">sum</span>(X_time <span class="op">*</span> y_time)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>sum_x2_time <span class="op">=</span> np.<span class="bu">sum</span>(X_time <span class="op">*</span> X_time)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Slope (beta1) = (n*sum_xy - sum_x*sum_y) / (n*sum_x2 - sum_x*sum_x)</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>slope_time <span class="op">=</span> (n_time <span class="op">*</span> sum_xy_time <span class="op">-</span> sum_x_time <span class="op">*</span> sum_y_time) <span class="op">/</span> (n_time <span class="op">*</span> sum_x2_time <span class="op">-</span> sum_x_time <span class="op">*</span> sum_x_time)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Intercept (beta0) = (sum_y - beta1*sum_x) / n</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>intercept_time <span class="op">=</span> (sum_y_time <span class="op">-</span> slope_time <span class="op">*</span> sum_x_time) <span class="op">/</span> n_time</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate R-squared</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>y_pred_time <span class="op">=</span> intercept_time <span class="op">+</span> slope_time <span class="op">*</span> X_time</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>ss_res_time <span class="op">=</span> np.<span class="bu">sum</span>((y_time <span class="op">-</span> y_pred_time) <span class="op">**</span> <span class="dv">2</span>)</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>ss_tot_time <span class="op">=</span> np.<span class="bu">sum</span>((y_time <span class="op">-</span> np.mean(y_time)) <span class="op">**</span> <span class="dv">2</span>)</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>r_squared_time <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> (ss_res_time <span class="op">/</span> ss_tot_time)</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Regression Results (Anxiety on Time):"</span>)</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Intercept (beta0): </span><span class="sc">{</span>intercept_time<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Slope (beta1): </span><span class="sc">{</span>slope_time<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"R-squared: </span><span class="sc">{</span>r_squared_time<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare to true relationship</span></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Comparison to True Relationship:"</span>)</span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"True relationship: Anxiety = Stress + 0.1 × Time"</span>)</span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"True coefficient of Time: 0.1"</span>)</span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Estimated coefficient of Time: </span><span class="sc">{</span>slope_time<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Difference from true: </span><span class="sc">{</span><span class="bu">abs</span>(slope_time <span class="op">-</span> <span class="fl">0.1</span>)<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Create scatter plot for Time vs Anxiety</span></span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>plt.scatter(observDF[<span class="st">'Time'</span>], observDF[<span class="st">'Anxiety'</span>], alpha<span class="op">=</span><span class="fl">0.7</span>, s<span class="op">=</span><span class="dv">100</span>, color<span class="op">=</span><span class="st">'green'</span>, label<span class="op">=</span><span class="st">'Data Points'</span>)</span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot regression line</span></span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>x_range_time <span class="op">=</span> np.linspace(observDF[<span class="st">'Time'</span>].<span class="bu">min</span>(), observDF[<span class="st">'Time'</span>].<span class="bu">max</span>(), <span class="dv">100</span>)</span>
-<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>y_pred_line_time <span class="op">=</span> intercept_time <span class="op">+</span> slope_time <span class="op">*</span> x_range_time</span>
-<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>plt.plot(x_range_time, y_pred_line_time, <span class="st">'r-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="ss">f'Regression Line (y = </span><span class="sc">{</span>intercept_time<span class="sc">:.3f}</span><span class="ss"> + </span><span class="sc">{</span>slope_time<span class="sc">:.3f}</span><span class="ss">x)'</span>)</span>
-<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Time'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Anxiety'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Relationship between Time and Anxiety'</span>, fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Fit Analysis:"</span>)</span>
-<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"R-squared: </span><span class="sc">{</span>r_squared_time<span class="sc">:.4f}</span><span class="ss"> (</span><span class="sc">{</span>r_squared_time<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">% of variance explained)"</span>)</span>
-<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Root Mean Square Error: </span><span class="sc">{</span>np<span class="sc">.</span>sqrt(ss_res_time<span class="op">/</span>n_time)<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean Absolute Error: </span><span class="sc">{</span>np<span class="sc">.</span>mean(np.<span class="bu">abs</span>(y_time <span class="op">-</span> y_pred_time))<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="f8ffe137" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-stdout">
 <pre><code>Regression Results (Anxiety on Time):
 Intercept (beta0): -3.6801
@@ -352,36 +179,7 @@ Mean Absolute Error: 2.5607</code></pre>
 </section>
 <section id="scatter-plot-with-regression-line-time-vs-anxiety" class="level3">
 <h3 class="anchored" data-anchor-id="scatter-plot-with-regression-line-time-vs-anxiety">Scatter Plot with Regression Line: Time vs Anxiety</h3>
-<div id="1e3ec74a" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create scatter plot with regression line for Time vs Anxiety</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(observDF[<span class="st">'Time'</span>], observDF[<span class="st">'Anxiety'</span>], alpha<span class="op">=</span><span class="fl">0.7</span>, s<span class="op">=</span><span class="dv">100</span>, color<span class="op">=</span><span class="st">'green'</span>, label<span class="op">=</span><span class="st">'Data Points'</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot regression line</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>x_range_time <span class="op">=</span> np.linspace(observDF[<span class="st">'Time'</span>].<span class="bu">min</span>(), observDF[<span class="st">'Time'</span>].<span class="bu">max</span>(), <span class="dv">100</span>)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>y_pred_line_time <span class="op">=</span> intercept_time <span class="op">+</span> slope_time <span class="op">*</span> x_range_time</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>plt.plot(x_range_time, y_pred_line_time, <span class="st">'r-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="ss">f'Regression Line (y = </span><span class="sc">{</span>intercept_time<span class="sc">:.3f}</span><span class="ss"> + </span><span class="sc">{</span>slope_time<span class="sc">:.3f}</span><span class="ss">x)'</span>)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Time'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Anxiety'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Relationship between Time and Anxiety'</span>, fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Additional analysis</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Fit Analysis:"</span>)</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"R-squared: </span><span class="sc">{</span>r_squared_time<span class="sc">:.4f}</span><span class="ss"> (</span><span class="sc">{</span>r_squared_time<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">% of variance explained)"</span>)</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Root Mean Square Error: </span><span class="sc">{</span>np<span class="sc">.</span>sqrt(ss_res_time<span class="op">/</span>n_time)<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean Absolute Error: </span><span class="sc">{</span>np<span class="sc">.</span>mean(np.<span class="bu">abs</span>(y_time <span class="op">-</span> y_pred_time))<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for potential issues</span></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Potential Issues Analysis:"</span>)</span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"1. Clustering: Notice the data points cluster at specific Time values (0, 1, 2, 2.1, 2.2)"</span>)</span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"2. Limited variability: Most variation occurs at discrete levels rather than continuous"</span>)</span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"3. Poor fit: R-squared of 56.3</span><span class="sc">% i</span><span class="st">ndicates Time alone is not a strong predictor"</span>)</span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"4. Large residuals: Substantial prediction errors throughout the range"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="b2695469" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -410,87 +208,7 @@ Potential Issues Analysis:
 </section>
 <section id="multiple-regression-anxiety-on-stresssurvey-and-time" class="level3">
 <h3 class="anchored" data-anchor-id="multiple-regression-anxiety-on-stresssurvey-and-time">Multiple Regression: Anxiety on StressSurvey and Time</h3>
-<div id="8c24f4cd" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiple regression of Anxiety on both StressSurvey and Time</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Using matrix algebra for multiple regression: β = (X'X)^(-1)X'y</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create design matrix X with intercept, StressSurvey, and Time</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>X_multi <span class="op">=</span> np.column_stack([</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    np.ones(<span class="bu">len</span>(observDF)),  <span class="co"># Intercept column</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    observDF[<span class="st">'StressSurvey'</span>].values,  <span class="co"># StressSurvey column</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    observDF[<span class="st">'Time'</span>].values  <span class="co"># Time column</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>])</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>y_multi <span class="op">=</span> observDF[<span class="st">'Anxiety'</span>].values</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate coefficients using normal equation: β = (X'X)^(-1)X'y</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>X_transpose <span class="op">=</span> X_multi.T</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>X_transpose_X <span class="op">=</span> np.dot(X_transpose, X_multi)</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>X_transpose_X_inv <span class="op">=</span> np.linalg.inv(X_transpose_X)</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>X_transpose_y <span class="op">=</span> np.dot(X_transpose, y_multi)</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>coefficients <span class="op">=</span> np.dot(X_transpose_X_inv, X_transpose_y)</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract coefficients</span></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>intercept_multi <span class="op">=</span> coefficients[<span class="dv">0</span>]</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>slope_stress_survey <span class="op">=</span> coefficients[<span class="dv">1</span>]</span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>slope_time <span class="op">=</span> coefficients[<span class="dv">2</span>]</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate predictions and R-squared</span></span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>y_pred_multi <span class="op">=</span> np.dot(X_multi, coefficients)</span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>ss_res_multi <span class="op">=</span> np.<span class="bu">sum</span>((y_multi <span class="op">-</span> y_pred_multi) <span class="op">**</span> <span class="dv">2</span>)</span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>ss_tot_multi <span class="op">=</span> np.<span class="bu">sum</span>((y_multi <span class="op">-</span> np.mean(y_multi)) <span class="op">**</span> <span class="dv">2</span>)</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>r_squared_multi <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> (ss_res_multi <span class="op">/</span> ss_tot_multi)</span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Multiple Regression Results:"</span>)</span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Intercept (β₀): </span><span class="sc">{</span>intercept_multi<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"StressSurvey coefficient (β₁): </span><span class="sc">{</span>slope_stress_survey<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Time coefficient (β₂): </span><span class="sc">{</span>slope_time<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"R-squared: </span><span class="sc">{</span>r_squared_multi<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare to true relationship</span></span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Comparison to True Relationship:"</span>)</span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"True relationship: Anxiety = Stress + 0.1 × Time"</span>)</span>
-<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"True coefficient of Stress: 1.0"</span>)</span>
-<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"True coefficient of Time: 0.1"</span>)</span>
-<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Estimated StressSurvey coefficient: </span><span class="sc">{</span>slope_stress_survey<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Difference from true Stress: </span><span class="sc">{</span><span class="bu">abs</span>(slope_stress_survey <span class="op">-</span> <span class="fl">1.0</span>)<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Estimated Time coefficient: </span><span class="sc">{</span>slope_time<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Difference from true Time: </span><span class="sc">{</span><span class="bu">abs</span>(slope_time <span class="op">-</span> <span class="fl">0.1</span>)<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Additional fit statistics</span></span>
-<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Fit Analysis:"</span>)</span>
-<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"R-squared: </span><span class="sc">{</span>r_squared_multi<span class="sc">:.4f}</span><span class="ss"> (</span><span class="sc">{</span>r_squared_multi<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">% of variance explained)"</span>)</span>
-<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Root Mean Square Error: </span><span class="sc">{</span>np<span class="sc">.</span>sqrt(ss_res_multi<span class="op">/</span><span class="bu">len</span>(y_multi))<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean Absolute Error: </span><span class="sc">{</span>np<span class="sc">.</span>mean(np.<span class="bu">abs</span>(y_multi <span class="op">-</span> y_pred_multi))<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 3D scatter plot</span></span>
-<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D</span>
-<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
-<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>, projection<span class="op">=</span><span class="st">'3d'</span>)</span>
-<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plot</span></span>
-<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>ax.scatter(observDF[<span class="st">'StressSurvey'</span>], observDF[<span class="st">'Time'</span>], observDF[<span class="st">'Anxiety'</span>], </span>
-<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>           c<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, s<span class="op">=</span><span class="dv">100</span>, label<span class="op">=</span><span class="st">'Data Points'</span>)</span>
-<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Create mesh for regression plane</span></span>
-<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a>stress_range <span class="op">=</span> np.linspace(observDF[<span class="st">'StressSurvey'</span>].<span class="bu">min</span>(), observDF[<span class="st">'StressSurvey'</span>].<span class="bu">max</span>(), <span class="dv">10</span>)</span>
-<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a>time_range <span class="op">=</span> np.linspace(observDF[<span class="st">'Time'</span>].<span class="bu">min</span>(), observDF[<span class="st">'Time'</span>].<span class="bu">max</span>(), <span class="dv">10</span>)</span>
-<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a>Stress_mesh, Time_mesh <span class="op">=</span> np.meshgrid(stress_range, time_range)</span>
-<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>Anxiety_pred <span class="op">=</span> intercept_multi <span class="op">+</span> slope_stress_survey <span class="op">*</span> Stress_mesh <span class="op">+</span> slope_time <span class="op">*</span> Time_mesh</span>
-<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot regression plane</span></span>
-<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>ax.plot_surface(Stress_mesh, Time_mesh, Anxiety_pred, alpha<span class="op">=</span><span class="fl">0.3</span>, color<span class="op">=</span><span class="st">'red'</span>, </span>
-<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>                label<span class="op">=</span><span class="st">'Regression Plane'</span>)</span>
-<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'StressSurvey'</span>)</span>
-<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Time'</span>)</span>
-<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a>ax.set_zlabel(<span class="st">'Anxiety'</span>)</span>
-<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Multiple Regression: Anxiety = f(StressSurvey, Time)'</span>)</span>
-<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="b551075b" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-stdout">
 <pre><code>Multiple Regression Results:
 Intercept (β₀): 0.5888
@@ -530,91 +248,7 @@ Mean Absolute Error: 1.0305</code></pre>
 </section>
 <section id="multiple-regression-anxiety-on-true-stress-and-time" class="level3">
 <h3 class="anchored" data-anchor-id="multiple-regression-anxiety-on-true-stress-and-time">Multiple Regression: Anxiety on TRUE Stress and Time</h3>
-<div id="595b0cdd" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiple regression of Anxiety on both TRUE Stress and Time</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Using matrix algebra for multiple regression: β = (X'X)^(-1)X'y</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create design matrix X with intercept, TRUE Stress, and Time</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>X_multi_true <span class="op">=</span> np.column_stack([</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    np.ones(<span class="bu">len</span>(observDF)),  <span class="co"># Intercept column</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    observDF[<span class="st">'Stress'</span>].values,  <span class="co"># TRUE Stress column (not StressSurvey)</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    observDF[<span class="st">'Time'</span>].values  <span class="co"># Time column</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>])</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>y_multi_true <span class="op">=</span> observDF[<span class="st">'Anxiety'</span>].values</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate coefficients using normal equation: β = (X'X)^(-1)X'y</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>X_transpose_true <span class="op">=</span> X_multi_true.T</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>X_transpose_X_true <span class="op">=</span> np.dot(X_transpose_true, X_multi_true)</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>X_transpose_X_inv_true <span class="op">=</span> np.linalg.inv(X_transpose_X_true)</span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>X_transpose_y_true <span class="op">=</span> np.dot(X_transpose_true, y_multi_true)</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>coefficients_true <span class="op">=</span> np.dot(X_transpose_X_inv_true, X_transpose_y_true)</span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract coefficients</span></span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>intercept_multi_true <span class="op">=</span> coefficients_true[<span class="dv">0</span>]</span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>slope_stress_true <span class="op">=</span> coefficients_true[<span class="dv">1</span>]</span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>slope_time_true <span class="op">=</span> coefficients_true[<span class="dv">2</span>]</span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate predictions and R-squared</span></span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>y_pred_multi_true <span class="op">=</span> np.dot(X_multi_true, coefficients_true)</span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>ss_res_multi_true <span class="op">=</span> np.<span class="bu">sum</span>((y_multi_true <span class="op">-</span> y_pred_multi_true) <span class="op">**</span> <span class="dv">2</span>)</span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>ss_tot_multi_true <span class="op">=</span> np.<span class="bu">sum</span>((y_multi_true <span class="op">-</span> np.mean(y_multi_true)) <span class="op">**</span> <span class="dv">2</span>)</span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>r_squared_multi_true <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> (ss_res_multi_true <span class="op">/</span> ss_tot_multi_true)</span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Multiple Regression Results (TRUE Variables):"</span>)</span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Intercept (β₀): </span><span class="sc">{</span>intercept_multi_true<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Stress coefficient (β₁): </span><span class="sc">{</span>slope_stress_true<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Time coefficient (β₂): </span><span class="sc">{</span>slope_time_true<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"R-squared: </span><span class="sc">{</span>r_squared_multi_true<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare to true relationship</span></span>
-<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Comparison to True Relationship:"</span>)</span>
-<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"True relationship: Anxiety = Stress + 0.1 × Time"</span>)</span>
-<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"True coefficient of Stress: 1.0"</span>)</span>
-<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"True coefficient of Time: 0.1"</span>)</span>
-<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"True intercept: 0.0"</span>)</span>
-<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Estimated Stress coefficient: </span><span class="sc">{</span>slope_stress_true<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Difference from true Stress: </span><span class="sc">{</span><span class="bu">abs</span>(slope_stress_true <span class="op">-</span> <span class="fl">1.0</span>)<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Estimated Time coefficient: </span><span class="sc">{</span>slope_time_true<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Difference from true Time: </span><span class="sc">{</span><span class="bu">abs</span>(slope_time_true <span class="op">-</span> <span class="fl">0.1</span>)<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Estimated intercept: </span><span class="sc">{</span>intercept_multi_true<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Difference from true intercept: </span><span class="sc">{</span><span class="bu">abs</span>(intercept_multi_true <span class="op">-</span> <span class="fl">0.0</span>)<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Additional fit statistics</span></span>
-<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Fit Analysis:"</span>)</span>
-<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"R-squared: </span><span class="sc">{</span>r_squared_multi_true<span class="sc">:.4f}</span><span class="ss"> (</span><span class="sc">{</span>r_squared_multi_true<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">% of variance explained)"</span>)</span>
-<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Root Mean Square Error: </span><span class="sc">{</span>np<span class="sc">.</span>sqrt(ss_res_multi_true<span class="op">/</span><span class="bu">len</span>(y_multi_true))<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean Absolute Error: </span><span class="sc">{</span>np<span class="sc">.</span>mean(np.<span class="bu">abs</span>(y_multi_true <span class="op">-</span> y_pred_multi_true))<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 3D scatter plot with TRUE variables</span></span>
-<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D</span>
-<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
-<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>, projection<span class="op">=</span><span class="st">'3d'</span>)</span>
-<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plot</span></span>
-<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a>ax.scatter(observDF[<span class="st">'Stress'</span>], observDF[<span class="st">'Time'</span>], observDF[<span class="st">'Anxiety'</span>], </span>
-<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a>           c<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, s<span class="op">=</span><span class="dv">100</span>, label<span class="op">=</span><span class="st">'Data Points'</span>)</span>
-<span id="cb14-68"><a href="#cb14-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-69"><a href="#cb14-69" aria-hidden="true" tabindex="-1"></a><span class="co"># Create mesh for regression plane</span></span>
-<span id="cb14-70"><a href="#cb14-70" aria-hidden="true" tabindex="-1"></a>stress_range_true <span class="op">=</span> np.linspace(observDF[<span class="st">'Stress'</span>].<span class="bu">min</span>(), observDF[<span class="st">'Stress'</span>].<span class="bu">max</span>(), <span class="dv">10</span>)</span>
-<span id="cb14-71"><a href="#cb14-71" aria-hidden="true" tabindex="-1"></a>time_range_true <span class="op">=</span> np.linspace(observDF[<span class="st">'Time'</span>].<span class="bu">min</span>(), observDF[<span class="st">'Time'</span>].<span class="bu">max</span>(), <span class="dv">10</span>)</span>
-<span id="cb14-72"><a href="#cb14-72" aria-hidden="true" tabindex="-1"></a>Stress_mesh_true, Time_mesh_true <span class="op">=</span> np.meshgrid(stress_range_true, time_range_true)</span>
-<span id="cb14-73"><a href="#cb14-73" aria-hidden="true" tabindex="-1"></a>Anxiety_pred_true <span class="op">=</span> intercept_multi_true <span class="op">+</span> slope_stress_true <span class="op">*</span> Stress_mesh_true <span class="op">+</span> slope_time_true <span class="op">*</span> Time_mesh_true</span>
-<span id="cb14-74"><a href="#cb14-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-75"><a href="#cb14-75" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot regression plane</span></span>
-<span id="cb14-76"><a href="#cb14-76" aria-hidden="true" tabindex="-1"></a>ax.plot_surface(Stress_mesh_true, Time_mesh_true, Anxiety_pred_true, alpha<span class="op">=</span><span class="fl">0.3</span>, color<span class="op">=</span><span class="st">'red'</span>, </span>
-<span id="cb14-77"><a href="#cb14-77" aria-hidden="true" tabindex="-1"></a>                label<span class="op">=</span><span class="st">'Regression Plane'</span>)</span>
-<span id="cb14-78"><a href="#cb14-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-79"><a href="#cb14-79" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Stress (TRUE)'</span>)</span>
-<span id="cb14-80"><a href="#cb14-80" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Time'</span>)</span>
-<span id="cb14-81"><a href="#cb14-81" aria-hidden="true" tabindex="-1"></a>ax.set_zlabel(<span class="st">'Anxiety'</span>)</span>
-<span id="cb14-82"><a href="#cb14-82" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Multiple Regression: Anxiety = f(Stress, Time)</span><span class="ch">\n</span><span class="st">Perfect Fit (R² = 1.000)'</span>)</span>
-<span id="cb14-83"><a href="#cb14-83" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb14-84"><a href="#cb14-84" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="e0980366" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-stdout">
 <pre><code>Multiple Regression Results (TRUE Variables):
 Intercept (β₀): 0.0000
@@ -662,30 +296,7 @@ Mean Absolute Error: 0.0000</code></pre>
 </section>
 <section id="comparison-of-multiple-regression-models-with-statistical-significance-testing" class="level2">
 <h2 class="anchored" data-anchor-id="comparison-of-multiple-regression-models-with-statistical-significance-testing">Comparison of Multiple Regression Models with Statistical Significance Testing</h2>
-<div id="2a214754" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare both multiple regression models with full statistical output</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model 1: Anxiety ~ StressSurvey + Time</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>X_model1 <span class="op">=</span> sm.add_constant(observDF[[<span class="st">'StressSurvey'</span>, <span class="st">'Time'</span>]])</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>y_model1 <span class="op">=</span> observDF[<span class="st">'Anxiety'</span>]</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>model1 <span class="op">=</span> sm.OLS(y_model1, X_model1).fit()</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"MODEL 1: Anxiety ~ StressSurvey + Time"</span>)</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model1.summary())</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Model 2: Anxiety ~ TRUE Stress + Time</span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>X_model2 <span class="op">=</span> sm.add_constant(observDF[[<span class="st">'Stress'</span>, <span class="st">'Time'</span>]])</span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>y_model2 <span class="op">=</span> observDF[<span class="st">'Anxiety'</span>]</span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>model2 <span class="op">=</span> sm.OLS(y_model2, X_model2).fit()</span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"MODEL 2: Anxiety ~ TRUE Stress + Time"</span>)</span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model2.summary())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="676b2995" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-stdout">
 <pre><code>================================================================================
 MODEL 1: Anxiety ~ StressSurvey + Time
@@ -696,7 +307,7 @@ Dep. Variable:                Anxiety   R-squared:                       0.935
 Model:                            OLS   Adj. R-squared:                  0.924
 Method:                 Least Squares   F-statistic:                     86.32
 Date:                Mon, 13 Oct 2025   Prob (F-statistic):           7.54e-08
-Time:                        21:54:31   Log-Likelihood:                -23.931
+Time:                        21:58:22   Log-Likelihood:                -23.931
 No. Observations:                  15   AIC:                             53.86
 Df Residuals:                      12   BIC:                             55.99
 Df Model:                           2                                         
@@ -727,7 +338,7 @@ Dep. Variable:                Anxiety   R-squared:                       1.000
 Model:                            OLS   Adj. R-squared:                  1.000
 Method:                 Least Squares   F-statistic:                 8.600e+31
 Date:                Mon, 13 Oct 2025   Prob (F-statistic):          1.15e-187
-Time:                        21:54:31   Log-Likelihood:                 493.62
+Time:                        21:58:22   Log-Likelihood:                 493.62
 No. Observations:                  15   AIC:                            -981.2
 Df Residuals:                      12   BIC:                            -979.1
 Df Model:                           2                                         
@@ -751,123 +362,7 @@ Notes:
 </div>
 <section id="detailed-comparison-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="detailed-comparison-analysis">Detailed Comparison Analysis</h3>
-<div id="c4626039" class="cell" data-execution_count="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create comparison table</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>comparison_data <span class="op">=</span> {</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Metric'</span>: [</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">'R-squared'</span>,</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Adjusted R-squared'</span>,</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Intercept Coefficient'</span>,</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Intercept p-value'</span>,</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Intercept Significant?'</span>,</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Stress Coefficient'</span>,</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Stress p-value'</span>,</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Stress Significant?'</span>,</span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Time Coefficient'</span>,</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Time p-value'</span>,</span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Time Significant?'</span>,</span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">'RMSE'</span>,</span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">'F-statistic'</span>,</span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">'F-statistic p-value'</span></span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Model 1 (StressSurvey)'</span>: [</span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model1<span class="sc">.</span>rsquared<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model1<span class="sc">.</span>rsquared_adj<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model1<span class="sc">.</span>params[<span class="st">'const'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model1<span class="sc">.</span>pvalues[<span class="st">'const'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Yes'</span> <span class="cf">if</span> model1.pvalues[<span class="st">'const'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'No'</span>,</span>
-<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model1<span class="sc">.</span>params[<span class="st">'StressSurvey'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
-<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model1<span class="sc">.</span>pvalues[<span class="st">'StressSurvey'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
-<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Yes'</span> <span class="cf">if</span> model1.pvalues[<span class="st">'StressSurvey'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'No'</span>,</span>
-<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model1<span class="sc">.</span>params[<span class="st">'Time'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
-<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model1<span class="sc">.</span>pvalues[<span class="st">'Time'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
-<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Yes'</span> <span class="cf">if</span> model1.pvalues[<span class="st">'Time'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'No'</span>,</span>
-<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>np<span class="sc">.</span>sqrt(model1.mse_resid)<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
-<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model1<span class="sc">.</span>fvalue<span class="sc">:.2f}</span><span class="ss">"</span>,</span>
-<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model1<span class="sc">.</span>f_pvalue<span class="sc">:.6f}</span><span class="ss">"</span></span>
-<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Model 2 (TRUE Stress)'</span>: [</span>
-<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model2<span class="sc">.</span>rsquared<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
-<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model2<span class="sc">.</span>rsquared_adj<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
-<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model2<span class="sc">.</span>params[<span class="st">'const'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
-<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model2<span class="sc">.</span>pvalues[<span class="st">'const'</span>]<span class="sc">:.10f}</span><span class="ss">"</span> <span class="cf">if</span> model2.pvalues[<span class="st">'const'</span>] <span class="op">&lt;</span> <span class="fl">0.001</span> <span class="cf">else</span> <span class="ss">f"</span><span class="sc">{</span>model2<span class="sc">.</span>pvalues[<span class="st">'const'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
-<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Yes'</span> <span class="cf">if</span> model2.pvalues[<span class="st">'const'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'No'</span>,</span>
-<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model2<span class="sc">.</span>params[<span class="st">'Stress'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
-<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model2<span class="sc">.</span>pvalues[<span class="st">'Stress'</span>]<span class="sc">:.10f}</span><span class="ss">"</span> <span class="cf">if</span> model2.pvalues[<span class="st">'Stress'</span>] <span class="op">&lt;</span> <span class="fl">0.001</span> <span class="cf">else</span> <span class="ss">f"</span><span class="sc">{</span>model2<span class="sc">.</span>pvalues[<span class="st">'Stress'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
-<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Yes'</span> <span class="cf">if</span> model2.pvalues[<span class="st">'Stress'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'No'</span>,</span>
-<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model2<span class="sc">.</span>params[<span class="st">'Time'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
-<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model2<span class="sc">.</span>pvalues[<span class="st">'Time'</span>]<span class="sc">:.10f}</span><span class="ss">"</span> <span class="cf">if</span> model2.pvalues[<span class="st">'Time'</span>] <span class="op">&lt;</span> <span class="fl">0.001</span> <span class="cf">else</span> <span class="ss">f"</span><span class="sc">{</span>model2<span class="sc">.</span>pvalues[<span class="st">'Time'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
-<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Yes'</span> <span class="cf">if</span> model2.pvalues[<span class="st">'Time'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'No'</span>,</span>
-<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>np<span class="sc">.</span>sqrt(model2.mse_resid)<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
-<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model2<span class="sc">.</span>fvalue<span class="sc">:.2f}</span><span class="ss">"</span>,</span>
-<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model2<span class="sc">.</span>f_pvalue<span class="sc">:.10f}</span><span class="ss">"</span> <span class="cf">if</span> model2.f_pvalue <span class="op">&lt;</span> <span class="fl">0.001</span> <span class="cf">else</span> <span class="ss">f"</span><span class="sc">{</span>model2<span class="sc">.</span>f_pvalue<span class="sc">:.6f}</span><span class="ss">"</span></span>
-<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a>    <span class="st">'True Values'</span>: [</span>
-<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a>        <span class="st">'1.0000'</span>,</span>
-<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a>        <span class="st">'1.0000'</span>,</span>
-<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a>        <span class="st">'0.0000'</span>,</span>
-<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a>        <span class="st">'N/A'</span>,</span>
-<span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a>        <span class="st">'N/A'</span>,</span>
-<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a>        <span class="st">'1.0000'</span>,</span>
-<span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a>        <span class="st">'N/A'</span>,</span>
-<span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a>        <span class="st">'N/A'</span>,</span>
-<span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a>        <span class="st">'0.1000'</span>,</span>
-<span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a>        <span class="st">'N/A'</span>,</span>
-<span id="cb18-64"><a href="#cb18-64" aria-hidden="true" tabindex="-1"></a>        <span class="st">'N/A'</span>,</span>
-<span id="cb18-65"><a href="#cb18-65" aria-hidden="true" tabindex="-1"></a>        <span class="st">'0.0000'</span>,</span>
-<span id="cb18-66"><a href="#cb18-66" aria-hidden="true" tabindex="-1"></a>        <span class="st">'N/A'</span>,</span>
-<span id="cb18-67"><a href="#cb18-67" aria-hidden="true" tabindex="-1"></a>        <span class="st">'N/A'</span></span>
-<span id="cb18-68"><a href="#cb18-68" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb18-69"><a href="#cb18-69" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb18-70"><a href="#cb18-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-71"><a href="#cb18-71" aria-hidden="true" tabindex="-1"></a>comparison_df <span class="op">=</span> pd.DataFrame(comparison_data)</span>
-<span id="cb18-72"><a href="#cb18-72" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">100</span>)</span>
-<span id="cb18-73"><a href="#cb18-73" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"COMPREHENSIVE MODEL COMPARISON"</span>)</span>
-<span id="cb18-74"><a href="#cb18-74" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">100</span>)</span>
-<span id="cb18-75"><a href="#cb18-75" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(comparison_df.to_string(index<span class="op">=</span><span class="va">False</span>))</span>
-<span id="cb18-76"><a href="#cb18-76" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">100</span>)</span>
-<span id="cb18-77"><a href="#cb18-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-78"><a href="#cb18-78" aria-hidden="true" tabindex="-1"></a><span class="co"># Additional insights</span></span>
-<span id="cb18-79"><a href="#cb18-79" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
-<span id="cb18-80"><a href="#cb18-80" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"KEY INSIGHTS FROM COMPARISON"</span>)</span>
-<span id="cb18-81"><a href="#cb18-81" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
-<span id="cb18-82"><a href="#cb18-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-83"><a href="#cb18-83" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">1. R-SQUARED COMPARISON:"</span>)</span>
-<span id="cb18-84"><a href="#cb18-84" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Model 1 (StressSurvey): </span><span class="sc">{</span>model1<span class="sc">.</span>rsquared<span class="sc">:.6f}</span><span class="ss"> (</span><span class="sc">{</span>model1<span class="sc">.</span>rsquared<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">% variance explained)"</span>)</span>
-<span id="cb18-85"><a href="#cb18-85" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Model 2 (TRUE Stress):  </span><span class="sc">{</span>model2<span class="sc">.</span>rsquared<span class="sc">:.10f}</span><span class="ss"> (</span><span class="sc">{</span>model2<span class="sc">.</span>rsquared<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">% variance explained)"</span>)</span>
-<span id="cb18-86"><a href="#cb18-86" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   → Model 2 achieves essentially perfect fit (R² ≈ 1.0000)"</span>)</span>
-<span id="cb18-87"><a href="#cb18-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-88"><a href="#cb18-88" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">2. COEFFICIENT INTERPRETATIONS:"</span>)</span>
-<span id="cb18-89"><a href="#cb18-89" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">   MODEL 1 (StressSurvey + Time):"</span>)</span>
-<span id="cb18-90"><a href="#cb18-90" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   • Intercept: </span><span class="sc">{</span>model1<span class="sc">.</span>params[<span class="st">'const'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
-<span id="cb18-91"><a href="#cb18-91" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"     → For every 1-unit increase in StressSurvey, Anxiety increases by </span><span class="sc">{</span>model1<span class="sc">.</span>params[<span class="st">'StressSurvey'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
-<span id="cb18-92"><a href="#cb18-92" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   • StressSurvey: </span><span class="sc">{</span>model1<span class="sc">.</span>params[<span class="st">'StressSurvey'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
-<span id="cb18-93"><a href="#cb18-93" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"     → Very close to true value of 1.0 (difference: </span><span class="sc">{</span><span class="bu">abs</span>(model1.params[<span class="st">'StressSurvey'</span>] <span class="op">-</span> <span class="fl">1.0</span>)<span class="sc">:.6f}</span><span class="ss">)"</span>)</span>
-<span id="cb18-94"><a href="#cb18-94" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   • Time: </span><span class="sc">{</span>model1<span class="sc">.</span>params[<span class="st">'Time'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
-<span id="cb18-95"><a href="#cb18-95" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"     → Close to true value of 0.1 (difference: </span><span class="sc">{</span><span class="bu">abs</span>(model1.params[<span class="st">'Time'</span>] <span class="op">-</span> <span class="fl">0.1</span>)<span class="sc">:.6f}</span><span class="ss">)"</span>)</span>
-<span id="cb18-96"><a href="#cb18-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-97"><a href="#cb18-97" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">   MODEL 2 (TRUE Stress + Time):"</span>)</span>
-<span id="cb18-98"><a href="#cb18-98" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   • Intercept: </span><span class="sc">{</span>model2<span class="sc">.</span>params[<span class="st">'const'</span>]<span class="sc">:.10f}</span><span class="ss">"</span>)</span>
-<span id="cb18-99"><a href="#cb18-99" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"     → Essentially 0, matching true value perfectly"</span>)</span>
-<span id="cb18-100"><a href="#cb18-100" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   • Stress: </span><span class="sc">{</span>model2<span class="sc">.</span>params[<span class="st">'Stress'</span>]<span class="sc">:.10f}</span><span class="ss">"</span>)</span>
-<span id="cb18-101"><a href="#cb18-101" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"     → Essentially 1.0, matching true value perfectly"</span>)</span>
-<span id="cb18-102"><a href="#cb18-102" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   • Time: </span><span class="sc">{</span>model2<span class="sc">.</span>params[<span class="st">'Time'</span>]<span class="sc">:.10f}</span><span class="ss">"</span>)</span>
-<span id="cb18-103"><a href="#cb18-103" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"     → Essentially 0.1, matching true value perfectly"</span>)</span>
-<span id="cb18-104"><a href="#cb18-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-105"><a href="#cb18-105" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">3. STATISTICAL SIGNIFICANCE (α = 0.05):"</span>)</span>
-<span id="cb18-106"><a href="#cb18-106" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">   MODEL 1:"</span>)</span>
-<span id="cb18-107"><a href="#cb18-107" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   • Intercept: p = </span><span class="sc">{</span>model1<span class="sc">.</span>pvalues[<span class="st">'const'</span>]<span class="sc">:.6f}</span><span class="ss"> → </span><span class="sc">{</span><span class="st">'SIGNIFICANT'</span> <span class="cf">if</span> model1<span class="sc">.</span>pvalues[<span class="st">'const'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'NOT SIGNIFICANT'</span><span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb18-108"><a href="#cb18-108" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   • StressSurvey: p = </span><span class="sc">{</span>model1<span class="sc">.</span>pvalues[<span class="st">'StressSurvey'</span>]<span class="sc">:.6f}</span><span class="ss"> → </span><span class="sc">{</span><span class="st">'SIGNIFICANT'</span> <span class="cf">if</span> model1<span class="sc">.</span>pvalues[<span class="st">'StressSurvey'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'NOT SIGNIFICANT'</span><span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb18-109"><a href="#cb18-109" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   • Time: p = </span><span class="sc">{</span>model1<span class="sc">.</span>pvalues[<span class="st">'Time'</span>]<span class="sc">:.6f}</span><span class="ss"> → </span><span class="sc">{</span><span class="st">'SIGNIFICANT'</span> <span class="cf">if</span> model1<span class="sc">.</span>pvalues[<span class="st">'Time'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'NOT SIGNIFICANT'</span><span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb18-110"><a href="#cb18-110" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   → All coefficients significant? </span><span class="sc">{</span><span class="bu">all</span>(model1.pvalues <span class="op">&lt;</span> <span class="fl">0.05</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb18-111"><a href="#cb18-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-112"><a href="#cb18-112" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">   MODEL 2:"</span>)</span>
-<span id="cb18-113"><a href="#cb18-113" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   • Intercept: p = </span><span class="sc">{</span>model2<span class="sc">.</span>pvalues[<span class="st">'const'</span>]<span class="sc">:.10f}</span><span class="ss"> → </span><span class="sc">{</span><span class="st">'SIGNIFICANT'</span> <span class="cf">if</span> model2<span class="sc">.</span>pvalues[<span class="st">'const'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'NOT SIGNIFICANT'</span><span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb18-114"><a href="#cb18-114" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   • Stress: p = </span><span class="sc">{</span>model2<span class="sc">.</span>pvalues[<span class="st">'Stress'</span>]<span class="sc">:.10f}</span><span class="ss"> → </span><span class="sc">{</span><span class="st">'SIGNIFICANT'</span> <span class="cf">if</span> model2<span class="sc">.</span>pvalues[<span class="st">'Stress'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'NOT SIGNIFICANT'</span><span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb18-115"><a href="#cb18-115" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   • Time: p = </span><span class="sc">{</span>model2<span class="sc">.</span>pvalues[<span class="st">'Time'</span>]<span class="sc">:.10f}</span><span class="ss"> → </span><span class="sc">{</span><span class="st">'SIGNIFICANT'</span> <span class="cf">if</span> model2<span class="sc">.</span>pvalues[<span class="st">'Time'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'NOT SIGNIFICANT'</span><span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb18-116"><a href="#cb18-116" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   → All coefficients significant? </span><span class="sc">{</span><span class="bu">all</span>(model2.pvalues <span class="op">&lt;</span> <span class="fl">0.05</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="ce469920" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-stdout">
 <pre><code>
 ====================================================================================================
@@ -957,33 +452,7 @@ KEY INSIGHTS FROM COMPARISON
 <h2 class="anchored" data-anchor-id="sample-splitting-analysis-high-stress-regime">Sample Splitting Analysis: High Stress Regime</h2>
 <section id="data-exploration-identifying-statistical-regimes" class="level3">
 <h3 class="anchored" data-anchor-id="data-exploration-identifying-statistical-regimes">Data Exploration: Identifying Statistical Regimes</h3>
-<div id="455cd9fa" class="cell" data-execution_count="10">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, let's explore the data structure to identify meaningful subsets</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"DATA EXPLORATION: IDENTIFYING STATISTICAL REGIMES"</span>)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">1. STRESS LEVELS IN THE DATA:"</span>)</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>stress_levels <span class="op">=</span> observDF[<span class="st">'Stress'</span>].unique()</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Unique Stress values: </span><span class="sc">{</span><span class="bu">sorted</span>(stress_levels)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">2. TIME PATTERNS BY STRESS LEVEL:"</span>)</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> stress_level <span class="kw">in</span> <span class="bu">sorted</span>(stress_levels):</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    subset <span class="op">=</span> observDF[observDF[<span class="st">'Stress'</span>] <span class="op">==</span> stress_level]</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    time_values <span class="op">=</span> subset[<span class="st">'Time'</span>].values</span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Stress </span><span class="sc">{</span>stress_level<span class="sc">}</span><span class="ss">: Time values = </span><span class="sc">{</span>time_values<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">3. ANXIETY VALUES BY STRESS LEVEL:"</span>)</span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> stress_level <span class="kw">in</span> <span class="bu">sorted</span>(stress_levels):</span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>    subset <span class="op">=</span> observDF[observDF[<span class="st">'Stress'</span>] <span class="op">==</span> stress_level]</span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>    anxiety_values <span class="op">=</span> subset[<span class="st">'Anxiety'</span>].values</span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Stress </span><span class="sc">{</span>stress_level<span class="sc">}</span><span class="ss">: Anxiety values = </span><span class="sc">{</span>anxiety_values<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">4. IDENTIFYING NATURAL BREAKS:"</span>)</span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Looking at the data, we can identify two distinct regimes:"</span>)</span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"- LOW STRESS REGIME: Stress = 0, 1, 2 (Time values: 0, 1, 2)"</span>)</span>
-<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"- HIGH STRESS REGIME: Stress = 8, 12 (Time values: 2, 2.1, 2.2)"</span>)</span>
-<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">This split makes theoretical sense: low vs. high stress environments"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="09fbf087" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-stdout">
 <pre><code>================================================================================
 DATA EXPLORATION: IDENTIFYING STATISTICAL REGIMES
@@ -1017,24 +486,7 @@ This split makes theoretical sense: low vs. high stress environments</code></pre
 </section>
 <section id="choosing-a-meaningful-subset" class="level3">
 <h3 class="anchored" data-anchor-id="choosing-a-meaningful-subset">Choosing a Meaningful Subset</h3>
-<div id="86c6994f" class="cell" data-execution_count="11">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create meaningful subsets based on stress levels</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"SUBSET ANALYSIS: HIGH STRESS REGIME"</span>)</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Choose HIGH STRESS subset (Stress &gt;= 8) - this is a meaningful "regime"</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>high_stress_subset <span class="op">=</span> observDF[observDF[<span class="st">'Stress'</span>] <span class="op">&gt;=</span> <span class="dv">8</span>].copy()</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">High Stress Subset (Stress &gt;= 8):"</span>)</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Number of observations: </span><span class="sc">{</span><span class="bu">len</span>(high_stress_subset)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Data:"</span>)</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(high_stress_subset)</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Why this subset?"</span>)</span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"1. Theoretically meaningful: High stress environments behave differently"</span>)</span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"2. Sufficient sample size: 6 observations"</span>)</span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"3. Clear regime separation: Stress levels 8 and 12 vs. 0, 1, 2"</span>)</span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"4. Time variation within regime: 2.0, 2.1, 2.2"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="96339b01" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-stdout">
 <pre><code>================================================================================
 SUBSET ANALYSIS: HIGH STRESS REGIME
@@ -1062,61 +514,7 @@ Why this subset?
 </section>
 <section id="graphical-diagnostics-for-the-subset" class="level3">
 <h3 class="anchored" data-anchor-id="graphical-diagnostics-for-the-subset">Graphical Diagnostics for the Subset</h3>
-<div id="e355b2a9" class="cell" data-execution_count="12">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Graphical diagnostics for the subset</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"GRAPHICAL DIAGNOSTICS FOR HIGH STRESS SUBSET"</span>)</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create diagnostic plots</span></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">12</span>))</span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Scatter plot: StressSurvey vs Anxiety</span></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].scatter(high_stress_subset[<span class="st">'StressSurvey'</span>], high_stress_subset[<span class="st">'Anxiety'</span>], </span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>                   s<span class="op">=</span><span class="dv">100</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, color<span class="op">=</span><span class="st">'red'</span>)</span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].set_xlabel(<span class="st">'StressSurvey'</span>)</span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].set_ylabel(<span class="st">'Anxiety'</span>)</span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].set_title(<span class="st">'High Stress: StressSurvey vs Anxiety'</span>)</span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Scatter plot: Time vs Anxiety</span></span>
-<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">1</span>].scatter(high_stress_subset[<span class="st">'Time'</span>], high_stress_subset[<span class="st">'Anxiety'</span>], </span>
-<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>                   s<span class="op">=</span><span class="dv">100</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, color<span class="op">=</span><span class="st">'green'</span>)</span>
-<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">1</span>].set_xlabel(<span class="st">'Time'</span>)</span>
-<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">1</span>].set_ylabel(<span class="st">'Anxiety'</span>)</span>
-<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">1</span>].set_title(<span class="st">'High Stress: Time vs Anxiety'</span>)</span>
-<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">1</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Scatter plot: TRUE Stress vs Anxiety</span></span>
-<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].scatter(high_stress_subset[<span class="st">'Stress'</span>], high_stress_subset[<span class="st">'Anxiety'</span>], </span>
-<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>                   s<span class="op">=</span><span class="dv">100</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
-<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].set_xlabel(<span class="st">'Stress (TRUE)'</span>)</span>
-<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].set_ylabel(<span class="st">'Anxiety'</span>)</span>
-<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].set_title(<span class="st">'High Stress: TRUE Stress vs Anxiety'</span>)</span>
-<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. 3D scatter plot</span></span>
-<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a>ax_3d <span class="op">=</span> fig.add_subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>, projection<span class="op">=</span><span class="st">'3d'</span>)</span>
-<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a>ax_3d.scatter(high_stress_subset[<span class="st">'StressSurvey'</span>], high_stress_subset[<span class="st">'Time'</span>], </span>
-<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a>              high_stress_subset[<span class="st">'Anxiety'</span>], c<span class="op">=</span><span class="st">'purple'</span>, s<span class="op">=</span><span class="dv">100</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a>ax_3d.set_xlabel(<span class="st">'StressSurvey'</span>)</span>
-<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a>ax_3d.set_ylabel(<span class="st">'Time'</span>)</span>
-<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a>ax_3d.set_zlabel(<span class="st">'Anxiety'</span>)</span>
-<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a>ax_3d.set_title(<span class="st">'High Stress: 3D Relationship'</span>)</span>
-<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-48"><a href="#cb24-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Graphical Analysis:"</span>)</span>
-<span id="cb24-49"><a href="#cb24-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"1. StressSurvey vs Anxiety: Clear linear relationship"</span>)</span>
-<span id="cb24-50"><a href="#cb24-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"2. Time vs Anxiety: Limited variation, but clear pattern"</span>)</span>
-<span id="cb24-51"><a href="#cb24-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"3. TRUE Stress vs Anxiety: Perfect linear relationship"</span>)</span>
-<span id="cb24-52"><a href="#cb24-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"4. 3D view: Shows both variables working together"</span>)</span>
-<span id="cb24-53"><a href="#cb24-53" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Key insight: In high stress environments, both StressSurvey and Time show"</span>)</span>
-<span id="cb24-54"><a href="#cb24-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"clear linear relationships with Anxiety, supporting the multiple regression approach."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="617f70c7" class="cell" data-execution_count="12">
 <div class="cell-output cell-output-stdout">
 <pre><code>================================================================================
 GRAPHICAL DIAGNOSTICS FOR HIGH STRESS SUBSET
@@ -1144,43 +542,7 @@ clear linear relationships with Anxiety, supporting the multiple regression appr
 </section>
 <section id="multiple-regression-on-the-subset" class="level3">
 <h3 class="anchored" data-anchor-id="multiple-regression-on-the-subset">Multiple Regression on the Subset</h3>
-<div id="21c44790" class="cell" data-execution_count="13">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiple regression on the high stress subset</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"MULTIPLE REGRESSION: HIGH STRESS SUBSET"</span>)</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Using statsmodels for detailed output</span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>X_subset <span class="op">=</span> sm.add_constant(high_stress_subset[[<span class="st">'StressSurvey'</span>, <span class="st">'Time'</span>]])</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>y_subset <span class="op">=</span> high_stress_subset[<span class="st">'Anxiety'</span>]</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>model_subset <span class="op">=</span> sm.OLS(y_subset, X_subset).fit()</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"REGRESSION RESULTS FOR HIGH STRESS SUBSET:"</span>)</span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model_subset.summary())</span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare with true relationship for this subset</span></span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"COMPARISON WITH TRUE RELATIONSHIP"</span>)</span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"True relationship: Anxiety = Stress + 0.1 × Time"</span>)</span>
-<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Estimated relationship: Anxiety = </span><span class="sc">{</span>model_subset<span class="sc">.</span>params[<span class="st">'const'</span>]<span class="sc">:.6f}</span><span class="ss"> + </span><span class="sc">{</span>model_subset<span class="sc">.</span>params[<span class="st">'StressSurvey'</span>]<span class="sc">:.6f}</span><span class="ss"> × StressSurvey + </span><span class="sc">{</span>model_subset<span class="sc">.</span>params[<span class="st">'Time'</span>]<span class="sc">:.6f}</span><span class="ss"> × Time"</span>)</span>
-<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate what the true relationship should predict for this subset</span></span>
-<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>true_predictions <span class="op">=</span> high_stress_subset[<span class="st">'Stress'</span>] <span class="op">+</span> <span class="fl">0.1</span> <span class="op">*</span> high_stress_subset[<span class="st">'Time'</span>]</span>
-<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>model_predictions <span class="op">=</span> model_subset.predict()</span>
-<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Predictions comparison:"</span>)</span>
-<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"True predictions: </span><span class="sc">{</span>true_predictions<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Model predictions: </span><span class="sc">{</span>model_predictions<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Difference (MAE): </span><span class="sc">{</span>np<span class="sc">.</span>mean(np.<span class="bu">abs</span>(true_predictions <span class="op">-</span> model_predictions))<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
-<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Statistical significance analysis</span></span>
-<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Statistical Significance (α = 0.05):"</span>)</span>
-<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Intercept: p = </span><span class="sc">{</span>model_subset<span class="sc">.</span>pvalues[<span class="st">'const'</span>]<span class="sc">:.6f}</span><span class="ss"> → </span><span class="sc">{</span><span class="st">'SIGNIFICANT'</span> <span class="cf">if</span> model_subset<span class="sc">.</span>pvalues[<span class="st">'const'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'NOT SIGNIFICANT'</span><span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"StressSurvey: p = </span><span class="sc">{</span>model_subset<span class="sc">.</span>pvalues[<span class="st">'StressSurvey'</span>]<span class="sc">:.6f}</span><span class="ss"> → </span><span class="sc">{</span><span class="st">'SIGNIFICANT'</span> <span class="cf">if</span> model_subset<span class="sc">.</span>pvalues[<span class="st">'StressSurvey'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'NOT SIGNIFICANT'</span><span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Time: p = </span><span class="sc">{</span>model_subset<span class="sc">.</span>pvalues[<span class="st">'Time'</span>]<span class="sc">:.6f}</span><span class="ss"> → </span><span class="sc">{</span><span class="st">'SIGNIFICANT'</span> <span class="cf">if</span> model_subset<span class="sc">.</span>pvalues[<span class="st">'Time'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span> <span class="cf">else</span> <span class="st">'NOT SIGNIFICANT'</span><span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"All coefficients significant? </span><span class="sc">{</span><span class="bu">all</span>(model_subset.pvalues <span class="op">&lt;</span> <span class="fl">0.05</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="6775a2ce" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-stdout">
 <pre><code>================================================================================
 MULTIPLE REGRESSION: HIGH STRESS SUBSET
@@ -1192,7 +554,7 @@ Dep. Variable:                Anxiety   R-squared:                       1.000
 Model:                            OLS   Adj. R-squared:                  1.000
 Method:                 Least Squares   F-statistic:                 3.760e+28
 Date:                Mon, 13 Oct 2025   Prob (F-statistic):           2.52e-43
-Time:                        21:54:33   Log-Likelihood:                 183.48
+Time:                        21:58:24   Log-Likelihood:                 183.48
 No. Observations:                   6   AIC:                            -361.0
 Df Residuals:                       3   BIC:                            -361.6
 Df Model:                           2                                         
@@ -1244,68 +606,7 @@ All coefficients significant? True</code></pre>
 </section>
 <section id="comparison-subset-vs.-full-sample" class="level3">
 <h3 class="anchored" data-anchor-id="comparison-subset-vs.-full-sample">Comparison: Subset vs.&nbsp;Full Sample</h3>
-<div id="6ce15aea" class="cell" data-execution_count="14">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare subset results with full sample results</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"SUBSET vs. FULL SAMPLE COMPARISON"</span>)</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>comparison_data <span class="op">=</span> {</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Metric'</span>: [</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Sample Size'</span>,</span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">'R-squared'</span>,</span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Intercept'</span>,</span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">'StressSurvey Coeff'</span>,</span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Time Coeff'</span>,</span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">'All Coeffs Significant?'</span>,</span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">'MAE vs True Values'</span></span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Full Sample'</span>: [</span>
-<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(observDF)<span class="sc">}</span><span class="ss">"</span>,</span>
-<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model1<span class="sc">.</span>rsquared<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
-<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model1<span class="sc">.</span>params[<span class="st">'const'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
-<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model1<span class="sc">.</span>params[<span class="st">'StressSurvey'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
-<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model1<span class="sc">.</span>params[<span class="st">'Time'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
-<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span><span class="bu">all</span>(model1.pvalues <span class="op">&lt;</span> <span class="fl">0.05</span>)<span class="sc">}</span><span class="ss">"</span>,</span>
-<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>np<span class="sc">.</span>mean(np.<span class="bu">abs</span>(model1.predict() <span class="op">-</span> (observDF[<span class="st">'Stress'</span>] <span class="op">+</span> <span class="fl">0.1</span> <span class="op">*</span> observDF[<span class="st">'Time'</span>]).values))<span class="sc">:.6f}</span><span class="ss">"</span></span>
-<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">'High Stress Subset'</span>: [</span>
-<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(high_stress_subset)<span class="sc">}</span><span class="ss">"</span>,</span>
-<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model_subset<span class="sc">.</span>rsquared<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
-<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model_subset<span class="sc">.</span>params[<span class="st">'const'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
-<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model_subset<span class="sc">.</span>params[<span class="st">'StressSurvey'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
-<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>model_subset<span class="sc">.</span>params[<span class="st">'Time'</span>]<span class="sc">:.6f}</span><span class="ss">"</span>,</span>
-<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span><span class="bu">all</span>(model_subset.pvalues <span class="op">&lt;</span> <span class="fl">0.05</span>)<span class="sc">}</span><span class="ss">"</span>,</span>
-<span id="cb30-32"><a href="#cb30-32" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f"</span><span class="sc">{</span>np<span class="sc">.</span>mean(np.<span class="bu">abs</span>(model_subset.predict() <span class="op">-</span> (high_stress_subset[<span class="st">'Stress'</span>] <span class="op">+</span> <span class="fl">0.1</span> <span class="op">*</span> high_stress_subset[<span class="st">'Time'</span>]).values))<span class="sc">:.6f}</span><span class="ss">"</span></span>
-<span id="cb30-33"><a href="#cb30-33" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb30-34"><a href="#cb30-34" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb30-35"><a href="#cb30-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-36"><a href="#cb30-36" aria-hidden="true" tabindex="-1"></a>subset_comparison_df <span class="op">=</span> pd.DataFrame(comparison_data)</span>
-<span id="cb30-37"><a href="#cb30-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset_comparison_df.to_string(index<span class="op">=</span><span class="va">False</span>))</span>
-<span id="cb30-38"><a href="#cb30-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-39"><a href="#cb30-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
-<span id="cb30-40"><a href="#cb30-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"KEY INSIGHTS FROM SUBSET ANALYSIS"</span>)</span>
-<span id="cb30-41"><a href="#cb30-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
-<span id="cb30-42"><a href="#cb30-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-43"><a href="#cb30-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">1. SAMPLE SIZE IMPACT:"</span>)</span>
-<span id="cb30-44"><a href="#cb30-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Full sample: </span><span class="sc">{</span><span class="bu">len</span>(observDF)<span class="sc">}</span><span class="ss"> observations"</span>)</span>
-<span id="cb30-45"><a href="#cb30-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Subset: </span><span class="sc">{</span><span class="bu">len</span>(high_stress_subset)<span class="sc">}</span><span class="ss"> observations"</span>)</span>
-<span id="cb30-46"><a href="#cb30-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"   → Smaller sample reduces statistical power"</span>)</span>
-<span id="cb30-47"><a href="#cb30-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-48"><a href="#cb30-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">2. MODEL PERFORMANCE:"</span>)</span>
-<span id="cb30-49"><a href="#cb30-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Full sample R²: </span><span class="sc">{</span>model1<span class="sc">.</span>rsquared<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
-<span id="cb30-50"><a href="#cb30-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Subset R²: </span><span class="sc">{</span>model_subset<span class="sc">.</span>rsquared<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
-<span id="cb30-51"><a href="#cb30-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"   → Both achieve excellent fit, but full sample is more robust"</span>)</span>
-<span id="cb30-52"><a href="#cb30-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-53"><a href="#cb30-53" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">3. COEFFICIENT STABILITY:"</span>)</span>
-<span id="cb30-54"><a href="#cb30-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"   Full sample StressSurvey coeff: </span><span class="sc">{:.6f}</span><span class="st">"</span>.<span class="bu">format</span>(model1.params[<span class="st">'StressSurvey'</span>]))</span>
-<span id="cb30-55"><a href="#cb30-55" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"   Subset StressSurvey coeff: </span><span class="sc">{:.6f}</span><span class="st">"</span>.<span class="bu">format</span>(model_subset.params[<span class="st">'StressSurvey'</span>]))</span>
-<span id="cb30-56"><a href="#cb30-56" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"   → Coefficients are very similar, suggesting stability across regimes"</span>)</span>
-<span id="cb30-57"><a href="#cb30-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-58"><a href="#cb30-58" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">4. STATISTICAL SIGNIFICANCE:"</span>)</span>
-<span id="cb30-59"><a href="#cb30-59" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Full sample - all significant: </span><span class="sc">{</span><span class="bu">all</span>(model1.pvalues <span class="op">&lt;</span> <span class="fl">0.05</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb30-60"><a href="#cb30-60" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   Subset - all significant: </span><span class="sc">{</span><span class="bu">all</span>(model_subset.pvalues <span class="op">&lt;</span> <span class="fl">0.05</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb30-61"><a href="#cb30-61" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"   → Both show statistical significance, but with different confidence levels"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="5151d373" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-stdout">
 <pre><code>================================================================================
 SUBSET vs. FULL SAMPLE COMPARISON
